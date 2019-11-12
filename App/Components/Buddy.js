@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     width: width,
     alignItems: 'flex-start',
+
   },
   buddy: {
     flex: 1,

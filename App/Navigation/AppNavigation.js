@@ -6,17 +6,29 @@ import { Images, Colors, Metrics } from '../Themes'
 import { StyleSheet, Image } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import DiscoverScreen from '../Screens/DiscoverScreen'
-import BuddiesScreen from '../Screens/BuddiesScreen'
-import EventsScreen from '../Screens/EventsScreen'
-import ProfileScreen from '../Screens/ProfileScreen'
-import BuddyProfileScreen from '../Screens/BuddyProfileScreen'
+import DiscoverScreen from '../Screens/DiscoverScreen';
+import BuddiesScreen from '../Screens/BuddiesScreen';
+import EventsScreen from '../Screens/EventsScreen';
+import ProfileScreen from '../Screens/ProfileScreen';
+import BuddyProfileScreen from '../Screens/BuddyProfileScreen';
+import FilterScreen from '../Screens/FilterScreen';
 
 const DiscoverStack = createStackNavigator({
   Discover: {screen: DiscoverScreen},
-  BuddyProfile: {screen: BuddyProfileScreen},
+  Filter: {screen: FilterScreen,
+    navigationOptions: () => ({
+      headerTintColor: Colors.orange,
+    }),
+  },
+  BuddyProfile: {screen: BuddyProfileScreen,
+    navigationOptions: () => ({
+      headerTintColor: Colors.orange,
+    }),      
+  },
 },
 {
+  mode: 'modal',
+  headerBackTitleVisible: false,
   headerMode: 'float',
   initialRouteName: 'Discover'
 })
@@ -82,15 +94,12 @@ BuddiesStack.navigationOptions = ({ navigation }) => {
       ),
     };
   };
-// Manifest of possible screens
 const TabNav = createBottomTabNavigator({
   DiscoverScreen: { screen: DiscoverStack },
   BuddiesScreen: { screen: BuddiesStack },
   EventsScreen: { screen: EventsStack },
   ProfileScreen: { screen: ProfileStack },
-  //BookmarkScreen:   { screen: BookmarkStack },
 }, {
-  // Default config for all screens
   initialRouteName: 'DiscoverScreen',
   tabBarOptions: {
     activeTintColor: Colors.orange,

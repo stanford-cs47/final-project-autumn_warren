@@ -7,13 +7,10 @@ import buddies from '../Data/buddylist';
 
 
 export default function BuddyList(props)  {
-    state = {
-      loading: false,
-      buddyEntries: [],
-    }
-    onProfilePressed = (name) => {
-      console.log(name);
-      props.onProfileRequested(name);
+
+    onProfilePressed = (name, username) => {
+      console.log("requested:"+ username)
+      props.onProfileRequested(name, username);
     }
  // }
 renderBuddy = (buddyObject) => (

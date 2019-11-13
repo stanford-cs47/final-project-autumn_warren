@@ -1,27 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button } from 'react-native';
 import { material } from 'react-native-typography';
 import BuddyList from '../Components/BuddyList'
 import { Metrics, Colors, Images } from '../Themes';
-import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import images from '../Themes/Images';
 
-export default class DiscoverScreen extends React.Component {
+export default class FilterScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
-    const params = navigation.state.params || {};
+   const params = navigation.state.params || {};
     return {
-      headerRight: (
-        <TouchableOpacity style={styles.filter}
-          onPress = {() => navigation.navigate('Filter')}>
-        <Image style= {styles.filterButton}
-      source = {Images.filter}/>
-    </TouchableOpacity>
-      ), 
    headerTitle: (
-        <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={styles.header}> DISCOVER</Text>
+        <SafeAreaView style={{justifyContent: 'center', alignContent: 'center'}}>
+          <Text style={styles.header}> Filter</Text>
         </SafeAreaView>
       )
     };
@@ -45,20 +37,13 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   header: {
-    fontSize: 24,
+    fontSize: 20,
+    fontWeight: 'bold',
     color: Colors.orange,
   },
   filter: {
-    height: 25,
-    width: 25,
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginRight: 15,
-  },
-  filterButton: {
-    height: 25,
-    width: 25,
-    tintColor: Colors.orange,
-  },
+    height: 20,
+    width: 20,
+  }
 });
   

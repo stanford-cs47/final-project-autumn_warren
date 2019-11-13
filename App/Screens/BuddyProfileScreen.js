@@ -5,13 +5,12 @@ import { material } from 'react-native-typography';
 import { Metrics, Colors } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
 import buddies from '../Data/buddylist';
+import Profile from '../Components/Profile';
 
 export default class BuddyProfileScreen extends React.Component {
-
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     const name = params.name;
-
     return {
       headerTitle: (
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -20,58 +19,57 @@ export default class BuddyProfileScreen extends React.Component {
       )
     };
   };
-
   state = {
     content: {},
     loading: true,
-    user: {},
+    user: "",
   }
   componentDidMount() {
     if(!this.props.navigation) return;
-
     const params = this.props.navigation.state.params || {};
-    const name = params.name;
     const username = params.username;
-    //var result = this.getBuddyData(username);
-   // var name = result.name;
-    //console.log(name);
-   this.loadUserContent(username);
+    this.setState({user: username});
+    this.loadUserContent(username);
   }
-
+  findBuddy(username) {
+    for(i = 0; i < buddies.length; i++) {
+      var buddy = buddies[i];
+      if(buddy.username === username) {
+        return buddy;
+      }
+    }
+  } 
   loadUserContent = async (username) => {
-    var result = buddies.find( ({username}) => username === username);
+    this.setState({loading: true});
+    await this.sleep(500); 
+    const result = this.findBuddy(username);
     console.log(result);
-    this.setState({user: result});
-    console.log(this.user);
+    this.setState({content: result});
+    this.setState({loading: false});
   }
-
-  getUserContent = () => {
-    const { user } = this.state;
-    if (!user.id) return null;
-
+  render() {
     return (
-      <View style={styles.userContainer}>
-        <Text style={material.display1}>{content.name}</Text>
-        <Text style={material.body1}>{user.bio || 'No Bio'}</Text>
-        <Text style={material.caption}>{user.location || 'No Location'}</Text>
+      <View style={styles.container}>
+        {this.getProfileContent()}
       </View>
     );
-    }
-    render() {
-        const { content } = this.state;
-    
-        return (
-          <View style={styles.container}>
-    
-    
-          </View>
-        );
-      }
-
-  sleep = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
-
+  getProfileContent = () => {
+    const { content, loading } = this.state;
+    if (loading) {
+      return (
+        <ActivityIndicator />
+      );
+    } else {
+    console.log(content)
+    return (
+      <Profile content={content}/>
+    );
+  }
+}
+sleep = (ms) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 }
 
 const styles = StyleSheet.create({

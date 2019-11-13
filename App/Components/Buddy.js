@@ -11,30 +11,17 @@ import {
   Dimensions,
   AsyncStorage,
 } from 'react-native';
-
-// Import third-party components here
-import { material } from 'react-native-typography'; //consider using this!
+import { material } from 'react-native-typography';
 import { Metrics, Colors, Images } from '../Themes';
 
 const { width, height } = Dimensions.get('window')
 export default class Buddy extends React.Component {
-  static defaultProps = { content: {} }
-  componentDidMount = async () => {
-    const { content = {} } = this.props;
-  }
-
   profilePressed = () => {
-    console.log(this.props.username);
     if (this.props.onProfilePressed) {
-      const { content = {} } = this.props;
-      const { user = {} } = content;
-
-      this.props.onProfilePressed(this.props.name);
+      console.log("Username:"+ this.props.username);
+      this.props.onProfilePressed(this.props.name, this.props.username);
     }
   }
-  /*handlePress = () => {
-    Linking.openURL(props.url);
-  };*/
   render() {
   return ( 
     <View style = {styles.container}>

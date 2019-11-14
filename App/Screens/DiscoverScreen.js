@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-native';
 import { material } from 'react-native-typography';
-import BuddyList from '../Components/BuddyList'
+import BuddyList from '../Components/DiscoverPage/BuddyList'
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import images from '../Themes/Images';
+
 
 export default class DiscoverScreen extends React.Component {
 

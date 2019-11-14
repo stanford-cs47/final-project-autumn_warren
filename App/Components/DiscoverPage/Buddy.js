@@ -12,7 +12,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { material } from 'react-native-typography';
-import { Metrics, Colors, Images } from '../Themes';
+import { Metrics, Colors, Images } from '../../Themes';
 
 const { width, height } = Dimensions.get('window')
 export default class Buddy extends React.Component {
@@ -47,7 +47,7 @@ export default class Buddy extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     marginBottom: 25,
     width: width,
     alignItems: 'flex-start',
@@ -61,15 +61,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 15,
     flexDirection: 'row',
-    alignContent: "flex-start",
     justifyContent: 'center',
   },
     image: {
-    width: 130,
-    height: 130,
+    width: 100,
+    height: 100,
     aspectRatio: 1,
     resizeMode: 'contain',
     borderRadius: 10,
+    alignSelf: 'center',
   },
   info: {
     flex: 1,

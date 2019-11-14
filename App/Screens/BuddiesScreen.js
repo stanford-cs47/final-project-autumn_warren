@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { material } from 'react-native-typography';
-import BuddyList from '../Components/BuddyList'
+import BuddyList from '../Components/DiscoverPage/BuddyList'
 import { Metrics, Colors } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';

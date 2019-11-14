@@ -3,7 +3,7 @@ import PropTypes from 'prop-types' //consider using this!
 import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-native';
 import Buddy from './Buddy'
 import { useState } from 'react';
-import buddies from '../Data/buddylist';
+import buddies from '../../Data/buddylist';
 
 
 export default function BuddyList(props)  {

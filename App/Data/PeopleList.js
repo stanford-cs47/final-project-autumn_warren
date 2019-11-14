@@ -1,5 +1,5 @@
-var buddies = [];
-var buddy1 = {
+var people = [];
+var person1 = {
     name: "Sam G.",
     username: "samg",
     location: "Mountain View",
@@ -9,7 +9,7 @@ var buddy1 = {
     profileAvatar: "",
     profilePic: "",
 }
-var buddy2 = {
+var person2 = {
     name: "Tina F.",
     username: "tinaf",
     location: "Fremont",
@@ -19,6 +19,6 @@ var buddy2 = {
     profileAvatar: "",
     profilePic: "",
 }
-buddies.push(buddy1);
-buddies.push(buddy2);
-export default buddies;
+people.push(person1);
+people.push(person2);
+export default people;

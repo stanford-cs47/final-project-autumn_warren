@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //consider using this!
 import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-native';
-import Buddy from './Buddy'
+import ListItem from './ListItem'
 import { useState } from 'react';
-import buddies from '../../Data/buddylist';
+import buddies from '../../Data/PeopleList';
 
 
 export default function BuddyList(props)  {
@@ -12,9 +12,8 @@ export default function BuddyList(props)  {
       console.log("requested:"+ username)
       props.onProfileRequested(name, username);
     }
- // }
 renderBuddy = (buddyObject) => (
-  <Buddy
+  <ListItem
     name = {buddyObject.name}
     location = {buddyObject.location}
     age= {buddyObject.age}

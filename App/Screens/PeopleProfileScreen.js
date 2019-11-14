@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ActivityIndicator, Image } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics, Colors } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
-import buddies from '../Data/buddylist';
+import buddies from '../Data/PeopleList';
 import Profile from '../Components/Profile';
 
 export default class BuddyProfileScreen extends React.Component {

@@ -2,15 +2,14 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import React from 'react';
-import { Images, Colors, Metrics } from '../Themes'
-import { StyleSheet, Image } from 'react-native';
+import {Colors} from '../Themes'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import DiscoverScreen from '../Screens/DiscoverScreen';
 import BuddiesScreen from '../Screens/BuddiesScreen';
 import EventsScreen from '../Screens/EventsScreen';
-import ProfileScreen from '../Screens/ProfileScreen';
-import BuddyProfileScreen from '../Screens/BuddyProfileScreen';
+import ProfileScreen from '../Screens/MyProfileScreen';
+import BuddyProfileScreen from '../Screens/PeopleProfileScreen';
 import FilterScreen from '../Screens/FilterScreen';
 
 const DiscoverStack = createStackNavigator({

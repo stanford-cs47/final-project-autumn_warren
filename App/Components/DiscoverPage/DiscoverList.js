@@ -26,8 +26,7 @@ export default function DiscoverList (props)  {
       <View style={styles.container}>
         <FlatList
             data={people}
-            renderItem = { ({ item }) => renderPerson(item)}
-            keyExtractor={item => item.username}
+            renderItem = { ({ username }) => renderPerson(people[username])}
           />
       </View>
     );

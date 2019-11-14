@@ -1,4 +1,8 @@
-var people = [];
+function addPerson(person) {
+    people[person.username] = person;
+}
+
+var people = {};
 var person1 = {
     name: "Sam G.",
     username: "samg",
@@ -19,6 +23,8 @@ var person2 = {
     profileAvatar: "",
     profilePic: "",
 }
-people.push(person1);
-people.push(person2);
+
+addPerson(person1);
+addPerson(person2);
+
 export default people;

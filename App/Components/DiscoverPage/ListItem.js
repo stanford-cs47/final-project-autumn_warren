@@ -15,7 +15,7 @@ import { material } from 'react-native-typography';
 import { Metrics, Colors, Images } from '../../Themes';
 
 const { width, height } = Dimensions.get('window')
-export default class Buddy extends React.Component {
+export default class ListItem extends React.Component {
   profilePressed = () => {
     if (this.props.onProfilePressed) {
       console.log("Username:"+ this.props.username);
@@ -27,11 +27,11 @@ export default class Buddy extends React.Component {
     <View style = {styles.container}>
       <TouchableWithoutFeedback 
          onPress={() => this.profilePressed()}>
-        <View style = {styles.buddy}>
+        <View style = {styles.person}>
           <Image style = {styles.image}
               source = {Images.placeholder}/>
           <View style = {styles.info}>
-            <Text style = {styles.buddyName}>{this.props.name}</Text>
+            <Text style = {styles.personName}>{this.props.name}</Text>
             <View style = {styles.subheading}>
               <Text style = {styles.location}>{this.props.location}</Text>
               <Text style = {styles.age}>, {this.props.age}</Text>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
 
   },
-  buddy: {
+  person: {
     flex: 1,
     backgroundColor: '#f6b26b',
     borderRadius: 10,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-    buddyName: {
+    personName: {
     fontWeight: 'bold',
     fontSize: 20,
     color: '#5b5b5b',

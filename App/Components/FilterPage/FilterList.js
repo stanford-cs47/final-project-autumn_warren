@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes, { nominalTypeHack } from 'prop-types' //consider using this!
 import { StyleSheet, SafeAreaView, View, SectionList, Text, Linking, Image} from 'react-native';
-import profile from '../../Data/Profile';
+import profile from '../../Data/MyProfile';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Colors, Images } from '../../Themes';
 import ActivityList from './ActivityList';

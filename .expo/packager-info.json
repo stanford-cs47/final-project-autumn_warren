@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 940,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://k2-tmv.anonymous.2fit.exp.direct",
   "packagerNgrokUrl": "https://packager.k2-tmv.anonymous.2fit.exp.direct",
-  "ngrokPid": 952,
+  "ngrokPid": 4502,
   "webpackServerPort": null
 }

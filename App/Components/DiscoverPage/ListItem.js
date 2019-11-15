@@ -19,7 +19,7 @@ export default class ListItem extends React.Component {
   profilePressed = () => {
     if (this.props.onProfilePressed) {
       console.log("Username:"+ this.props.username);
-      this.props.onProfilePressed(this.props.name, this.props.username);
+      this.props.onProfilePressed(this.props.username);
     }
   }
   render() {

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types' //consider using this!
 import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-native';
 import ListItem from './ListItem'
 import { useState } from 'react';
-import people from '../../Data/PeopleList';
+import PeopleData from '../../Data/PeopleList';
 
 
 export default function DiscoverList (props)  {
 
-  onProfilePressed = (name, username) => {
+  onProfilePressed = (username) => {
     console.log("requested:"+ username)
-    props.onProfileRequested(name, username);
+    props.onProfileRequested(username);
   }
   renderPerson = (person) => (
   <ListItem
@@ -24,14 +24,15 @@ export default function DiscoverList (props)  {
 );
     return (
       <View style={styles.container}>
-        <FlatList
-            data={people}
-            renderItem = { ({ username }) => renderPerson(people[username])}
-          />
+
+    <FlatList
+              data={PeopleData.users}
+              renderItem = { ({ item }) => renderPerson(PeopleData.people[item])}
+              keyExtractor={item => item}
+           />
       </View>
     );
   }
-
 
 const styles = StyleSheet.create({
   container: {

@@ -34,7 +34,8 @@ export default function ActivityList(props) {
       container: {
         flex: 1,
         marginBottom: 25,
-        alignItems: 'flex-start',
+        paddingRight: 10,
+        alignItems: 'flex-end',
     
       },
     });

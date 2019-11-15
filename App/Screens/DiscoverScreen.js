@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-native';
 import { material } from 'react-native-typography';
-import BuddyList from '../Components/DiscoverPage/DiscoverList'
+import DiscoverList from '../Components/DiscoverPage/DiscoverList'
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -27,14 +27,14 @@ export default class DiscoverScreen extends React.Component {
       )
     };
   };
-  onProfileRequested = (name_val, username_val) => {
-    console.log("Requested: " + name_val + username_val);
-    this.props.navigation.navigate('BuddyProfile', { name: name_val, username: username_val });
+  onProfileRequested = (username_val) => {
+    console.log("Requested: " + username_val);
+    this.props.navigation.navigate('BuddyProfile', { username: username_val });
   }
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <BuddyList onProfileRequested = {this.onProfileRequested}/>
+        <DiscoverList onProfileRequested = {this.onProfileRequested}/>
       </SafeAreaView >
     );
   }

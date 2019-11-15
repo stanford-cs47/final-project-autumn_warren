@@ -1,8 +1,11 @@
 function addPerson(person) {
     people[person.username] = person;
+    users.push(person.username);
 }
 
 var people = {};
+var users = [];
+
 var person1 = {
     name: "Sam G.",
     username: "samg",
@@ -27,4 +30,4 @@ var person2 = {
 addPerson(person1);
 addPerson(person2);
 
-export default people;
+export default { people, users };

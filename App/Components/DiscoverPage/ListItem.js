@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../../Themes';
-import ScheduleMatchIcon from './ScheduleMatchIcon'
 
 const { width, height } = Dimensions.get('window')
 export default class ListItem extends React.Component {
@@ -41,9 +40,6 @@ export default class ListItem extends React.Component {
               <Text style = {styles.bio} >{this.props.bio}</Text>        
             </View> 
           </View>
-          <View >
-            <ScheduleMatchIcon schedule ={this.props.schedule}></ScheduleMatchIcon>
-            </View>
         </View>
       </TouchableWithoutFeedback>
     </View>

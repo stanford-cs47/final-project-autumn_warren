@@ -11,6 +11,7 @@ import EventsScreen from '../Screens/EventsScreen';
 import ProfileScreen from '../Screens/MyProfileScreen';
 import BuddyProfileScreen from '../Screens/PeopleProfileScreen';
 import FilterScreen from '../Screens/FilterScreen';
+import * as Font from 'expo-font';
 
 const DiscoverStack = createStackNavigator({
   Discover: {screen: DiscoverScreen},
@@ -19,6 +20,7 @@ const DiscoverStack = createStackNavigator({
       headerTintColor: Colors.orange,
     }),
   },
+  
   BuddyProfile: {screen: BuddyProfileScreen,
     navigationOptions: () => ({
       headerTintColor: Colors.orange,

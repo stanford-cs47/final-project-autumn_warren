@@ -4,12 +4,11 @@ import { material } from 'react-native-typography';
 import DiscoverList from '../Components/DiscoverPage/DiscoverList'
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import * as Font from 'expo-font';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import images from '../Themes/Images';
 
 
 export default class DiscoverScreen extends React.Component {
-
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
@@ -48,6 +47,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     color: Colors.orange,
+    fontWeight:'bold',
   },
   filter: {
     height: 25,

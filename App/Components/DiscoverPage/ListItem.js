@@ -11,8 +11,9 @@ import {
   Dimensions,
   AsyncStorage,
 } from 'react-native';
-import { material } from 'react-native-typography';
+import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../../Themes';
+import ScheduleMatchIcon from './ScheduleMatchIcon'
 
 const { width, height } = Dimensions.get('window')
 export default class ListItem extends React.Component {
@@ -36,8 +37,13 @@ export default class ListItem extends React.Component {
               <Text style = {styles.location}>{this.props.location}</Text>
               <Text style = {styles.age}>, {this.props.age}</Text>
             </View>
-            <Text style = {styles.bio} >{this.props.bio}</Text>         
+            <View style = {styles.bioBox}>
+              <Text style = {styles.bio} >{this.props.bio}</Text>        
+            </View> 
           </View>
+          <View >
+            <ScheduleMatchIcon schedule ={this.props.schedule}></ScheduleMatchIcon>
+            </View>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -51,15 +57,19 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     width: width,
     alignItems: 'flex-start',
-
+    shadowColor: 'gray',
+    shadowOffset: {width: 1, height: 5},
+    shadowOpacity: 0.22,
+    shadowRadius: 2.32,
+    elevation: 4,
   },
   person: {
-    flex: 1,
     backgroundColor: '#f6b26b',
     borderRadius: 10,
     width: '100%',
+    height: height * .17,
     paddingHorizontal: 15,
-    paddingVertical: 15,
+    paddingVertical: 10,
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
   },
     subheading: {
     flexDirection: 'row',
-    paddingVertical: 5,
+    //paddingVertical: 5,
   },
   location: {
     fontWeight: '300',
@@ -96,11 +106,14 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#5b5b5b',
   },
+  bioBox: {
+    width : 215,
+  },
   bio: {
     fontWeight: '400',
     fontSize: 16,
     color: '#5b5b5b',
     paddingHorizontal: 20,
     paddingVertical: 10,
-  }
+  },
 });

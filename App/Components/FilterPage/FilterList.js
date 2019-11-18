@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { StyleSheet, SafeAreaView, View, SectionList, Text} from 'react-native';
+import DropdownMenu from 'react-native-dropdown-menu';
 import profile from '../../Data/MyProfile';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Colors, Images } from '../../Themes';
-import ActivityList from './ActivityList';
+import ToggleList from './ToggleList';
+import ToggleItem from './ToggleItem';
 import LocationPicker from './LocationPicker';
-import { CheckBox, Button } from 'react-native-elements';
 
 
 export default class FilterList extends React.Component  {
@@ -17,44 +18,46 @@ export default class FilterList extends React.Component  {
     render() {
     console.log(this.state.experienceFilter)
       return (
-          <ScrollView style = {styles.container}>
-              <View style = {styles.filter}>
-                  <Text style = {styles.header}>
-                      Fitness Places </Text>
-                  <Text style = {styles.info}>
-                      Match me with buddies at this fitness place:</Text>
-              </View>
-              <LocationPicker picker = {this.picker}/>
-              <View style = {styles.filter}>
-                  <Text style = {styles.header}>
-                      Activity</Text>
-                  <Text style = {styles.info}>
-                      Show buddies who share these activities:</Text>
-                  <ActivityList activity = {profile.activities}/>
-              </View>
-              <View style = {styles.filter}>
-                  <Text style = {styles.header}>Other</Text>
-                  <Text style = {styles.info}>
-                      Show buddies who share these characteristics:</Text>
-                  <CheckBox
-                      title = {profile.experience}
-                      textStyle = {styles.checkboxText}
-                      containerStyle= {styles.checkbox}
-                      checkedColor = {Colors.heading}
-                      uncheckedColor = {Colors.heading}
-                      checked={this.state.experienceChecked}
-                      onPress={() => this.setState({experienceChecked: !this.state.experienceChecked})}/>
-                  <CheckBox
-                      title = {profile.personality}
-                      titleStyle = {styles.title}
-                      textStyle = {styles.checkboxText}
-                      containerStyle= {styles.checkbox}
-                      checkedColor = {Colors.heading}
-                      uncheckedColor = {Colors.heading}
-                      checked={this.state.personalityChecked}
-                      onPress={() => this.setState({personalityChecked: !this.state.personailtyChecked})}/>
-              </View>
-          </ScrollView>
+            <ScrollView style = {styles.container}>
+                <View style = {styles.filter}>
+                    <Text style = {styles.header}>
+                        Fitness Places </Text>
+                    <Text style = {styles.info}>
+                        Match me with buddies at this fitness place:</Text>
+                    <LocationPicker picker = {this.picker}/>
+                </View>
+                <View style = {styles.filter}>
+                    <Text style = {styles.header}>
+                        Activities</Text>
+                    <Text style = {styles.info}>
+                        Show buddies who share these activities:</Text>
+                    <ToggleList activities = {profile.activities}/>
+                </View>
+                <View style = {styles.filter}>
+                    <Text style = {styles.header}>Experience</Text>
+                    <Text style = {styles.info}>
+                        Show buddies who share my experience level:</Text>
+                    <ToggleItem 
+                    item = {profile.experience}/>
+           {/*<CheckBox
+                        title = {profile.experience}
+                        textStyle = {styles.checkboxText}
+                        containerStyle= {styles.checkbox}
+                        checkedColor = {Colors.heading}
+                        uncheckedColor = {Colors.heading}
+                        checked={this.state.experienceChecked}
+                        onPress={() => this.setState({experienceChecked: !this.state.experienceChecked})}/>
+                    <CheckBox
+                        title = {profile.personality}
+                        titleStyle = {styles.title}
+                        textStyle = {styles.checkboxText}
+                        containerStyle= {styles.checkbox}
+                        checkedColor = {Colors.heading}
+                        uncheckedColor = {Colors.heading}
+                        checked={this.state.personalityChecked}
+           onPress={() => this.setState({personalityChecked: !this.state.personailtyChecked})}/>*/}
+                </View>
+            </ScrollView>
       );
     }
 }
@@ -67,18 +70,20 @@ const styles = StyleSheet.create({
     filter: {
         flex: 1,
         flexDirection: 'column',
+        marginBottom: 20,
     },
     header: {
         color: Colors.heading,
         fontSize: 25,
-        fontWeight: '400',
-        marginBottom: 15,
+        fontWeight: 'bold',
+        marginBottom: 5,
         marginTop: 20,
     },
     info: {
         color: Colors.heading,
         fontSize: 15,
-        marginBottom: 10,
+        marginBottom: 15,
+        fontWeight: '300'
     },
     icon: {
       height: 50,
@@ -96,4 +101,7 @@ const styles = StyleSheet.create({
         color: Colors.heading,
         alignSelf: 'center',
     },
+    experience: {
+        justifyContent: 'flex-end',
+    }
 });

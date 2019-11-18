@@ -1,13 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Alert} from 'react-native';
+import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import { material } from 'react-native-typography';
 import FilterList from '../Components/FilterPage/FilterList'
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { CheckBox, Button } from 'react-native-elements';
+import { CheckBox, Button, Divider } from 'react-native-elements';
+import Dialog, { DialogContent, DialogFooter, DialogButton } from 'react-native-popup-dialog';
 
 export default class FilterScreen extends React.Component {
+  state = {
+    visible: false
+  };
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -18,6 +23,23 @@ export default class FilterScreen extends React.Component {
       )
     };
   };
+  confirmFilters () {
+    this.setState({visible: false});
+    this.props.navigation.navigate('Discover');
+    //return (
+     
+   /* Alert.alert(
+      'Filters Applied',
+      'Your Discover filters have been applied',
+      [
+        {text: 'OK',  onPress: () => this.props.navigation.navigate('Discover')},
+      ],
+      {cancelable: false},
+      {backgroundColor: 'white'}
+      
+    );*/
+    //)
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -27,7 +49,24 @@ export default class FilterScreen extends React.Component {
           titleStyle = {styles.buttonText}
           raised = {true}
           buttonStyle = {styles.applyButton}
+          onPress = {() => this.setState({visible: true})}
+
         />
+          <Modal
+              visible={this.state.visible}
+              height = {.15}
+              footer ={
+                <ModalFooter>
+                  <ModalButton
+                    text="OK"
+                    textStyle={styles.button}
+                    onPress={() => {this.confirmFilters()}} />
+                </ModalFooter>
+              }>
+              <ModalContent style = {styles.content}>
+                  <Text style = {styles.popup}>Your filters have been applied</Text>
+              </ModalContent>
+          </Modal>
       </View >
     );
   }
@@ -36,7 +75,7 @@ export default class FilterScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 20,
+    paddingVertical: 10,
     paddingHorizontal: 20,
   },
   header: {
@@ -54,6 +93,18 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
+    }, 
+    content: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 15,
+      marginHorizontal: 20,
+    },
+    popup: {
+      fontSize: 20,
+    },
+    button: {
+      color: Colors.orange
     }
 });
   

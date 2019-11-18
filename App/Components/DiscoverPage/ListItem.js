@@ -12,8 +12,9 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
+
 import { Metrics, Colors, Images } from '../../Themes';
-import ScheduleMatchIcon from './ScheduleMatchIcon'
+import ScheduleMatchBadge from './ScheduleMatchBadge'
 
 const { width, height } = Dimensions.get('window')
 export default class ListItem extends React.Component {
@@ -37,13 +38,11 @@ export default class ListItem extends React.Component {
               <Text style = {styles.location}>{this.props.location}</Text>
               <Text style = {styles.age}>, {this.props.age}</Text>
             </View>
-            <View style = {styles.bioBox}>
-              <Text style = {styles.bio} >{this.props.bio}</Text>        
-            </View> 
+              <Text style = {styles.bio} >{this.props.bio}</Text>     
+              <View style = {styles.schedule}>
+            <ScheduleMatchBadge schedule ={this.props.schedule}></ScheduleMatchBadge> 
           </View>
-          <View >
-            <ScheduleMatchIcon schedule ={this.props.schedule}></ScheduleMatchIcon>
-            </View>
+        </View>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -62,6 +61,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.32,
     elevation: 4,
+    justifyContent: 'center',
+  },
+  overallText: {
+    justifyContent: 'center',
+  
   },
   person: {
     backgroundColor: '#f6b26b',
@@ -84,36 +88,37 @@ const styles = StyleSheet.create({
   info: {
     flex: 1,
     flexDirection: 'column',
+    padding: 5,
   },
     personName: {
     fontWeight: 'bold',
     fontSize: 20,
     color: '#5b5b5b',
     marginLeft: 20,
-    marginTop: 10,
   },
     subheading: {
     flexDirection: 'row',
-    //paddingVertical: 5,
+    marginLeft: 20,
   },
   location: {
     fontWeight: '300',
     fontSize: 16,
     color: '#5b5b5b',
-    marginLeft: 20,
   },
   age: {
     fontWeight: '300',
     color: '#5b5b5b',
   },
-  bioBox: {
-    width : 215,
-  },
   bio: {
     fontWeight: '400',
     fontSize: 16,
     color: '#5b5b5b',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    marginLeft: 20,
+    paddingVertical: 5,
   },
+  schedule: {
+    alignSelf: 'flex-start',
+    marginLeft: 20,
+    marginTop: 5,
+  }
 });

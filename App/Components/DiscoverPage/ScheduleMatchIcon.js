@@ -44,11 +44,11 @@ export default class ScheduleMatchIcon extends React.Component {
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     },
     icon: {
-        paddingVertical: 5,
+        paddingHorizontal: 2,
     },
     match: {
         height: 30,
@@ -62,13 +62,5 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.22,
         shadowRadius: 2.32,
         elevation: 3,
-    },
-    notMatch: {
-        height: 30,
-        width:30,
-        borderRadius: 15,
-        backgroundColor: '#b5b5b5',
-        borderColor: '#a3a3a3',
-        borderWidth: .5,
     },
   });

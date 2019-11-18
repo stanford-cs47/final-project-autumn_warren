@@ -14,12 +14,21 @@ import {
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
 import ScheduleMatchIcon from '../Components/DiscoverPage/ScheduleMatchIcon'
+import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
   render() {
     return ( 
         <View style = {styles.container}>
+                <Button
+                  title = 'Connect'
+                  titleStyle = {styles.buttonText}
+                  raised = {true}
+                  buttonStyle = {styles.applyButton}
+                  onPress = {() => this.setState({visible: true})}
+
+                />
                 <View style = {styles.heading}>
                     <Text style = {styles.buddyName}>{this.props.content.name}</Text>
                     <Text style = {styles.age}>{this.props.content.age}</Text>

@@ -15,7 +15,8 @@ var person1 = {
     activities: ["Weights", "Running"],
     profileAvatar: "",
     profilePic: "",
-    schedule: "High"
+    schedule: "High",
+    experience: "Beginner"
 }
 var person2 = {
     name: "Tina F.",
@@ -26,7 +27,8 @@ var person2 = {
     activities: ["Running"],
     profileAvatar: "",
     profilePic: "",
-    schedule: "High"
+    schedule: "High",
+    experience: "Intermediate"
 }
 var person3 = {
     name: "Connor B.",
@@ -37,7 +39,8 @@ var person3 = {
     activities: ["Weights"],
     profileAvatar: "",
     profilePic: "",
-    schedule: "High"
+    schedule: "High",
+    experience: "Expert"
 }
 var person4 = {
     name: "Mary L.",
@@ -48,7 +51,8 @@ var person4 = {
     activities: ["Running", "Swimming", "Cycling"],
     profileAvatar: "",
     profilePic: "",
-    schedule: "Med"
+    schedule: "Med",
+    experience: "Beginner"
 }
 var person5 = {
     name: "Pooja K.",
@@ -59,7 +63,8 @@ var person5 = {
     activities: ["Cycling"],
     profileAvatar: "",
     profilePic: "",
-    schedule: "Med"
+    schedule: "Med",
+    experience: "Beginner"
 }
 var person6 = {
     name: "Colin M.",
@@ -70,7 +75,8 @@ var person6 = {
     activities: ["Weights", "Swimming", "Basketball"],
     profileAvatar: "",
     profilePic: "",
-    schedule: "Low"
+    schedule: "Low",
+    experience: "Expert"
 }
 addPerson(person1);
 addPerson(person2);

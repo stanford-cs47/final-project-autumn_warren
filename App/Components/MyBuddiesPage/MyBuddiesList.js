@@ -1,35 +1,31 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //consider using this!
 import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-native';
-import ListItem from './ListItem'
+import BuddyItem from './BuddyItem'
 import { useState } from 'react';
-import PeopleData from '../../Data/PeopleList';
+import MyProfile from '../../Data/MyProfile';
 
 
 export default function DiscoverList (props)  {
 
-  onProfilePressed = (username) => {
+  onPressed = (username) => {
     console.log("requested:"+ username)
     props.onProfileRequested(username);
   }
   renderPerson = (person) => (
-  <ListItem
-      name = {person.name}
-      location = {person.location}
-      age= {person.age}
-      bio = {person.bio}
-      username = {person.username}
-      schedule = {person.schedule}
-      avatar = {person.profileAvatar}
-      onProfilePressed={onProfilePressed}
+    <BuddyItem
+        name = {person.name}
+        username = {person.username}
+        message = {person.message}
+        onPressed={onPressed}
     />
 );
     return (
       <View style={styles.container}>
 
     <FlatList
-              data={PeopleData.users}
-              renderItem = { ({ item }) => renderPerson(PeopleData.people[item])}
+              data={MyProfile.buddyUsernames}
+              renderItem = { ({ item }) => renderPerson(MyProfile.buddies[item])}
               keyExtractor={item => item}
            />
       </View>
@@ -39,7 +35,7 @@ export default function DiscoverList (props)  {
 const styles = StyleSheet.create({
   container: {
   flex: 1,
-  width: '100%',
-  flexDirection: 'column',
+ //width: '100%',
+  //flexDirection: 'column',
   },
 });

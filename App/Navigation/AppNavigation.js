@@ -9,8 +9,10 @@ import DiscoverScreen from '../Screens/DiscoverScreen';
 import BuddiesScreen from '../Screens/BuddiesScreen';
 import EventsScreen from '../Screens/EventsScreen';
 import ProfileScreen from '../Screens/MyProfileScreen';
-import BuddyProfileScreen from '../Screens/PeopleProfileScreen';
+import PeopleProfileScreen from '../Screens/PeopleProfileScreen';
 import FilterScreen from '../Screens/FilterScreen';
+import MessagingScreen from '../Screens/MessagingScreen';
+import SchedulingScreen from '../Screens/SchedulingScreen';
 import * as Font from 'expo-font';
 
 const DiscoverStack = createStackNavigator({
@@ -21,7 +23,7 @@ const DiscoverStack = createStackNavigator({
     }),
   },
   
-  BuddyProfile: {screen: BuddyProfileScreen,
+  PeopleProfile: {screen: PeopleProfileScreen,
     navigationOptions: () => ({
       headerTintColor: Colors.orange,
     }),      
@@ -35,8 +37,20 @@ const DiscoverStack = createStackNavigator({
 })
 const BuddiesStack = createStackNavigator({
     Buddies: {screen: BuddiesScreen},
+    Messaging: {screen: MessagingScreen,
+        navigationOptions: () => ({
+          headerTintColor: Colors.orange,
+        }), 
+      },
+      Scheduling: {screen: SchedulingScreen,
+          navigationOptions: () => ({
+            headerTintColor: Colors.orange,
+          }), 
+        }
   },
   {
+    mode: 'modal',
+    headerBackTitleVisible: false,
     headerMode: 'float',
     initialRouteName: 'Buddies'
   })

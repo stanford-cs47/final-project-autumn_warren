@@ -1,16 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { material } from 'react-native-typography';
-import BuddyList from '../Components/DiscoverPage/DiscoverList'
+import MyBuddiesList from '../Components/MyBuddiesPage/MyBuddiesList'
 import { Metrics, Colors } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
+import SearchBar from '../Components/SearchBar'
 import { FontAwesome } from '@expo/vector-icons';
 
 export default class BuddiesScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
          return {
-           //title: navigation.getParam('otherParam', 'A Nested Details Screen'),
+          headerRight: (
+            <SafeAreaView style={styles.newMessage}>
+              <Entypo name="new-message"
+              size={25}
+              color={Colors.orange} />
+              </SafeAreaView>
+          ), 
         headerTitle: (
              <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
                <Text style={styles.header}> BUDDIES</Text>
@@ -18,22 +25,42 @@ export default class BuddiesScreen extends React.Component {
            )
          };
        };
-       render() {
-         return (
-           <SafeAreaView style={styles.container}>
-             <BuddyList buddies = {this.buddies}/>
-           </SafeAreaView >
-         );
-       }
+       onProfileRequested = (username_val) => {
+        console.log("Requested: " + username_val);
+        this.props.navigation.navigate('Messaging', { username: username_val });
+      }
+      loadResults = (text) => {
+      }
+      render() {
+        return (
+          <SafeAreaView style={styles.container}>
+            <View style = {styles.search}>
+                <SearchBar loadResults = {this.loadResults}/>
+                </View>
+            <MyBuddiesList onProfileRequested = {this.onProfileRequested}/>
+          </SafeAreaView >
+        );
+      }
      }
      
      const styles = StyleSheet.create({
        container: {
          flex: 1,
-         paddingVertical: 30,
+         //marginTop: 30,
+       },
+       search: {
+         padding: 20,
+        alignItems: 'center'
        },
        header: {
          fontSize: 24,
          color: Colors.orange,
-       }
+       }, 
+       newMessage: {
+        height: 25,
+        width: 25,
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginRight: 15,
+       },
      });

@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
-import ScheduleMatchIcon from '../Components/DiscoverPage/ScheduleMatchIcon'
+import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge'
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 
 const { width, height } = Dimensions.get('window')
@@ -44,7 +44,7 @@ export default class Profile extends React.Component {
                 <Text style = {styles.bio} >{this.props.content.bio}</Text>
                 <Text style = {styles.softHeader} >Activities</Text>
                 <View >
-                  <ScheduleMatchIcon schedule ={this.props.schedule}></ScheduleMatchIcon>
+                  <ScheduleMatchBadge schedule ={this.props.schedule}></ScheduleMatchBadge>
                 </View>        
             </View>
     );

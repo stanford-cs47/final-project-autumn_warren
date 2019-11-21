@@ -13,7 +13,7 @@ var person1 = {
     age: "27",
     bio: "I wanna crush the bench like M. Landis!",
     activities: ["Weights", "Running"],
-    profileAvatar: "",
+    profileAvatar: "weightlifting",
     profilePic: "",
     schedule: "High"
 }
@@ -24,7 +24,7 @@ var person2 = {
     age: "25",
     bio: "I'm preparing for my first marathon. Join me!",
     activities: ["Running"],
-    profileAvatar: "",
+    profileAvatar: "running",
     profilePic: "",
     schedule: "High"
 }
@@ -35,7 +35,7 @@ var person3 = {
     age: "23",
     bio: "I want to curl 50s in 6 months.",
     activities: ["Weights"],
-    profileAvatar: "",
+    profileAvatar: "weightlifting",
     profilePic: "",
     schedule: "High"
 }
@@ -46,7 +46,7 @@ var person4 = {
     age: "24",
     bio: "I want to do a triathlon!",
     activities: ["Running", "Swimming", "Cycling"],
-    profileAvatar: "",
+    profileAvatar: "running",
     profilePic: "",
     schedule: "Med"
 }
@@ -57,7 +57,7 @@ var person5 = {
     age: "26",
     bio: "I'm an avid cyclist looking for someone to cycle with.",
     activities: ["Cycling"],
-    profileAvatar: "",
+    profileAvatar: "cycling",
     profilePic: "",
     schedule: "Med"
 }
@@ -68,7 +68,7 @@ var person6 = {
     age: "29",
     bio: "I'm looking for someone to keep me motivated!",
     activities: ["Weights", "Swimming", "Basketball"],
-    profileAvatar: "",
+    profileAvatar: "swimming",
     profilePic: "",
     schedule: "Low"
 }

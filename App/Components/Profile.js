@@ -14,11 +14,14 @@ import {
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
 import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge'
+import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
+import { Row } from 'native-base';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
   render() {
+    console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
                 <Button
@@ -42,10 +45,10 @@ export default class Profile extends React.Component {
                 <Text style = {styles.matchExperience} >Experience</Text>
                 <Text style = {styles.softHeader} >Bio</Text>
                 <Text style = {styles.bio} >{this.props.content.bio}</Text>
-                <Text style = {styles.softHeader} >Activities</Text>
+                <Text style = {styles.softHeader}> Activities</Text>
                 <View >
-                  <ScheduleMatchBadge schedule ={this.props.schedule}></ScheduleMatchBadge>
-                </View>        
+                  <ScheduleMatchBadge schedule ={this.props.schedule}></ScheduleMatchBadge> 
+                </View>   
             </View>
     );
   };

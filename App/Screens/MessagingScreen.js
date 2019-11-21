@@ -1,0 +1,160 @@
+import React from 'react';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, } from 'react-native';
+import { material } from 'react-native-typography';
+import DiscoverList from '../Components/DiscoverPage/DiscoverList'
+import { Metrics, Colors, Images } from '../Themes';
+import { GiftedChat, Send, Actions } from 'react-native-gifted-chat'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import MyProfile from '../Data/MyProfile';
+import { MaterialIcons } from '@expo/vector-icons';
+
+
+export default class MessagingScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+    return {
+   headerTitle: (
+        <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={styles.header}> {MyProfile.buddies[params.username].name}</Text>
+        </SafeAreaView>
+      )
+    };
+  };
+  state = {
+    messages: [],
+    buddy: {},
+  }
+
+  componentWillMount() {
+    const params = this.props.navigation.state.params || {};
+    this.setState({buddy: MyProfile.buddies[params.username]})
+    this.setState({
+      messages: [
+        {
+          _id: 1,
+          text: 'Sorry, I am running late. See you soon!',
+          createdAt: new Date(Date.UTC(2019, 10, 11, 22, 20, 0)),
+          user: {
+            _id: 2,
+            name: MyProfile.buddies[params.username].name,
+            avatar: Images[params.username]
+          },
+        }, 
+      ],
+    })
+  }
+
+  onSend(messages = []) {
+    this.setState(previousState => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }))
+  }
+  scheduleWorkout() {
+    this.props.navigation.navigate('Scheduling');
+  }
+  onPressActionButton() {
+    return (
+    this.props.navigation.navigate('Scheduling')
+    );
+  }
+renderActions(props) {
+  return (
+    <Actions {...props}>
+    <TouchableOpacity style = {styles.calendarView}>
+      <View style = {styles.calendarButton}>
+  <Image style = {styles.calendarIcon}
+            source = {Images.scheduleworkout}/>
+            </View>
+  </TouchableOpacity>
+  //</Actions>
+  );
+}
+renderSend(sendProps) {
+  return(
+    <Send {...sendProps}>
+     <View style={{marginRight: 10, marginBottom: 5}}>
+          <MaterialIcons name = "send"
+              size = {20}
+              color= {Colors.orange}/>
+      </View>
+    </Send>
+  );
+}
+  render() {
+    return (
+
+      <GiftedChat
+        messages={this.state.messages}
+        onSend={messages => this.onSend(messages)}
+        user={{
+          _id: 1,
+        }}
+       // alignTop = {true}
+       renderSend = {this.renderSend}
+       bottomOffset={300}
+        renderActions = {this.renderActions}
+        //onPressActionButton = {this.onPressActionButton}
+      />
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    //paddingVertical: 30,
+  },
+  header: {
+    fontSize: 24,
+    color: Colors.orange,
+    fontWeight:'600',
+    fontFamily: "Gill Sans"
+  },
+  filter: {
+    height: 25,
+    width: 25,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginRight: 15,
+    marginVertical: 5,
+  },
+  filterButton: {
+    height: 25,
+    width: 25,
+    tintColor: Colors.orange,
+  },
+  calendarButton: {
+    backgroundColor: Colors.orange,
+    height: 55,
+    width: 55,
+    borderRadius: 27.5,
+    borderColor:'#ffd4a6',
+    borderWidth: 2,    
+    shadowColor: 'gray',
+    shadowOffset: {width: 1, height: 3},
+    shadowOpacity: .4,
+    shadowRadius: 2.32,
+    elevation: 4,
+    alignItems: 'center',
+    justifyContent:'center',
+  },
+  calendarIcon: {
+    height: 35,
+    width: 35,
+    tintColor: Colors.heading,
+    resizeMode: 'contain',
+  },
+  calendarView: {
+    flex: 1,
+    marginLeft: 10,
+    marginRight: 20,
+    justifyContent:'center',
+    marginVertical: 5,
+    //alignContent: 'center'
+  },
+  clock: {
+    alignItems: 'center',
+    //justifyContent:'center',
+  }
+});
+  

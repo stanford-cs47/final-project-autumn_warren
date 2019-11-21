@@ -11,10 +11,12 @@ import {
   Dimensions,
   AsyncStorage,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { Tooltip} from 'react-native-elements';
 
 import { Metrics, Colors, Images } from '../../Themes';
 import ScheduleMatchBadge from './ScheduleMatchBadge'
+import profile from '../../Data/MyProfile';
 
 const { width, height } = Dimensions.get('window')
 export default class ListItem extends React.Component {
@@ -25,13 +27,14 @@ export default class ListItem extends React.Component {
     }
   }
   render() {
+    console.log(this.props.avatar)
   return ( 
     <View style = {styles.container}>
       <TouchableWithoutFeedback 
          onPress={() => this.profilePressed()}>
         <View style = {styles.person}>
           <Image style = {styles.image}
-              source = {Images.placeholder}/>
+              source = {Images[this.props.avatar]}/>
           <View style = {styles.info}>
             <Text style = {styles.personName}>{this.props.name}</Text>
             <View style = {styles.subheading}>
@@ -78,10 +81,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
     image: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 110,
     aspectRatio: 1,
-    resizeMode: 'contain',
+    //resizeMode: 'contain',
     borderRadius: 10,
     alignSelf: 'center',
   },
@@ -91,12 +94,15 @@ const styles = StyleSheet.create({
     padding: 5,
   },
     personName: {
-    fontWeight: 'bold',
+      //flex:1,
+    fontWeight: '600',
     fontSize: 20,
     color: '#5b5b5b',
     marginLeft: 20,
+    fontFamily: "Gill Sans"
   },
     subheading: {
+    flex: 1,
     flexDirection: 'row',
     marginLeft: 20,
   },
@@ -104,21 +110,25 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontSize: 16,
     color: '#5b5b5b',
+    fontFamily: "Gill Sans"
   },
   age: {
     fontWeight: '300',
     color: '#5b5b5b',
+    fontFamily: "Gill Sans"
   },
   bio: {
-    fontWeight: '400',
+    //fontWeight: '400',
     fontSize: 16,
     color: '#5b5b5b',
     marginLeft: 20,
-    paddingVertical: 5,
+    marginBottom: 8,
+    fontFamily: "Gill Sans"
   },
   schedule: {
+    flex: 1,
     alignSelf: 'flex-start',
+    justifyContent: 'flex-end',
     marginLeft: 20,
-    marginTop: 5,
   }
 });

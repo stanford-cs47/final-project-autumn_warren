@@ -39,23 +39,6 @@ export default class FilterList extends React.Component  {
                         Show buddies who share my experience level:</Text>
                     <ToggleItem 
                     item = {profile.experience}/>
-           {/*<CheckBox
-                        title = {profile.experience}
-                        textStyle = {styles.checkboxText}
-                        containerStyle= {styles.checkbox}
-                        checkedColor = {Colors.heading}
-                        uncheckedColor = {Colors.heading}
-                        checked={this.state.experienceChecked}
-                        onPress={() => this.setState({experienceChecked: !this.state.experienceChecked})}/>
-                    <CheckBox
-                        title = {profile.personality}
-                        titleStyle = {styles.title}
-                        textStyle = {styles.checkboxText}
-                        containerStyle= {styles.checkbox}
-                        checkedColor = {Colors.heading}
-                        uncheckedColor = {Colors.heading}
-                        checked={this.state.personalityChecked}
-           onPress={() => this.setState({personalityChecked: !this.state.personailtyChecked})}/>*/}
                 </View>
             </ScrollView>
       );

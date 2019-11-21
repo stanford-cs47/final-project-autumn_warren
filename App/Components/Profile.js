@@ -13,7 +13,6 @@ import {
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
 import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge'
-import ScheduleMatchIcon from '../Components/DiscoverPage/ScheduleMatchIcon'
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import {Button} from 'native-base';
 

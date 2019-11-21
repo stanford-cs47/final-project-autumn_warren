@@ -28,7 +28,7 @@ export default class DiscoverScreen extends React.Component {
   };
   onProfileRequested = (username_val) => {
     console.log("Requested: " + username_val);
-    this.props.navigation.navigate('BuddyProfile', { username: username_val });
+    this.props.navigation.navigate('PeopleProfile', { username: username_val });
   }
   render() {
     return (
@@ -42,12 +42,13 @@ export default class DiscoverScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 30,
+    marginTop: 30,
   },
   header: {
     fontSize: 24,
     color: Colors.orange,
-    fontWeight:'bold',
+    fontWeight:'600',
+    fontFamily: "Gill Sans"
   },
   filter: {
     height: 25,

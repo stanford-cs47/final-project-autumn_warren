@@ -33,20 +33,22 @@ const styles = StyleSheet.create({
         width:60,
         borderRadius: 5,
         backgroundColor: '#A2C5AC',
-        borderColor: '#8fb59a',
+        borderColor: '#abd1b6',
         borderWidth: 1,
         justifyContent: 'center'
     },
     text: {
-        fontSize: 15,
+        fontSize: 17,
         color: 'white',
         alignSelf: 'center',
+        fontFamily: "Gill Sans"
     },
     phrase: {
-        fontSize: 14,
+        fontSize: 16,
         color: Colors.heading,
         marginLeft: 5,
         fontWeight: '300',
+        fontFamily: "Gill Sans"
     },
     phraseView: {
         height: 25,

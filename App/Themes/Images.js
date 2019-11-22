@@ -9,6 +9,10 @@ const images = {
   cycling: require('../Images/cycling.png'),
   running: require('../Images/running.png'),
   amys: require('../Images/amys.png'),
+  connorBPic: require('../Images/connorBPic.png'),
+  poojaKPic: require('../Images/poojaKPic.png'),
+  samGPic: require('../Images/samGPic.png'),
+  tinaFPic: require('../Images/tinaFPic.png'),
 }
 
 export default images

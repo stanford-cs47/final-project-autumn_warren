@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
     console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
-                <Image style = {styles.image} source = {Images.placeholder}/> 
+                <Image style = {styles.image} source = {Images[this.props.content.profilePic]}/> 
                 <View style = {styles.heading}>
                     <Text style = {styles.buddyName}>{this.props.content.name}</Text>
                     <Text style = {styles.age}>{this.props.content.age}</Text>
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     aspectRatio: 1,
-    resizeMode: 'contain',
+    // resizeMode: 'contain',
     borderRadius: 10,
     alignSelf: 'center',
     marginTop: 20,

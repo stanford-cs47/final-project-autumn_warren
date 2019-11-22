@@ -8,7 +8,7 @@ import {
 import { Divider } from 'react-native-elements';
 import { Metrics, Colors, Images } from '../../Themes';
 import SwitchToggle from 'react-native-switch-toggle'
-export default class ScheduleMatchBadge extends React.Component {
+export default class DiscoverListIcon extends React.Component {
     render () {
         return (
             <View style = {styles.container}>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     match: {
         height: 25,
-        width:100,
+        width:60,
         borderRadius: 5,
         backgroundColor: Colors.orange,
        // borderColor: '#abd1b6',

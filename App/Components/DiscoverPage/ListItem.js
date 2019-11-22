@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import { Tooltip} from 'react-native-elements';
 
 import { Metrics, Colors, Images } from '../../Themes';
-import ScheduleMatchBadge from './ScheduleMatchBadge'
+import DiscoverListIcon from './DiscoverListIcon'
 import profile from '../../Data/MyProfile';
 
 const { width, height } = Dimensions.get('window')
@@ -43,7 +43,7 @@ export default class ListItem extends React.Component {
             </View>
               <Text style = {styles.bio} >{this.props.bio}</Text>     
               <View style = {styles.schedule}>
-            <ScheduleMatchBadge badgeText ={this.props.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
+            <DiscoverListIcon badgeText ={this.props.schedule} type={"Schedule Match"}></DiscoverListIcon> 
           </View>
         </View>
         </View>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#5b5b5b',
     marginLeft: 20,
-    fontFamily: "Gill Sans"
+    //fontFamily: "Gill Sans"
   },
     subheading: {
     flex: 1,
@@ -113,12 +113,12 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontSize: 16,
     color: '#5b5b5b',
-    fontFamily: "Gill Sans"
+    //fontFamily: "Gill Sans"
   },
   age: {
     fontWeight: '300',
     color: '#5b5b5b',
-    fontFamily: "Gill Sans"
+    //fontFamily: "Gill Sans"
   },
   bio: {
     //fontWeight: '400',
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     color: '#5b5b5b',
     marginLeft: 20,
     marginBottom: 8,
-    fontFamily: "Gill Sans"
+   // fontFamily: "Gill Sans"
   },
   schedule: {
     flex: 1,

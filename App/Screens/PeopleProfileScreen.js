@@ -18,6 +18,7 @@ export default class BuddyProfileScreen extends React.Component {
     user: "",
     visible: false,
     requestSent: false,
+    text: "Connect",
   }
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
@@ -26,7 +27,7 @@ export default class BuddyProfileScreen extends React.Component {
       headerRight: (
         <TouchableOpacity style={styles.filter}
           onPress = {navigation.getParam('connectpopup')}>
-          <Text style={styles.filterText}>{navigation.getParam('getButtonText')}</Text>         
+          <Text style={styles.filterText}>{this.state.text}</Text>         
         </TouchableOpacity>
       ),
       // headerTitle: (
@@ -38,6 +39,7 @@ export default class BuddyProfileScreen extends React.Component {
   };
   _connectpopup = () => {
     this.setState({visible: true}) 
+    this.setState({text: "Pending"})
   }
   requestSent() {
     console.log("Request sent nigga")
@@ -58,6 +60,7 @@ export default class BuddyProfileScreen extends React.Component {
     // console.log("Username2: " + username);
     this.setState({user: username});
     this.loadUserContent(username);
+    this.setState({text:"Connect"});
   }
   // componentWillReceiveProps() {
   //   // if (this.props.number !== nextProps.number) {
@@ -82,10 +85,15 @@ export default class BuddyProfileScreen extends React.Component {
     this.setState({content: result});
     this.setState({loading: false});
   }
+  loadButtonText() {
+    var topButtonText = this.state.requestSent ? "Pending" : "Connect";
+    this.props.navigation.setParams({getButtonText: topButtonText});
+  }
   render() {
     return (
       <View style={styles.container}>
         {this.getProfileContent()}
+        {this.loadButtonText()}
         <Modal
               visible={this.state.visible}
               height = {.15}

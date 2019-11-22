@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 24259,
-  "expoServerNgrokUrl": "https://sb-84h.anonymous.2fit.exp.direct",
-  "packagerNgrokUrl": "https://packager.sb-84h.anonymous.2fit.exp.direct",
-  "ngrokPid": 24279,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://yy-q54.mlandis.2fit.exp.direct",
+  "packagerNgrokUrl": "https://packager.yy-q54.mlandis.2fit.exp.direct",
+  "ngrokPid": 74183,
   "webpackServerPort": null
 }

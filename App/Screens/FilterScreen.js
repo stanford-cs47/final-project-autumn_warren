@@ -8,6 +8,8 @@ import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CheckBox, Button, Divider } from 'react-native-elements';
 import Dialog, { DialogContent, DialogFooter, DialogButton } from 'react-native-popup-dialog';
+import 'localstorage-polyfill'
+
 
 export default class FilterScreen extends React.Component {
   state = {

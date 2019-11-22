@@ -1,0 +1,12 @@
+{
+  "hostType": "lan",
+  "lanType": "ip",
+  "dev": true,
+  "minify": false,
+<<<<<<< HEAD
+  "urlRandomness": "yy-q54",
+=======
+  "urlRandomness": "fr-78u",
+>>>>>>> 4233aa4f0520975ae657743f509b8b9618f2c2ac
+  "https": false
+}

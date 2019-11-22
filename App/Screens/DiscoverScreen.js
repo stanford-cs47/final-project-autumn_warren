@@ -5,10 +5,21 @@ import DiscoverList from '../Components/DiscoverPage/DiscoverList'
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import * as Font from 'expo-font';
+import 'localstorage-polyfill'
+import test from '../Data/Test.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default class DiscoverScreen extends React.Component {
+  componentDidMount() {
+    this.subs = [
+      this.props.navigation.addListener("willFocus", () => {
+        console.log("WILL FOCUS");
+        this.forceUpdate();
+      }),
+    ];
+  }
+
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
@@ -21,11 +32,12 @@ export default class DiscoverScreen extends React.Component {
       ), 
    headerTitle: (
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={styles.header}> DISCOVER</Text>
+          <Text style={styles.header}> DISCOVER </Text>
         </SafeAreaView>
       )
     };
   };
+
   onProfileRequested = (username_val) => {
     console.log("Requested: " + username_val);
     this.props.navigation.navigate('PeopleProfile', { username: username_val });

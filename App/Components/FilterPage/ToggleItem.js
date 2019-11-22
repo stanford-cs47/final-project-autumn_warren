@@ -8,6 +8,8 @@ import {
 import { Divider } from 'react-native-elements';
 import { Metrics, Colors, Images } from '../../Themes';
 import SwitchToggle from 'react-native-switch-toggle'
+import 'localstorage-polyfill'
+
 export default class ToggleItem extends React.Component {
 /*state = {
     checked: false,
@@ -21,10 +23,12 @@ export default class ToggleItem extends React.Component {
                 onPress={() => this.setState({checked: !this.state.checked})}/>
 };*/
 state = {
-    switchOn1: false,
+    switchOn1: (localStorage.getItem(this.props.item) == 'true'),
   };
 onPress1 = () => {
     this.setState({ switchOn1: !this.state.switchOn1 });
+    localStorage.setItem(this.props.item, !this.state.switchOn1);
+    console.log(this.props.item + " " + localStorage.getItem(this.props.item));
   }
 render() {
     return (

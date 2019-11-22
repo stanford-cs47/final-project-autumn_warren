@@ -1,13 +1,15 @@
-var locations =  [{
+var locations =  [ {
+    value: 'Any',
+  }, {
     value: '24 Hour Fitness',
   }, {
     value: 'Farillaga',
   }, {
     value: 'Nearillaga',
   }, {
-      value: "Soul Cycle",
+    value: "Soul Cycle",
   }, {
-      value: "Orange Theory",
+    value: "Orange Theory",
   }
 ];
 export default locations;

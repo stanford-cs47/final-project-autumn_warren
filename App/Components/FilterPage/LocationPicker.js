@@ -6,17 +6,20 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Colors, Images } from '../../Themes';
 import ActivityList from './ToggleList';
 import Locations from '../../Data/Locations';
+import 'localstorage-polyfill';
 //import { Picker, Form, Icon, Header, Left, Button, Body, Right, Title, Item, Input, Text} from 'native-base';
 
 export default class LocationPicker extends React.Component {
     state = {
-        selected: undefined,
+        selected: (localStorage.getItem("Location") || "Any"),
         text: 'Select a location',
     };
     onSelection(value) {
+        localStorage.setItem("Location", value);
+        console.log("Hello!!!" + value);
         this.setState({
             selected: value
-        });
+        });     
     }
     render() {
         return (
@@ -28,9 +31,7 @@ export default class LocationPicker extends React.Component {
           dropdownPosition={-5}
           animationDuration= {100}
           onChangeText={(value) => {
-            this.setState({
-            selected: value }
-           );}}
+            this.onSelection(value)}}
           itemColor={Colors.heading}
         />
             /*<Picker 

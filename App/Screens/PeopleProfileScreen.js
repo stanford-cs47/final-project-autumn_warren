@@ -17,15 +17,16 @@ export default class BuddyProfileScreen extends React.Component {
     loading: true,
     user: "",
     visible: false,
+    requestSent: false,
   }
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
-   // const name = params.name;
+    console.log("\n\n\n\n Recalled \n\n\n\n")
     return {
       headerRight: (
         <TouchableOpacity style={styles.filter}
-          onPress = {() => navigation.getParam('connectpopup')}>
-          <Text style={styles.filterText}>Connect</Text>         
+          onPress = {navigation.getParam('connectpopup')}>
+          <Text style={styles.filterText}>{navigation.getParam('getButtonText')}</Text>         
         </TouchableOpacity>
       ),
       // headerTitle: (
@@ -35,27 +36,47 @@ export default class BuddyProfileScreen extends React.Component {
       // )
     };
   };
+  _connectpopup = () => {
+    this.setState({visible: true}) 
+  }
+  requestSent() {
+    console.log("Request sent nigga")
+    this.setState({visible: false}) 
+    this.setState({requestSent: true}) 
+  }
   componentDidMount() {
     if(!this.props.navigation) return;
     const params = this.props.navigation.state.params || {};
     this.props.navigation.setParams({ connectpopup: this._connectpopup })
-    console.log(params);
+
+    // console.log("State request sent: " + this.state.requestSent)
+    var topButtonText = this.state.requestSent ? "Pending" : "Connect";
+    this.props.navigation.setParams({ getButtonText: topButtonText });
+    // console.log(params);
     const username = params.username;
-    console.log("Username1: " + params.username);
-    console.log("Username2: " + username);
+    // console.log("Username1: " + params.username);
+    // console.log("Username2: " + username);
     this.setState({user: username});
     this.loadUserContent(username);
   }
+  // componentWillReceiveProps() {
+  //   // if (this.props.number !== nextProps.number) {
+  //   //   this.setState({number: nextProps.number});
+  //   // }
+  //   console.log("State request sent: " + this.state.requestSent)
+  //   var topButtonText = this.state.requestSent ? "Pending" : "Connect";
+  //   this.props.navigation.setParams({ getButtonText: topButtonText });
+  // }
   findBuddy(username) {
     console.log(PeopleData.people);
-    console.log("Username3: " + username);
+    // console.log("Username3: " + username);
     console.log(PeopleData.people[username]);
     return PeopleData.people[username];
   } 
   loadUserContent = async (username) => {
     this.setState({loading: true});
     await this.sleep(500); 
-    console.log("Username4: " + username);
+    // console.log("Username4: " + username);
     const result = this.findBuddy(username);
     console.log(result);
     this.setState({content: result});
@@ -73,11 +94,11 @@ export default class BuddyProfileScreen extends React.Component {
                   <ModalButton
                     text="OK"
                     textStyle={styles.button}
-                    onPress={() => {this.confirmFilters()}} />
+                    onPress={() => {this.requestSent()} } />
                 </ModalFooter>
               }>
               <ModalContent style = {styles.content}>
-                  <Text style = {styles.popup}>Your filters have been applied</Text>
+                  <Text style = {styles.popup}>Connect Request Sent!</Text>
               </ModalContent>
           </Modal>
       </View>
@@ -120,4 +141,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: Colors.orange,
   },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    }, 
+    content: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 15,
+      marginHorizontal: 20,
+    },
+    popup: {
+      fontSize: 20,
+    },
+    button: {
+      color: Colors.orange
+    }
 });

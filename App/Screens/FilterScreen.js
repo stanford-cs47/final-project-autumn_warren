@@ -8,6 +8,8 @@ import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CheckBox, Button, Divider } from 'react-native-elements';
 import Dialog, { DialogContent, DialogFooter, DialogButton } from 'react-native-popup-dialog';
+import 'localstorage-polyfill'
+
 
 export default class FilterScreen extends React.Component {
   state = {
@@ -37,14 +39,9 @@ export default class FilterScreen extends React.Component {
       {cancelable: false},
       {backgroundColor: 'white'}
       
-    );*/
-    //)
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <FilterList filter = {this.filter}/>
-        <Button
+    );
+    
+<Button
           title = 'APPLY'
           titleStyle = {styles.buttonText}
           raised = {true}
@@ -67,6 +64,17 @@ export default class FilterScreen extends React.Component {
                   <Text style = {styles.popup}>Your filters have been applied</Text>
               </ModalContent>
           </Modal>
+
+    */
+
+    
+    //)
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <FilterList filter = {this.filter}/>
+        
       </View >
     );
   }

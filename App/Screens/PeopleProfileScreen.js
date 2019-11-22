@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
   filterText: {
     fontWeight: '700',
     color: Colors.orange,
+    fontSize: 20,
   },
   buttonText: {
     fontSize: 18,

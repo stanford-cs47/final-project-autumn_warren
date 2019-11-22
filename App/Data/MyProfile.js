@@ -5,7 +5,7 @@ var profile = {
     location: "Palo Alto",
     age: "25",
     bio: "I want to benchpress!",
-    activities: ["Weights", "Running"],
+    activities: ["Weightlifting", "Running"],
     personality: "Fanatic",
     experience: "Beginner",
     profileAvatar: "",

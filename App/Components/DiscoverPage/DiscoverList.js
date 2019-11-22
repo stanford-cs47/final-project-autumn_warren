@@ -4,7 +4,7 @@ import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-n
 import ListItem from './ListItem'
 import { useState } from 'react';
 import PeopleData from '../../Data/PeopleList';
-import profile from '../../Data/MyProfile';
+import ProfileData from '../../Data/MyProfile';
 import 'localstorage-polyfill';
 
 
@@ -46,7 +46,6 @@ function getMatchingUsers() {
     console.log("Reviewing:  " + username);
     var matches = true;
     console.log("My activities:");
-    console.log(profile.activities);
     var location = localStorage.getItem("Location");
     if(location != null && location != "Any") {
         var locationMatch = false;
@@ -59,15 +58,15 @@ function getMatchingUsers() {
           matches = false;
         }
     }
-    if(localStorage.getItem(profile.experience) == "true" && PeopleData.people[username].experience != profile.experience) {
+    if(localStorage.getItem(ProfileData.profile.experience) == "true" && PeopleData.people[username].experience != ProfileData.profile.experience) {
       console.log("Experience is filtered for, and doesn't match.");
       matches = false;
     }
-    for(var j = 0; j < profile.activities.length; j++) {
-      if(localStorage.getItem(profile.activities[j]) == "true") {
+    for(var j = 0; j < ProfileData.profile.activities.length; j++) {
+      if(localStorage.getItem(ProfileData.profile.activities[j]) == "true") {
         var activityShared = false;
         for(var k = 0; k < PeopleData.people[username].activities.length; k++) {
-          if(PeopleData.people[username].activities[k] == profile.activities[j]) {
+          if(PeopleData.people[username].activities[k] == ProfileData.profile.activities[j]) {
             activityShared = true;
           }
         }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, SafeAreaView, View, SectionList, Text} from 'react-native';
 import DropdownMenu from 'react-native-dropdown-menu';
-import profile from '../../Data/MyProfile';
+import ProfileData from '../../Data/MyProfile';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Colors, Images } from '../../Themes';
 import ToggleList from './ToggleList';
@@ -31,14 +31,14 @@ export default class FilterList extends React.Component  {
                         Activities</Text>
                     <Text style = {styles.info}>
                         Show buddies who share these activities:</Text>
-                    <ToggleList activities = {profile.activities}/>
+                    <ToggleList activities = {ProfileData.profile.activities}/>
                 </View>
                 <View style = {styles.filter}>
                     <Text style = {styles.header}>Experience</Text>
                     <Text style = {styles.info}>
                         Show buddies who share my experience level:</Text>
                     <ToggleItem 
-                    item = {profile.experience}/>
+                    item = {ProfileData.profile.experience}/>
                 </View>
             </ScrollView>
       );

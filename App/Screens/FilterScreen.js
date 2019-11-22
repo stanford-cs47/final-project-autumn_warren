@@ -39,14 +39,9 @@ export default class FilterScreen extends React.Component {
       {cancelable: false},
       {backgroundColor: 'white'}
       
-    );*/
-    //)
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <FilterList filter = {this.filter}/>
-        <Button
+    );
+    
+<Button
           title = 'APPLY'
           titleStyle = {styles.buttonText}
           raised = {true}
@@ -69,6 +64,17 @@ export default class FilterScreen extends React.Component {
                   <Text style = {styles.popup}>Your filters have been applied</Text>
               </ModalContent>
           </Modal>
+
+    */
+
+    
+    //)
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <FilterList filter = {this.filter}/>
+        
       </View >
     );
   }

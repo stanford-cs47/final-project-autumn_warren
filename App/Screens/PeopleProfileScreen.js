@@ -21,7 +21,6 @@ export default class BuddyProfileScreen extends React.Component {
   }
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
-    console.log("\n\n\n\n Recalled \n\n\n\n")
     return {
       headerRight: (
         <TouchableOpacity style={styles.filter}
@@ -39,34 +38,22 @@ export default class BuddyProfileScreen extends React.Component {
   _connectpopup = () => {
     this.setState({visible: true}) 
   }
-  requestSent() {
-    console.log("Request sent nigga")
+  requestSentFunction = () => {
     this.setState({visible: false}) 
     this.setState({requestSent: true}) 
+    this.props.navigation.setParams({getButtonText: "Pending" });
   }
   componentDidMount() {
     if(!this.props.navigation) return;
     const params = this.props.navigation.state.params || {};
     this.props.navigation.setParams({ connectpopup: this._connectpopup })
+    this.props.navigation.setParams({ getButtonText: "Connect" });
 
-    // console.log("State request sent: " + this.state.requestSent)
-    var topButtonText = this.state.requestSent ? "Pending" : "Connect";
-    this.props.navigation.setParams({ getButtonText: topButtonText });
-    // console.log(params);
     const username = params.username;
-    // console.log("Username1: " + params.username);
-    // console.log("Username2: " + username);
     this.setState({user: username});
     this.loadUserContent(username);
   }
-  // componentWillReceiveProps() {
-  //   // if (this.props.number !== nextProps.number) {
-  //   //   this.setState({number: nextProps.number});
-  //   // }
-  //   console.log("State request sent: " + this.state.requestSent)
-  //   var topButtonText = this.state.requestSent ? "Pending" : "Connect";
-  //   this.props.navigation.setParams({ getButtonText: topButtonText });
-  // }
+
   findBuddy(username) {
     console.log(PeopleData.people);
     // console.log("Username3: " + username);
@@ -82,7 +69,7 @@ export default class BuddyProfileScreen extends React.Component {
     this.setState({content: result});
     this.setState({loading: false});
   }
-  render() {
+   render() {
     return (
       <View style={styles.container}>
         {this.getProfileContent()}
@@ -94,7 +81,7 @@ export default class BuddyProfileScreen extends React.Component {
                   <ModalButton
                     text="OK"
                     textStyle={styles.button}
-                    onPress={() => {this.requestSent()} } />
+                    onPress={() => {this.requestSentFunction()} } />
                 </ModalFooter>
               }>
               <ModalContent style = {styles.content}>

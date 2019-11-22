@@ -42,9 +42,6 @@ export default class Profile extends React.Component {
                   <Text style = {styles.bio} >{this.props.content.longBio}</Text>
                   <Text style = {styles.softHeader} >Activities</Text>
                   <ActivityList activities = {this.props.content.activities}/>
-                {/* <View >
-                  <ScheduleMatchIcon schedule ={this.props.schedule}></ScheduleMatchIcon>
-                </View>    */}
                 </View> 
             </View>
     );

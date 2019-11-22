@@ -79,13 +79,17 @@ export default class BuddyProfileScreen extends React.Component {
               footer ={
                 <ModalFooter>
                   <ModalButton
+                    text="Cancel"
+                    textStyle={styles.button}
+                    onPress={() => {this.setState({visible: false})} } />
+                  <ModalButton
                     text="OK"
                     textStyle={styles.button}
                     onPress={() => {this.requestSentFunction()} } />
                 </ModalFooter>
               }>
               <ModalContent style = {styles.content}>
-                  <Text style = {styles.popup}>Connect Request Sent!</Text>
+                  <Text style = {styles.popup}>Send Friend Request?</Text>
               </ModalContent>
           </Modal>
       </View>

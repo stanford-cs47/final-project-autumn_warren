@@ -43,7 +43,7 @@ export default class ListItem extends React.Component {
             </View>
               <Text style = {styles.bio} >{this.props.bio}</Text>     
               <View style = {styles.schedule}>
-            <ScheduleMatchBadge schedule ={this.props.schedule}></ScheduleMatchBadge> 
+            <ScheduleMatchBadge badgeText ={this.props.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
           </View>
         </View>
         </View>

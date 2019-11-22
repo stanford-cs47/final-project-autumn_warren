@@ -21,16 +21,6 @@ export default class Profile extends React.Component {
   render() {
     return ( 
         <View style = {styles.container}>
-                {/* <Button
-                  title = 'Connect'
-                  titleStyle = {styles.buttonText}
-                  raised = {true}
-                  buttonStyle = {styles.applyButton}
-                  onPress = {() => this.setState({visible: true})}
-                /> */}
-                <Button badge>
-                  <Text>Connect</Text>
-                </Button>
                 <Image style = {styles.image} source = {Images.placeholder}/> 
                 <View style = {styles.heading}>
                     <Text style = {styles.buddyName}>{this.props.content.name}</Text>
@@ -42,7 +32,8 @@ export default class Profile extends React.Component {
                 <Text style = {styles.bio} >{this.props.content.bio}</Text>
                 
                 <View style = {styles.schedule}>
-                  <ScheduleMatchBadge schedule ={this.props.content.schedule}></ScheduleMatchBadge> 
+                  <ScheduleMatchBadge badgeText ={this.props.content.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
+                  <ScheduleMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ScheduleMatchBadge>
                 </View>
                 <View style = {styles.body}>
                   <Text style = {styles.softHeader} >Bio</Text>
@@ -124,6 +115,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     borderRadius: 10,
     alignSelf: 'center',
+    marginTop: 20,
   },
   schedule: {
     flex: 1,

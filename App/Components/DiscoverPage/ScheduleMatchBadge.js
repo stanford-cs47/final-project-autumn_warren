@@ -13,10 +13,10 @@ export default class ScheduleMatchBadge extends React.Component {
         return (
             <View style = {styles.container}>
                 <View style = {styles.match}>
-                    <Text style = {styles.text}>{this.props.schedule}</Text>
+                    <Text style = {styles.text}>{this.props.badgeText}</Text>
                 </View>
                 <View style =  {styles.phraseView}>
-                    <Text style = {styles.phrase}>Schedule Match</Text>
+                    <Text style = {styles.phrase}>{this.props.type}</Text>
                 </View>
             </View>
         );
@@ -26,11 +26,10 @@ const styles = StyleSheet.create({
     container: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
     },
     match: {
         height: 25,
-        width:60,
+        width:100,
         borderRadius: 5,
         backgroundColor: '#A2C5AC',
         borderColor: '#abd1b6',

@@ -57,7 +57,7 @@ var person4 = {
     bio: "I want to do a triathlon!",
     activities: ["Running", "Swimming", "Cycling"],
     profileAvatar: "running",
-    profilePic: "",
+    profilePic: "maryLPic",
     schedule: "Med",
     experience: "Beginner",
     longBio:"New to the area and the platform! I love dogs – I watch all the national dog competitions and I can name 102 different breeds. I’d love to meet someone my age in the area who like to talk as much as I do, and it wouldn’t hurt to get into a little better shape along the way."
@@ -85,7 +85,7 @@ var person6 = {
     bio: "I'm looking for someone to keep me motivated!",
     activities: ["Weightlifting", "Swimming", "Basketball"],
     profileAvatar: "swimming",
-    profilePic: "",
+    profilePic: "collinMPic",
     schedule: "Low",
     experience: "Expert",
     longBio: "It’s all business for me – keep moving if you’re looking for a pal. I’m deadest on getting a six-pack for beach week and I don’t need any distractions. I lift weights and do high intensity interval training, but I’ll also do some volleyball in my off hours."

@@ -13,6 +13,8 @@ const images = {
   poojaKPic: require('../Images/poojaKPic.png'),
   samGPic: require('../Images/samGPic.png'),
   tinaFPic: require('../Images/tinaFPic.png'),
+  collinMPic: require('../Images/collinMPic.png'),
+  maryLPic: require('../Images/maryLPic.png'),
 }
 
 export default images

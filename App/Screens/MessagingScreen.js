@@ -32,7 +32,7 @@ export default class MessagingScreen extends React.Component {
       messages: [
         {
           _id: 1,
-          text: 'Sorry, I am running late. See you soon!',
+          text:  MyProfile.buddies[params.username].message,
           createdAt: new Date(Date.UTC(2019, 10, 11, 22, 20, 0)),
           user: {
             _id: 2,
@@ -57,9 +57,9 @@ export default class MessagingScreen extends React.Component {
     this.props.navigation.navigate('Scheduling')
     );
   }
-renderActions(props) {
+renderCustomActions(props) {
   return (
-    <Actions {...props}>
+    //<Actions {...props}>
     <TouchableOpacity style = {styles.calendarView}>
       <View style = {styles.calendarButton}>
   <Image style = {styles.calendarIcon}
@@ -92,8 +92,9 @@ renderSend(sendProps) {
        // alignTop = {true}
        renderSend = {this.renderSend}
        bottomOffset={300}
-        renderActions = {this.renderActions}
-        //onPressActionButton = {this.onPressActionButton}
+        renderActions = {this.renderCustomActions}
+        listViewProps={{padding: 25}}
+        onPressActionButton = {() =>this.props.navigation.navigate('Scheduling')}
       />
     )
   }
@@ -110,24 +111,11 @@ const styles = StyleSheet.create({
     fontWeight:'600',
     fontFamily: "Gill Sans"
   },
-  filter: {
-    height: 25,
-    width: 25,
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginRight: 15,
-    marginVertical: 5,
-  },
-  filterButton: {
-    height: 25,
-    width: 25,
-    tintColor: Colors.orange,
-  },
   calendarButton: {
     backgroundColor: Colors.orange,
-    height: 55,
-    width: 55,
-    borderRadius: 27.5,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
     borderColor:'#ffd4a6',
     borderWidth: 2,    
     shadowColor: 'gray',
@@ -139,8 +127,9 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   calendarIcon: {
-    height: 35,
-    width: 35,
+    height: 37,
+    width: 37,
+    aspectRatio: 1,
     tintColor: Colors.heading,
     resizeMode: 'contain',
   },

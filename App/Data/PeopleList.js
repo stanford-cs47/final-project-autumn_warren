@@ -15,7 +15,9 @@ var person1 = {
     activities: ["Weights", "Running"],
     profileAvatar: "weightlifting",
     profilePic: "",
-    schedule: "High"
+    schedule: "High",
+    experience: "Beginner",
+    longBio: "I’m new to the game, but I’m a passionate weightlifter and runner! I’m looking for a buddy that can push me to go a little farther than before. I like to work out 3 days a week!"
 }
 var person2 = {
     name: "Tina F.",
@@ -26,7 +28,9 @@ var person2 = {
     activities: ["Running"],
     profileAvatar: "running",
     profilePic: "",
-    schedule: "High"
+    schedule: "High",
+    experience: "Intermediate",
+    longBio: "I need an accountability buddy who can help me train for the SF Marathon by November. I’m really easy going and I love talking about dogs and babies! I usually like to run in the East Bay parks. I also like sewing and crochet!"
 }
 var person3 = {
     name: "Connor B.",
@@ -37,7 +41,9 @@ var person3 = {
     activities: ["Weights"],
     profileAvatar: "weightlifting",
     profilePic: "",
-    schedule: "High"
+    schedule: "High",
+    experience: "Expert",
+    longBio: "I’ve been exercising for four years, but I’ve found my best workouts come when I’m with a partner. My passion is cycling, but I’ve been doing a lot of weights recently to help build more strength. Really need to find someone for Tuesdays and Thursdays at 24 Hour Fitness!"
 }
 var person4 = {
     name: "Mary L.",
@@ -48,7 +54,9 @@ var person4 = {
     activities: ["Running", "Swimming", "Cycling"],
     profileAvatar: "running",
     profilePic: "",
-    schedule: "Med"
+    schedule: "Med",
+    experience: "Beginner",
+    longBio:"New to the area and the platform! I love dogs – I watch all the national dog competitions and I can name 102 different breeds. I’d love to meet someone my age in the area who like to talk as much as I do, and it wouldn’t hurt to get into a little better shape along the way."
 }
 var person5 = {
     name: "Pooja K.",
@@ -59,7 +67,9 @@ var person5 = {
     activities: ["Cycling"],
     profileAvatar: "cycling",
     profilePic: "",
-    schedule: "Med"
+    schedule: "Med",
+    experience: "Expert",
+    longBio: "I’m looking for a partner who exercises to be calm and focused like me! Fun fact: I have gone cave spelunking in 6 different continents. And I love frozen yogurt, I can eat that stuff all day!"
 }
 var person6 = {
     name: "Colin M.",
@@ -70,7 +80,9 @@ var person6 = {
     activities: ["Weights", "Swimming", "Basketball"],
     profileAvatar: "swimming",
     profilePic: "",
-    schedule: "Low"
+    schedule: "Low",
+    experience: "Expert",
+    longBio: "It’s all business for me – keep moving if you’re looking for a pal. I’m deadest on getting a six-pack for beach week and I don’t need any distractions. I lift weights and do high intensity interval training, but I’ll also do some volleyball in my off hours."
 }
 addPerson(person1);
 addPerson(person2);

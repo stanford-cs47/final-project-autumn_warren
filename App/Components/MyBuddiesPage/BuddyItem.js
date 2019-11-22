@@ -37,7 +37,7 @@ export default class BuddyItem extends React.Component {
                   </Left>
                   <Body>
                     <Text>{this.props.name}</Text>
-                    <Text note numberOfLines={1}>{this.props.message}</Text>
+                    <Text note numberOfLines={2}>{this.props.message}</Text>
                   </Body>
                   <Right>
                     <Text note >2:20 pm</Text>

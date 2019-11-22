@@ -26,7 +26,7 @@ var myBuddy=
         experience: "Beginner",
         profileAvatar: "",
         profilePic: "amys",
-        message: "Sorry, I am running late. See you Soon!"
+        message: "Sorry I am running late, I will be there in five. See you Soon!"
     };
 
     function addPerson(person) {

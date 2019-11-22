@@ -32,9 +32,7 @@ export default function ActivityList (props)  {
 
 const styles = StyleSheet.create({
     container: {
-        height: 50,
-    },
-    activities: {
-        padding: 5,
+        height: 40,
+        marginHorizontal: 20,
     },
 });

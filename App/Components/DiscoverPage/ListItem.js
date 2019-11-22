@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     shadowColor: 'gray',
     shadowOffset: {width: 1, height: 5},
     shadowOpacity: 0.22,
-    shadowRadius: 2.32,
-    elevation: 4,
+    shadowRadius: 1,
+    elevation: 6,
     justifyContent: 'center',
   },
   overallText: {
@@ -71,7 +71,10 @@ const styles = StyleSheet.create({
   
   },
   person: {
-    backgroundColor: '#f6b26b',
+    borderColor: 'whitesmoke',
+    borderWidth: 3,
+    //backgroundColor: '#f6b26b',
+    backgroundColor: 'white',
     borderRadius: 10,
     width: '100%',
     height: height * .17,

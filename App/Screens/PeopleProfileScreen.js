@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, SafeAreaView,ActivityIndicator, Image } from 'react-native';
 import { material } from 'react-native-typography';
-import { Metrics, Colors } from '../Themes';
+import { Metrics, Colors, Images } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
 import PeopleData from '../Data/PeopleList';
 import Profile from '../Components/Profile';

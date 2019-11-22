@@ -1,10 +1,10 @@
 {
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://59-yna.anonymous.2fit.exp.direct",
-  "packagerNgrokUrl": "https://packager.59-yna.anonymous.2fit.exp.direct",
-  "ngrokPid": 6752,
-  "devToolsPort": 19004,
-  "packagerPort": 19003,
-  "packagerPid": 6739,
+  "expoServerNgrokUrl": "https://6c-vpf.anonymous.2fit.exp.direct",
+  "packagerNgrokUrl": "https://packager.6c-vpf.anonymous.2fit.exp.direct",
+  "ngrokPid": 629,
+  "devToolsPort": 19002,
+  "packagerPort": 19001,
+  "packagerPid": 611,
   "webpackServerPort": null
 }

@@ -13,12 +13,15 @@ import {
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
 import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge'
+import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
-import {Button} from 'native-base';
+import {} from 'native-base';
+import { Row, Button} from 'native-base';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
   render() {
+    console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
                 <Image style = {styles.image} source = {Images.placeholder}/> 
@@ -29,15 +32,14 @@ export default class Profile extends React.Component {
                 <View style = {styles.subheading}>
                     <Text style = {styles.location}>{this.props.content.location}</Text>
                 </View>
-                <Text style = {styles.bio} >{this.props.content.bio}</Text>
-                
+                <Text style = {styles.bio} >{this.props.content.bio}</Text>      
                 <View style = {styles.schedule}>
                   <ScheduleMatchBadge badgeText ={this.props.content.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
                   <ScheduleMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ScheduleMatchBadge>
                 </View>
                 <View style = {styles.body}>
                   <Text style = {styles.softHeader} >Bio</Text>
-                  <Text style = {styles.bio} >{this.props.content.bio}</Text>
+                  <Text style = {styles.bio} >{this.props.content.longBio}</Text>
                   <Text style = {styles.softHeader} >Activities</Text>
                 {/* <View >
                   <ScheduleMatchIcon schedule ={this.props.schedule}></ScheduleMatchIcon>

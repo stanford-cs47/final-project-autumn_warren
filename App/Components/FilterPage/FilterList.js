@@ -16,7 +16,7 @@ export default class FilterList extends React.Component  {
         
     };
     render() {
-    console.log(this.state.experienceFilter)
+    //console.log(this.state.experienceFilter)
       return (
             <ScrollView style = {styles.container}>
                 <View style = {styles.filter}>

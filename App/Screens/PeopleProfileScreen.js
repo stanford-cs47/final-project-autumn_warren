@@ -18,7 +18,6 @@ export default class BuddyProfileScreen extends React.Component {
     user: "",
     visible: false,
     requestSent: false,
-    text: "Connect",
   }
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
@@ -26,7 +25,7 @@ export default class BuddyProfileScreen extends React.Component {
       headerRight: (
         <TouchableOpacity style={styles.filter}
           onPress = {navigation.getParam('connectpopup')}>
-          <Text style={styles.filterText}>{this.state.text}</Text>         
+          <Text style={styles.filterText}>{navigation.getParam('getButtonText')}</Text>         
         </TouchableOpacity>
       ),
       // headerTitle: (
@@ -38,7 +37,6 @@ export default class BuddyProfileScreen extends React.Component {
   };
   _connectpopup = () => {
     this.setState({visible: true}) 
-    this.setState({text: "Pending"})
   }
   requestSentFunction = () => {
     this.setState({visible: false}) 
@@ -54,7 +52,6 @@ export default class BuddyProfileScreen extends React.Component {
     const username = params.username;
     this.setState({user: username});
     this.loadUserContent(username);
-    this.setState({text:"Connect"});
   }
 
   findBuddy(username) {
@@ -76,7 +73,6 @@ export default class BuddyProfileScreen extends React.Component {
     return (
       <View style={styles.container}>
         {this.getProfileContent()}
-        {this.loadButtonText()}
         <Modal
               visible={this.state.visible}
               height = {.15}

@@ -41,7 +41,9 @@ export default class ListItem extends React.Component {
               <Text style = {styles.location}>{this.props.location}</Text>
               <Text style = {styles.age}>, {this.props.age}</Text>
             </View>
-              <Text style = {styles.bio} >{this.props.bio}</Text>     
+            <View style = {styles.bioView}>
+              <Text style = {styles.bio} >{this.props.bio}</Text>    
+              </View> 
               <View style = {styles.schedule}>
             <DiscoverListIcon badgeText ={this.props.schedule} type={"Schedule Match"}></DiscoverListIcon> 
           </View>
@@ -118,7 +120,12 @@ const styles = StyleSheet.create({
   age: {
     fontWeight: '300',
     color: '#5b5b5b',
+    fontSize: 16,
     //fontFamily: "Gill Sans"
+  },
+  bioView: {
+    flex: 3,
+    justifyContent: 'center'
   },
   bio: {
     //fontWeight: '400',

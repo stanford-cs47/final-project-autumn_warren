@@ -22,6 +22,7 @@ export default function DiscoverList (props)  {
       bio = {person.bio}
       username = {person.username}
       schedule = {person.schedule}
+      avatar = {person.profileAvatar}
       onProfilePressed={onProfilePressed}
     />
 );

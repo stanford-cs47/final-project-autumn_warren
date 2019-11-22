@@ -8,15 +8,13 @@ import {
 import { Divider } from 'react-native-elements';
 import { Metrics, Colors, Images } from '../../Themes';
 import SwitchToggle from 'react-native-switch-toggle'
-export default class ScheduleMatchBadge extends React.Component {
+export default class ActivityItem extends React.Component {
     render () {
+        console.log(this.props.activity)
         return (
             <View style = {styles.container}>
-                <View style = {styles.match}>
-                    <Text style = {styles.text}>{this.props.badgeText}</Text>
-                </View>
-                <View style =  {styles.phraseView}>
-                    <Text style = {styles.phrase}>{this.props.type}</Text>
+                <View style = {styles.activity}>
+                    <Text style = {styles.text}>{this.props.activity}</Text>
                 </View>
             </View>
         );
@@ -25,12 +23,12 @@ export default class ScheduleMatchBadge extends React.Component {
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    flexDirection: 'row',
+    padding: 5,
     },
-    match: {
-        height: 25,
-        width:100,
-        borderRadius: 5,
+    activity: {
+        height: 40,
+        width:75,
+        borderRadius: 10,
         backgroundColor: '#A2C5AC',
         borderColor: '#abd1b6',
         borderWidth: 1,
@@ -41,16 +39,5 @@ const styles = StyleSheet.create({
         color: 'white',
         alignSelf: 'center',
         fontFamily: "Gill Sans"
-    },
-    phrase: {
-        fontSize: 16,
-        color: Colors.heading,
-        marginLeft: 5,
-        fontWeight: '300',
-        fontFamily: "Gill Sans"
-    },
-    phraseView: {
-        height: 25,
-        justifyContent: 'center'
     },
   });

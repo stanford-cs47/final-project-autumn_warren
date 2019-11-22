@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     color: Colors.orange,
-    fontWeight:'600',
-    fontFamily: "Gill Sans"
+    fontWeight:'bold',
+    //fontFamily: "Gill Sans"
   },
   filter: {
     height: 25,

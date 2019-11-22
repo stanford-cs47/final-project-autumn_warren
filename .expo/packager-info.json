@@ -1,10 +1,1 @@
-{
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://pf-mpc.anonymous.2fit.exp.direct",
-  "packagerNgrokUrl": "https://packager.pf-mpc.anonymous.2fit.exp.direct",
-  "ngrokPid": 1837,
-  "devToolsPort": 19002,
-  "packagerPort": 19001,
-  "packagerPid": 1824,
-  "webpackServerPort": null
-}
+{}

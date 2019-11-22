@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
-import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge'
+import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge';
+import ExperienceMatchBadge from '../Components/DiscoverPage/ExperienceMatchBadge';
 import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import {} from 'native-base';
@@ -35,7 +36,7 @@ export default class Profile extends React.Component {
                 <Text style = {styles.bio} >{this.props.content.bio}</Text>      
                 <View style = {styles.schedule}>
                   <ScheduleMatchBadge badgeText ={this.props.content.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
-                  <ScheduleMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ScheduleMatchBadge>
+                  <ExperienceMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ExperienceMatchBadge>
                 </View>
                 <View style = {styles.body}>
                   <Text style = {styles.softHeader} >Bio</Text>

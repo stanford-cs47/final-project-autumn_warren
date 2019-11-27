@@ -6,6 +6,7 @@ import { Metrics, Colors, Images } from '../Themes';
 import { GiftedChat, Send, Actions } from 'react-native-gifted-chat'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MyProfile from '../Data/MyProfile';
+import PeopleData from '../Data/PeopleList';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
@@ -15,7 +16,7 @@ export default class MessagingScreen extends React.Component {
     return {
    headerTitle: (
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={styles.header}> {MyProfile.buddies[params.username].name}</Text>
+          <Text style={styles.header}> {PeopleData.people[params.username].name}</Text>
         </SafeAreaView>
       )
     };
@@ -27,16 +28,16 @@ export default class MessagingScreen extends React.Component {
 
   componentWillMount() {
     const params = this.props.navigation.state.params || {};
-    this.setState({buddy: MyProfile.buddies[params.username]})
+    this.setState({buddy: PeopleData.people[params.username]})
     this.setState({
       messages: [
         {
           _id: 1,
-          text:  MyProfile.buddies[params.username].message,
+          text:  PeopleData.people[params.username].message,
           createdAt: new Date(Date.UTC(2019, 10, 11, 22, 20, 0)),
           user: {
             _id: 2,
-            name: MyProfile.buddies[params.username].name,
+            name: PeopleData.people[params.username].name,
             avatar: Images[params.username]
           },
         }, 

@@ -11,7 +11,7 @@ import 'localstorage-polyfill';
 export default function DiscoverList (props)  {
 
   onProfilePressed = (username) => {
-    console.log("requested:"+ username)
+    console.log("profile requested is:"+ username)
     props.onProfileRequested(username);
   }
   renderPerson = (person) => (

@@ -4,18 +4,18 @@ import { StyleSheet, Text, View, SafeAreaView,ActivityIndicator, Image } from 'r
 import { material } from 'react-native-typography';
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
-import PeopleData from '../Data/PeopleList';
-import Profile from '../Components/Profile';
+import EventsData from '../Data/EventsDataList';
+import EventDetails from '../Components/EventsPage/EventDetails'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import { CheckBox, Button, Divider } from 'react-native-elements';
 
 
-export default class BuddyProfileScreen extends React.Component {
+export default class SingleEventScreen extends React.Component {
   state = {
     content: {},
     loading: true,
-    user: "",
+    eventId: "",
     visible: false,
     requestSent: false,
   }
@@ -41,34 +41,33 @@ export default class BuddyProfileScreen extends React.Component {
   requestSentFunction = () => {
     this.setState({visible: false}) 
     this.setState({requestSent: true}) 
-    this.props.navigation.setParams({getButtonText: "Pending" });
+    this.props.navigation.setParams({getButtonText: "JOINED" });
   }
   componentDidMount() {
     if(!this.props.navigation) return;
     const params = this.props.navigation.state.params || {};
     this.props.navigation.setParams({ connectpopup: this._connectpopup })
-    this.props.navigation.setParams({ getButtonText: "Connect" });
+    this.props.navigation.setParams({ getButtonText: "JOIN EVENT" });
 
-    const username = params.username;
-    this.setState({user: username});
-    this.loadUserContent(username);
+    const eventId = params.eventId;
+    this.setState({eventId: eventId});
+    this.loadEventContent(eventId);
   }
 
-  findBuddy(username) {
-    return PeopleData.people[username];
+  findEvent(eventId) {
+    return EventsData.events[eventId];
   } 
-  loadUserContent = async (username) => {
+  loadEventContent = async (eventId) => {
     this.setState({loading: true});
     await this.sleep(500); 
-    const result = this.findBuddy(username);
-    console.log(result);
+    const result = this.findEvent(eventId);
     this.setState({content: result});
     this.setState({loading: false});
   }
    render() {
     return (
       <View style={styles.container}>
-        {this.getProfileContent()}
+        {this.getEventContent()}
         <Modal
               visible={this.state.visible}
               height = {.15}
@@ -91,7 +90,7 @@ export default class BuddyProfileScreen extends React.Component {
       </View>
     );
   }
-  getProfileContent = () => {
+  getEventContent = () => {
     const { content, loading } = this.state;
     if (loading) {
       return (
@@ -99,7 +98,7 @@ export default class BuddyProfileScreen extends React.Component {
       );
     } else {
     return (
-      <Profile content={content}/>
+      <EventDetails content={content}/>
     );
   }
 }

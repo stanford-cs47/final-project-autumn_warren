@@ -19,27 +19,24 @@ import DiscoverListIcon from '../DiscoverPage/DiscoverListIcon'
 import profile from '../../Data/MyProfile';
 
 const { width, height } = Dimensions.get('window')
-export default class ListItem extends React.Component {
-  profilePressed = () => {
-    if (this.props.onProfilePressed) {
-      console.log("Username:"+ this.props.username);
-      this.props.onProfilePressed(this.props.username);
+export default class EventsListItem extends React.Component {
+  eventPressed = () => {
+    if (this.props.onEventPressed) {
+      this.props.onEventPressed(this.props.eventId);
     }
   }
   render() {
-    console.log(this.props.avatar)
-    // image, Event Name, Location, Time
   return ( 
     <View style = {styles.container}>
       <TouchableWithoutFeedback 
-         onPress={() => this.profilePressed()}>
+         onPress={() => this.eventPressed()}>
         <View style = {styles.eventCard}>
           <Image style = {styles.image}
-              source = {Images[this.props.avatar]}/>
+              source = {Images[this.props.eventImage]}/>
           <View style = {styles.info}>
-            <Text style = {styles.eventTime}>Sat, Nov 2 - 8pm</Text>
-            <Text style = {styles.eventName}>Trail Run</Text>
-            <Text style = {styles.location}>The Dish</Text>
+            <Text style = {styles.eventTime}>{this.props.time}</Text>
+            <Text style = {styles.eventName}>{this.props.name}</Text>
+            <Text style = {styles.location}>{this.props.location}</Text>
             
             <View style = {styles.schedule}>
             {/* <DiscoverListIcon badgeText ={this.props.schedule} type={"Schedule Match"}></DiscoverListIcon>  */}

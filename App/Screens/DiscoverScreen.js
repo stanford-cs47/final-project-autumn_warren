@@ -14,7 +14,6 @@ export default class DiscoverScreen extends React.Component {
   componentDidMount() {
     this.subs = [
       this.props.navigation.addListener("willFocus", () => {
-        console.log("WILL FOCUS");
         this.forceUpdate();
       }),
     ];
@@ -39,7 +38,6 @@ export default class DiscoverScreen extends React.Component {
   };
 
   onProfileRequested = (username_val) => {
-    // console.log("Requested: " + username_val);
     this.props.navigation.navigate('PeopleProfile', { username: username_val });
   }
   render() {

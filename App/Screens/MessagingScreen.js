@@ -26,30 +26,61 @@ export default class MessagingScreen extends React.Component {
     buddy: {},
   }
 
-  componentWillMount() {
+  componentWillMount() { 
     const params = this.props.navigation.state.params || {};
-    this.setState({buddy: PeopleData.people[params.username]})
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text:  PeopleData.people[params.username].message,
-          createdAt: new Date(Date.UTC(2019, 10, 11, 22, 20, 0)),
-          user: {
-            _id: 2,
-            name: PeopleData.people[params.username].name,
-            avatar: Images[params.username]
-          },
-        }, 
-      ],
-    })
+    this.setState({buddy: PeopleData.people[params.username]});
+    this.setState({messages: this.getMessages()});
+  }
+
+  componentDidMount() {
+    this.subs = [
+      this.props.navigation.addListener("willBlur", () => {
+        localStorage.setItem(this.props.navigation.state.params.username, JSON.stringify(this.state.messages))
+      })
+    ];
+  }
+
+  getMessages() {
+    const params = this.props.navigation.state.params;
+
+    var messagesString = localStorage.getItem(params.username);
+    if(messagesString) {
+      return JSON.parse(messagesString);
+    } else {
+      return [
+          {
+            _id: 1,
+            text:  PeopleData.people[params.username].message,
+            createdAt: new Date(Date.UTC(2019, 10, 11, 22, 20, 0)),
+            user: {
+              _id: 2,
+              name: PeopleData.people[params.username].name,
+              avatar: Images[params.username]
+            },
+          }, 
+        ];
+      }
   }
 
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }))
+    
+    var msgCopy = [];
+    this.state.messages.forEach(element => msgCopy.push(element));
+    msgCopy.unshift(messages);
+
+    localStorage.setItem(this.props.navigation.state.params.username, JSON.stringify(msgCopy));
+    console.log("Messages: " + this.state.messages);
+    console.log(this.state.messages);
+    console.log("Message copy: " + msgCopy);
+    console.log(msgCopy);
+
   }
+
+
+
   scheduleWorkout() {
     this.props.navigation.navigate('Scheduling');
   }

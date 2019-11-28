@@ -41,6 +41,7 @@ export default class BuddyProfileScreen extends React.Component {
   requestSentFunction = () => {
     this.setState({visible: false}) 
     this.setState({requestSent: true}) 
+    localStorage.buddies = localStorage.buddies + "," + this.props.navigation.state.params.username;
     this.props.navigation.setParams({getButtonText: "Pending" });
   }
   componentDidMount() {

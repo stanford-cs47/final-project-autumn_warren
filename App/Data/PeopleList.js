@@ -90,11 +90,26 @@ var person6 = {
     experience: "Expert",
     longBio: "It’s all business for me – keep moving if you’re looking for a pal. I’m deadest on getting a six-pack for beach week and I don’t need any distractions. I lift weights and do high intensity interval training, but I’ll also do some volleyball in my off hours."
 }
+var person7 = {
+    name: "Amy S.",
+    username: "amys",
+    location: "San Jose",
+    age: "31",
+    bio: "Wqant a partner I can trust",
+    activities: ["Weights","Yoga", "Swimming"],
+    personality: "Fanatic",
+    experience: "Beginner",
+    profileAvatar: "",
+    profilePic: "amys",
+    message: "Sorry I am running late, I will be there in five. See you Soon!"
+};
+
 addPerson(person1);
 addPerson(person2);
 addPerson(person3);
 addPerson(person4);
 addPerson(person5);
 addPerson(person6);
+addPerson(person7);
 
 export default { people, users };

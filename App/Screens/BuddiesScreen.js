@@ -8,6 +8,14 @@ import SearchBar from '../Components/SearchBar'
 import { FontAwesome } from '@expo/vector-icons';
 
 export default class BuddiesScreen extends React.Component {
+    componentDidMount() {
+      this.subs = [
+        this.props.navigation.addListener("willFocus", () => {
+          this.forceUpdate();
+        }),
+      ];
+    }
+
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
          return {

@@ -1,15 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-native';
 import { material } from 'react-native-typography';
 import EventsList from '../Components/EventsPage/EventsList'
-import { Metrics, Colors } from '../Themes';
-import { Entypo } from '@expo/vector-icons';
+import { Metrics, Colors, Images } from '../Themes';
+import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as Font from 'expo-font';
+import 'localstorage-polyfill'
+import test from '../Data/Test.js';
 
 export default class EventsScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
    const params = navigation.state.params || {};
     return {
+      headerRight: (
+        <TouchableOpacity style={styles.filter}
+          onPress = {() => navigation.navigate('EventFilter')}>
+        <Image style= {styles.filterButton}
+      source = {Images.filter}/>
+    </TouchableOpacity>
+      ), 
    headerTitle: (
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={styles.header}> EVENTS </Text>

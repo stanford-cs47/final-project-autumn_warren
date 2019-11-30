@@ -1,9 +1,10 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": "https://tq-s8m.mlandis.2fit.exp.direct",
-  "packagerNgrokUrl": "https://packager.tq-s8m.mlandis.2fit.exp.direct",
-  "ngrokPid": 96161,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://tq-s8m.anonymous.2fit.exp.direct",
+  "packagerNgrokUrl": "https://packager.tq-s8m.anonymous.2fit.exp.direct",
+  "ngrokPid": 30514,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
+  "packagerPort": 19003,
+  "packagerPid": 30463,
+  "webpackServerPort": null
 }

@@ -18,6 +18,19 @@ import { Row, Button} from 'native-base';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
+    joinWorkout () {
+        this.setState({visible: false});
+        this.props.navigation.navigate('Discover');
+        return (
+    <Button
+        title = 'APPLY'
+        titleStyle = {styles.buttonText}
+        raised = {true}
+        buttonStyle = {styles.applyButton}
+        onPress = {() => this.setState({visible: true})}
+    />
+        )
+      }
   render() {
     return ( 
         <View style = {styles.container}>
@@ -29,7 +42,17 @@ export default class Profile extends React.Component {
                 </View>
                 <View style = {styles.subheading}>
                     <Text style = {styles.location}>{this.props.content.location}</Text>
-                </View>                
+                </View>
+                <View>
+                <Button
+                    title = 'JOIN WORKOUT'
+                    // titleStyle = {styles.buttonText}
+                    raised = {true}
+                    // buttonStyle = {styles.applyButton}
+                    onPress = {() => this.setState({visible: true})}
+                />  
+                </View>
+                    
                 <View style = {styles.body}>
                   <Text style = {styles.softHeader} >Details</Text>
                   <Text style = {styles.bio} >{this.props.content.details}</Text>
@@ -49,6 +72,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'column',
   },
+  applyButton: {
+    backgroundColor: Colors.orange,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  }, 
   heading: {
     flexDirection: 'column',
     marginLeft: 20,
@@ -64,13 +94,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: Colors.orange,
   },
-  age: {
-      flex: 1,
-    fontWeight: 'bold',
-    color: '#5b5b5b',
-    fontSize: 30,
-    alignSelf: 'flex-end',
-  },
     subheading: {
     flexDirection: 'row',
     paddingVertical: 5,
@@ -79,8 +102,8 @@ const styles = StyleSheet.create({
     flex: 4,
   },
   location: {
-    fontWeight: '300',
-    fontSize: 16,
+    fontWeight: '600',
+    fontSize: 18,
     color: '#5b5b5b',
     marginLeft: 20,
   },
@@ -106,9 +129,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   image: {
-    width: 200,
-    height: 200,
-    aspectRatio: 1,
+    width: '100%',
+    height: 210,
+    // aspectRatio: 1,
     // resizeMode: 'contain',
     borderRadius: 10,
     alignSelf: 'center',

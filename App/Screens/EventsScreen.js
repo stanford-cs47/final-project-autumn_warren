@@ -14,8 +14,6 @@ export default class EventsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
    const params = navigation.state.params || {};
     return {
-<<<<<<< HEAD
-=======
       headerRight: (
         <TouchableOpacity style={styles.filter}
           onPress = {() => navigation.navigate('EventFilter')}>
@@ -23,7 +21,6 @@ export default class EventsScreen extends React.Component {
       source = {Images.filter}/>
     </TouchableOpacity>
       ), 
->>>>>>> c134c07dc9a7c480b00f381b160b57e17c46c500
    headerTitle: (
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={styles.header}> EVENTS </Text>

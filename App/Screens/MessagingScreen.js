@@ -11,10 +11,8 @@ import { CheckBox, Button, Divider } from 'react-native-elements';
 import { Overlay } from 'react-native-elements';
 import Modal, { ModalFooter, ModalButton, ModalContent, ModalTitle, SlideAnimation } from 'react-native-modals';
 var {height, width} = Dimensions.get('window');
-import 'localstorage-polyfill';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import PeopleData from '../Data/PeopleList';
-import { MaterialIcons } from '@expo/vector-icons';
+import 'localstorage-polyfill';
 
 
 export default class MessagingScreen extends React.Component {
@@ -33,7 +31,7 @@ export default class MessagingScreen extends React.Component {
     //localStorage.setItem("Visibility", false)
     const params = this.props.navigation.state.params || {};
     console.log(params);
-    this.setState({buddy: MyProfile.buddies[params.username]
+    /*this.setState({buddy: MyProfile.buddies[params.username]
     })
     this.setState({
       messages: [
@@ -56,15 +54,7 @@ export default class MessagingScreen extends React.Component {
           //this.state.messages.push(currentMessage)
         //}
       ],
-    })
-  }
-  state = {
-    messages: [],
-    buddy: {},
-  }
-
-  componentWillMount() { 
-    const params = this.props.navigation.state.params || {};
+    });*/
     this.setState({buddy: PeopleData.people[params.username]});
     this.setState({messages: this.getMessages()});
   }

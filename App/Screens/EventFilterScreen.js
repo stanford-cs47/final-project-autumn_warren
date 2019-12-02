@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Alert} from 'react-native';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import { material } from 'react-native-typography';
-import FilterList from '../Components/FilterPage/FilterList'
+import EventsFilterList from '../Components/EventsPage/EventsFilterList'
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -11,7 +11,7 @@ import Dialog, { DialogContent, DialogFooter, DialogButton } from 'react-native-
 import 'localstorage-polyfill'
 
 
-export default class FilterScreen extends React.Component {
+export default class EventFilterScreen extends React.Component {
   state = {
     visible: false
   };
@@ -32,7 +32,7 @@ export default class FilterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <FilterList filter = {this.filter}/>  */}
+        <EventsFilterList filter = {this.filter}/> 
       </View >
     );
   }

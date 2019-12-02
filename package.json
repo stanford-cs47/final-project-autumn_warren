@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@eva-design/eva": "^1.2.0",
+    "@react-native-community/slider": "^2.0.7",
     "expo": "^35.0.0",
     "expo-font": "~7.0.0",
     "localstorage-polyfill": "^1.0.1",

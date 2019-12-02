@@ -11,7 +11,7 @@ import 'localstorage-polyfill';
 export default function DiscoverList (props)  {
 
   onProfilePressed = (username) => {
-    console.log("requested:"+ username)
+    console.log("profile requested is:"+ username)
     props.onProfileRequested(username);
   }
   renderPerson = (person) => (
@@ -47,6 +47,10 @@ function getMatchingUsers() {
     var matches = true;
     console.log("My activities:");
     var location = localStorage.getItem("Location");
+    if(localStorage.buddies.includes(username)) {
+      console.log("Already buddies with " + username + ", filtering");
+      matches = false;
+    }
     if(location != null && location != "Any") {
         var locationMatch = false;
         for(var j = 0; j < PeopleData.people[username].locations.length; j++) {

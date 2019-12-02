@@ -13,6 +13,8 @@ import PeopleProfileScreen from '../Screens/PeopleProfileScreen';
 import FilterScreen from '../Screens/FilterScreen';
 import MessagingScreen from '../Screens/MessagingScreen';
 import SchedulingScreen from '../Screens/SchedulingScreen';
+import SingleEventScreen from '../Screens/SingleEventScreen';
+import EventFilterScreen from '../Screens/EventFilterScreen';
 import * as Font from 'expo-font';
 
 const DiscoverStack = createStackNavigator({
@@ -56,6 +58,16 @@ const BuddiesStack = createStackNavigator({
   })
   const EventsStack = createStackNavigator({
     Events: {screen: EventsScreen},
+    EventFilter: {screen: EventFilterScreen,
+      navigationOptions: () => ({
+        headerTintColor: Colors.orange,
+      }),
+    },
+    SingleEvent: {screen: SingleEventScreen,
+      navigationOptions: () => ({
+        headerTintColor: Colors.orange,
+      }),      
+    },
   },
   {
     headerMode: 'float',

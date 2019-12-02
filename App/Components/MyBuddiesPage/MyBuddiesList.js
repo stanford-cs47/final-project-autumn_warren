@@ -4,6 +4,8 @@ import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-n
 import BuddyItem from './BuddyItem'
 import { useState } from 'react';
 import MyProfile from '../../Data/MyProfile';
+import PeopleData from '../../Data/PeopleList';
+import 'localstorage-polyfill';
 
 
 export default function DiscoverList (props)  {
@@ -24,13 +26,19 @@ export default function DiscoverList (props)  {
       <View style={styles.container}>
 
     <FlatList
-              data={MyProfile.buddyUsernames}
-              renderItem = { ({ item }) => renderPerson(MyProfile.buddies[item])}
+              data={getBuddies()}
+              renderItem = { ({ item }) => renderPerson(PeopleData.people[item])}
               keyExtractor={item => item}
            />
       </View>
     );
   }
+
+function getBuddies() {
+  console.log("Buddies: " + localStorage.buddies);
+  console.log(PeopleData.people[localStorage.buddies]);
+  return localStorage.buddies.split(',');
+}
 
 const styles = StyleSheet.create({
   container: {

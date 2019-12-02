@@ -1,3 +1,5 @@
+import 'localstorage-polyfill';
+
 
 var profile = {
     name: "Bob Cunningham",
@@ -12,28 +14,8 @@ var profile = {
     profilePic: "",
     //buddies: []
 };
-var buddyUsernames = [];
-var buddies= {};
-var myBuddy= 
-    {
-        name: "Amy S.",
-        username: "amys",
-        location: "San Jose",
-        age: "31",
-        bio: "Wqant a partner I can trust",
-        activities: ["Weights","Yoga", "Swimming"],
-        personality: "Fanatic",
-        experience: "Beginner",
-        profileAvatar: "",
-        profilePic: "amys",
-        message: "Sorry I am running late, I will be there in five. See you Soon!"
-    };
+var buddyUsernames = ['amys'];
 
-    function addPerson(person) {
-        buddies[person.username] = person;
-        buddyUsernames.push(person.username);
-    };
+localStorage.buddies = buddyUsernames;
 
-addPerson(myBuddy);
-
-export default { buddies, profile, buddyUsernames };
+export default { profile, buddyUsernames };

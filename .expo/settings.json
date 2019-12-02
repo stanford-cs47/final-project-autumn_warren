@@ -1,8 +1,12 @@
 {
-  "hostType": "lan",
+  "hostType": "tunnel",
   "lanType": "ip",
   "dev": true,
   "minify": false,
+<<<<<<< HEAD
   "urlRandomness": "ii-e64",
+=======
+  "urlRandomness": "tq-s8m",
+>>>>>>> c134c07dc9a7c480b00f381b160b57e17c46c500
   "https": false
 }

@@ -13,12 +13,11 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Tooltip} from 'react-native-elements';
-
 import { Metrics, Colors, Images } from '../../Themes';
 import DiscoverListIcon from './DiscoverListIcon'
 import profile from '../../Data/MyProfile';
-
 const { width, height } = Dimensions.get('window')
+
 export default class ListItem extends React.Component {
   profilePressed = () => {
     if (this.props.onProfilePressed) {
@@ -62,10 +61,10 @@ const styles = StyleSheet.create({
     width: width,
     alignItems: 'flex-start',
     shadowColor: 'gray',
-    shadowOffset: {width: 1, height: 5},
-    shadowOpacity: 0.22,
+    shadowOffset: {width: 1, height: 6},
+    shadowOpacity: 0.28,
     shadowRadius: 1,
-    elevation: 6,
+    elevation: 7,
     justifyContent: 'center',
   },
   overallText: {
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
   },
   person: {
     borderColor: 'whitesmoke',
-    borderWidth: 3,
+    borderWidth: 1.5,
     //backgroundColor: '#f6b26b',
     backgroundColor: 'white',
     borderRadius: 10,

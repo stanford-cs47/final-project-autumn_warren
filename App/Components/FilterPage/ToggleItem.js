@@ -11,17 +11,6 @@ import SwitchToggle from 'react-native-switch-toggle'
 import 'localstorage-polyfill'
 
 export default class ToggleItem extends React.Component {
-/*state = {
-    checked: false,
-     <CheckBox
-                title = {this.props.name}
-                textStyle = {styles.text}
-                checkedColor = {Colors.heading}
-                uncheckedColor = {Colors.heading}
-                checked={this.state.checked}
-                containerStyle = {styles.box}
-                onPress={() => this.setState({checked: !this.state.checked})}/>
-};*/
 state = {
     switchOn1: (localStorage.getItem(this.props.item) == 'true'),
   };

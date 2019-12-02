@@ -10,7 +10,6 @@ export default class EventsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
    const params = navigation.state.params || {};
     return {
-      //title: navigation.getParam('otherParam', 'A Nested Details Screen'),
    headerTitle: (
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={styles.header}> EVENTS</Text>

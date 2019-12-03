@@ -4,7 +4,6 @@ import { material } from 'react-native-typography';
 import DiscoverList from '../Components/DiscoverPage/DiscoverList'
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
-import * as Font from 'expo-font';
 import 'localstorage-polyfill'
 import test from '../Data/Test.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';

@@ -28,47 +28,6 @@ export default class FilterScreen extends React.Component {
   confirmFilters () {
     this.setState({visible: false});
     this.props.navigation.navigate('Discover');
-    //return (
-     
-   /* Alert.alert(
-      'Filters Applied',
-      'Your Discover filters have been applied',
-      [
-        {text: 'OK',  onPress: () => this.props.navigation.navigate('Discover')},
-      ],
-      {cancelable: false},
-      {backgroundColor: 'white'}
-      
-    );
-    
-<Button
-          title = 'APPLY'
-          titleStyle = {styles.buttonText}
-          raised = {true}
-          buttonStyle = {styles.applyButton}
-          onPress = {() => this.setState({visible: true})}
-
-        />
-          <Modal
-              visible={this.state.visible}
-              height = {.15}
-              footer ={
-                <ModalFooter>
-                  <ModalButton
-                    text="OK"
-                    textStyle={styles.button}
-                    onPress={() => {this.confirmFilters()}} />
-                </ModalFooter>
-              }>
-              <ModalContent style = {styles.content}>
-                  <Text style = {styles.popup}>Your filters have been applied</Text>
-              </ModalContent>
-          </Modal>
-
-    */
-
-    
-    //)
   }
   render() {
     return (

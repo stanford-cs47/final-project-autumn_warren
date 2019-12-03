@@ -1,10 +1,6 @@
 {
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://tq-s8m.anonymous.2fit.exp.direct",
-  "packagerNgrokUrl": "https://packager.tq-s8m.anonymous.2fit.exp.direct",
-  "ngrokPid": 632,
-  "devToolsPort": 19002,
-  "packagerPort": 19001,
-  "packagerPid": 614,
-  "webpackServerPort": null
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

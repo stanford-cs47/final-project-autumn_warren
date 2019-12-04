@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19003,
+  "packagerPid": 49631,
+  "expoServerNgrokUrl": "https://hu-7j9.anonymous.2fit.exp.direct",
+  "packagerNgrokUrl": "https://packager.hu-7j9.anonymous.2fit.exp.direct",
+  "ngrokPid": 49648
 }

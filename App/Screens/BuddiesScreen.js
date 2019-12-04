@@ -19,13 +19,6 @@ export default class BuddiesScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
          return {
-          headerRight: (
-            <SafeAreaView style={styles.newMessage}>
-              <Entypo name="new-message"
-              size={25}
-              color={Colors.orange} />
-              </SafeAreaView>
-          ), 
         headerTitle: (
              <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
                <Text style={styles.header}> BUDDIES</Text>
@@ -63,6 +56,7 @@ export default class BuddiesScreen extends React.Component {
        header: {
          fontSize: 24,
          color: Colors.orange,
+         fontWeight:'bold',
        }, 
        newMessage: {
         height: 25,

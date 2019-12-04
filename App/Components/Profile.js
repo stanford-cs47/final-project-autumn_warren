@@ -9,6 +9,7 @@ import {
   Image,
   Dimensions,
   AsyncStorage,
+  ScrollView
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
@@ -24,6 +25,7 @@ export default class Profile extends React.Component {
   render() {
     console.log("activities" + this.props.content.activities)
     return ( 
+        <ScrollView>
         <View style = {styles.container}>
                 <Image style = {styles.image} source = {Images[this.props.content.profilePic]}/> 
                 <View style = {styles.heading}>
@@ -36,6 +38,8 @@ export default class Profile extends React.Component {
                 <Text style = {styles.bio} >{this.props.content.bio}</Text>      
                 <View style = {styles.schedule}>
                   <ScheduleMatchBadge badgeText ={this.props.content.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
+                  </View>
+                  <View style = {styles.schedule}>
                   <ExperienceMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ExperienceMatchBadge>
                 </View>
                 <View style = {styles.body}>
@@ -44,7 +48,8 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Activities</Text>
                   <ActivityList activities = {this.props.content.activities}/>
                 </View> 
-            </View>
+                </View>
+            </ScrollView>
     );
   };
 }
@@ -109,6 +114,7 @@ const styles = StyleSheet.create({
     color: '#5b5b5b',
     paddingHorizontal: 20,
     paddingBottom: 20,
+    lineHeight: 25,
   },
   image: {
     width: 200,
@@ -122,6 +128,6 @@ const styles = StyleSheet.create({
   schedule: {
     flex: 1,
     marginLeft: 20,
-    marginTop: 5,
+    paddingVertical: 5,
   }
 });

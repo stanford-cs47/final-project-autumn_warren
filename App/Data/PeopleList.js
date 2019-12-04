@@ -41,7 +41,7 @@ var person3 = {
     locations: ["24 Hour Fitness"],
     age: "23",
     bio: "I want to curl 50s in 6 months.",
-    activities: ["Weightlifting"],
+    activities: ["Weightlifting", "Cycling"],
     profileAvatar: "weightlifting",
     profilePic: "connorBPic",
     schedule: "High",
@@ -83,12 +83,12 @@ var person6 = {
     locations: ["Soul Cycle"],
     age: "29",
     bio: "I'm looking for someone to keep me motivated!",
-    activities: ["Weightlifting", "Swimming", "Basketball"],
+    activities: ["Weightlifting", "Swimming", "Volleyball"],
     profileAvatar: "swimming",
     profilePic: "collinMPic",
     schedule: "Low",
     experience: "Expert",
-    longBio: "It’s all business for me – keep moving if you’re looking for a pal. I’m deadest on getting a six-pack for beach week and I don’t need any distractions. I lift weights and do high intensity interval training, but I’ll also do some volleyball in my off hours."
+    longBio: "It’s all business for me – keep moving if you’re looking for a pal. I’m deadest on getting a six-pack for beach week and I don’t need any distractions. I lift weights and do high intensity interval training, but I’ll also do some volleyball or swim in my off hours."
 }
 var person7 = {
     name: "Amy S.",

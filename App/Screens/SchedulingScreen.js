@@ -4,7 +4,7 @@ import Modal, { ModalFooter, ModalButton, ModalContent, ModalTitle, SlideAnimati
 import ScheduleInterface from '../Components/Scheduling/ScheduleInterface';
 import { Select } from 'react-select'
 import styled from 'styled-components'
-import { StyleSheet, Text, Dimensions, SafeAreaView, View, Alert, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, ActivityIndicator,Dimensions, SafeAreaView, View, Alert, TouchableOpacity, Image} from 'react-native';
 import { Metrics, Colors , Images} from '../Themes';
 import { FloatingAction } from "react-native-floating-action";
 import 'localstorage-polyfill';
@@ -92,10 +92,10 @@ export default class SchedulingScreen extends React.Component {
                 <View style = {{ height: 25, width: 25, backgroundColor: '#FAD4C0'}}/>
                 </View>
                 <View style = {{justifyContent: 'center', padding: 2}}>
-                  <Text style ={{fontSize: 14}}>Schedule Overlap</Text>
+                  <Text style ={{fontSize: 14, color: Colors.heading}}>Schedule Overlap</Text>
                 </View>
                </View>
-               </View>
+                              </View>
             <ScheduleInterface 
             onDateRequested = {this.onDateRequested}
             days = {params.days}
@@ -167,8 +167,8 @@ const styles = StyleSheet.create({
       width: 70,
       height: 70,
       borderRadius: 35,
-      backgroundColor: '#A2C5AC',
-      borderColor: '#8bad95',
+      backgroundColor: Colors.orange,
+      borderColor: '#ffb361',
       position: 'absolute',
       shadowColor: 'gray',
       bottom: 10,

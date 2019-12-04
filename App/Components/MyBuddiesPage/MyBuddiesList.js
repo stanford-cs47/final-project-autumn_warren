@@ -18,7 +18,7 @@ export default function DiscoverList (props)  {
     <BuddyItem
         name = {person.name}
         username = {person.username}
-        message = {person.message}
+        message = {getLastMessage(person.username)}
         onPressed={onPressed}
     />
 );
@@ -33,6 +33,23 @@ export default function DiscoverList (props)  {
       </View>
     );
   }
+
+function getLastMessage(name) {
+  var messagesString = localStorage.getItem(name);
+  if(messagesString) {
+    var messagesObject = JSON.parse(messagesString);
+    return messagesObject[0].text;
+  } 
+  else 
+  {
+    if(PeopleData.people[name].message) {
+      return PeopleData.people[name].message;
+    }
+    else {
+      return '';
+    }
+  }
+}
 
 function getBuddies() {
   console.log("Buddies: " + localStorage.buddies);

@@ -37,7 +37,6 @@ export default class EventsListItem extends React.Component {
             <Text style = {styles.eventTime}>{this.props.time}</Text>
             <Text style = {styles.eventName}>{this.props.name}</Text>
             <Text style = {styles.location}>{this.props.location}</Text>
-            
             <View style = {styles.schedule}>
             {/* <DiscoverListIcon badgeText ={this.props.schedule} type={"Schedule Match"}></DiscoverListIcon>  */}
           </View>
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     width: '100%',
-    height: height * .21,
+    height: height * .22,
     paddingHorizontal: 15,
     paddingVertical: 10,
     flexDirection: 'column',
@@ -83,6 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     padding: 5,
+    marginTop: 10,
   },
     eventName: {
     fontWeight: '600',
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   location: {
     fontWeight: '300',
-    fontSize: 16,
+    fontSize: 14,
     color: '#5b5b5b',
   },
   eventTime: {

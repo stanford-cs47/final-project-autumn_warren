@@ -77,7 +77,10 @@ export default class MessagingScreen extends React.Component {
     if(messagesString) {
       return JSON.parse(messagesString);
     } else {
-      return [
+      if(!PeopleData.people[params.username].message) {
+        return [];
+      } else {
+        return [
           {
             _id: 1,
             text:  PeopleData.people[params.username].message,
@@ -89,7 +92,8 @@ export default class MessagingScreen extends React.Component {
             },
           }, 
         ];
-      }
+      }  
+    }
   }
   state = {
     messages: [],

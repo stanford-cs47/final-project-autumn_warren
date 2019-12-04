@@ -9,7 +9,10 @@ import {
   Image,
   Dimensions,
   AsyncStorage,
-  ScrollView
+  ScrollView,
+  SafeAreaView,
+  Alert, 
+  TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
@@ -25,8 +28,8 @@ export default class Profile extends React.Component {
   render() {
     console.log("activities" + this.props.content.activities)
     return ( 
-        <ScrollView>
         <View style = {styles.container}>
+                  <ScrollView>
                 <Image style = {styles.image} source = {Images[this.props.content.profilePic]}/> 
                 <View style = {styles.heading}>
                     <Text style = {styles.buddyName}>{this.props.content.name}</Text>
@@ -48,8 +51,12 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Activities</Text>
                   <ActivityList activities = {this.props.content.activities}/>
                 </View> 
+                </ScrollView>
+                <TouchableOpacity style = {styles.button}
+                  onPress = {()=> this.confirm()}>
+                    <Text style = {styles.buttonText}>JOIN</Text>      
+                </TouchableOpacity>
                 </View>
-            </ScrollView>
     );
   };
 }
@@ -129,5 +136,28 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 20,
     paddingVertical: 5,
-  }
+    marginTop: 5,
+  },
+  button: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: Colors.orange,
+    borderColor: '#8bad95',
+    position: 'absolute',
+    shadowColor: 'gray',
+    bottom: 10,
+    right: 10,
+    shadowOffset: {width: 1, height: 5},
+    shadowOpacity: .7,
+    shadowRadius: 4.32,
+    elevation: 7,
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  }, 
 });

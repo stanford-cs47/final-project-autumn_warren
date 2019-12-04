@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import MyProfile from '../Data/MyProfile';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ScheduleLocationPicker from '../Components/Scheduling/ScheduleLocationPicker';
-import PendingWorkout from '../Components/Scheduling/PendingWorkout';
+import ScheduleStatusBar from '../Components/Scheduling/ScheduleStatusBar';
 import CalendarPicker from 'react-native-calendar-picker';
 import { Button} from 'react-native-elements';
 import Modal, { ModalFooter, ModalButton, ModalContent, ModalTitle, SlideAnimation } from 'react-native-modals';
@@ -27,39 +27,12 @@ export default class MessagingScreen extends React.Component {
     };
   };
   componentWillMount() {
-    localStorage.setItem("Selected-Workout-Full", "Select a Time");
-    localStorage.setItem("ScheduleLocation", "Any");
-    //localStorage.setItem("Visibility", false)
     const params = this.props.navigation.state.params || {};
+    localStorage.setItem("Selected-Workout-Full" +  params.username,"Select a Time");
+    localStorage.setItem("ScheduleLocation" + params.username, "Any");
     console.log(params);
-    /*this.setState({buddy: MyProfile.buddies[params.username]
-    })
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text:  MyProfile.buddies[params.username].message,
-          createdAt: new Date(Date.UTC(2019, 10, 11, 22, 20, 0)),
-          user: {
-            _id: 2,
-            name: MyProfile.buddies[params.username].name,
-            avatar: Images[params.username]
-          },
-        }, 
-        {
-          _id: 3,
-          text:  "hey",
-          createdAt: new Date(),
-          system: true
-        }
-          //this.state.messages.push(currentMessage)
-        //}
-      ],
-    });*/
     this.setState({buddy: PeopleData.people[params.username]});
     this.setState({messages: this.getMessages()});
-    //localStorage.setItem("Schedule-Request", false);
-    //this.setState({workoutSent: false})
   }
 
   componentDidMount() {
@@ -101,17 +74,17 @@ export default class MessagingScreen extends React.Component {
     visibleSchedule: false,
     visibleCalendar: false,
     visibleHours: false,
-    selectedStartDate: (localStorage.getItem("Sart-Date") || null),
-    selectedEndDate: (localStorage.getItem("End-Date" )|| null),
+    selectedStartDate: (localStorage.getItem("Sart-Date" + this.props.navigation.state.params.username) || null),
+    selectedEndDate: (localStorage.getItem("End-Date" +this.props.navigation.state.params.username )|| null),
     numDays: 0,
     selectedTime: null,
     selectedDate: null,
-    selectedWorkout: (localStorage.getItem("Selected-Workout-Full") || "Select a Time"),
+    selectedWorkout: (localStorage.getItem("Selected-Workout-Full" + this.props.navigation.state.params.username) || "Select a Time"),
     startNum: 0,
-    workoutSent: (localStorage.getItem("Schedule-Request") || false),
-    systemMessage: {},
-    pending: true,
+    workoutSent: (localStorage.getItem("Schedule-Request" + this.props.navigation.state.params.username) || false),
+    accepted: (localStorage.getItem("Workout-Accepted" + this.props.navigation.state.params.username) || false),
   };
+
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
@@ -128,27 +101,9 @@ export default class MessagingScreen extends React.Component {
     console.log(msgCopy);
 
   }
-
-
-
   scheduleWorkout() {
     this.props.navigation.navigate('Scheduling');
   }
-  onPressActionButton() {
-    return (
-    this.props.navigation.navigate('Scheduling')
-    );
-  }
-renderCustomActions(props) {
-  return (
-    <TouchableOpacity style = {styles.calendarView}>
-      <View style = {styles.calendarButton}>
-  <Image style = {styles.calendarIcon}
-            source = {Images.scheduleworkout}/>
-            </View>
-  </TouchableOpacity>
-  );
-}
 renderSend(sendProps) {
   return(
     <Send {...sendProps}>
@@ -173,8 +128,8 @@ onDateChange = (date, type)=> {
       selectedEndDate: date,
     });
   } else {
-    localStorage.setItem("Start-Date", date);
-    localStorage.setItem("End-Date", null);
+    localStorage.setItem("Start-Date" + this.state.buddy.username, date);
+    localStorage.setItem("End-Date" + this.state.buddy.username, null);
     console.log("start" + date.date())
     this.setState({
       selectedStartDate: date,
@@ -186,12 +141,10 @@ onDateChange = (date, type)=> {
 }
 selectDate=()=>{
   this.setState({visibleSchedule: false})
-  //localStorage.setItem("Visibility", false)
   this.setState({visibleCalendar: true})
 }
 goBack=()=>{
   this.setState({visibleSchedule: true})
-  //localStorage.setItem("Visibility", true)
   this.setState({visibleCalendar: false})
 }
 onDateRequested = (selected) => {
@@ -200,7 +153,6 @@ onDateRequested = (selected) => {
 selectTime (){
   console.log(this.state.numDays)
   this.setState({visibleSchedule: false})
-  //localStorage.setItem("Visibility", false)
   this.setState({visibleCalendar: false})
   if(this.state.selectedEndDate === null) {
     this.setState({numDays: 0});
@@ -217,10 +169,10 @@ cancel = ()=>{
       selectedEndDate: null,
       selectedWorkout: "Select a Time",
     });
-    localStorage.setItem("Selected-Workout-Full", "Select a Time");
-    localStorage.setItem("Start-Date", null);
-    localStorage.setItem("End-Date", null);
-    localStorage.setItem("ScheduleLocation", "Any");
+    localStorage.setItem("Selected-Workout-Full" + this.state.buddy.username, "Select a Time");
+    localStorage.setItem("Start-Date" + this.state.buddy.username, null);
+    localStorage.setItem("End-Date" + this.state.buddy.username, null);
+    localStorage.setItem("ScheduleLocation" + this.state.buddy.username, "Any");
 }
 getDate=(date)=> {
   switch(date) {
@@ -234,86 +186,41 @@ getDate=(date)=> {
   }
 }
 returnToConfirm=(visible, start, end, date)=> { 
-     //console.log("date: " + date.day())
     this.setState({visibleSchedule: visible});
     var dateString = this.getDate(date.day());
     dateString = dateString + ", " + (date.month() + 1) + "/" + date.date();
-    //console.log(dateString)
     this.setState({selectedWorkout: dateString + ", " + start + " to " + end})
-    localStorage.setItem("Selected-Workout-Day", dateString)
-    localStorage.setItem("Selected-Workout-Time", start + " to " + end)
-    localStorage.setItem("Selected-Workout-Full", dateString + ", " + start + " to " + end)
-    //console.log(localStorage.getItem("Selected-Workout"))
+    localStorage.setItem("Selected-Workout-Day" + this.state.buddy.username, dateString)
+    localStorage.setItem("Selected-Workout-Time" + this.state.buddy.username, start + " to " + end)
+    localStorage.setItem("Selected-Workout-Full" + this.state.buddy.username, dateString + ", " + start + " to " + end)
 }
-componentDidMount() {
-  
-}
+
 backButton=(visible)=>  {
   this.setState({visibleCalendar: visible});
 }
 sendWorkout=()=>{
-this.setState({visibleSchedule: false})
-localStorage.setItem("Schedule-Request", true)
-this.setState({workoutSent: true})
-//this.setState({pending: false})
-
-/*suggestWorkout = {
-  _id: 3,
-  text: 
-  ("You suggested a workout" + "\n" + "\n" +
-    localStorage.getItem("Selected-Workout-Day") + "\n" 
-  + localStorage.getItem("Selected-Workout-Time") + "\n" + "\n"
-  + "At: " + localStorage.getItem("ScheduleLocation")),
-  createdAt: new Date(),
-  system: true,
-}
-this.setState(previousState => ({
-  messages: GiftedChat.append(previousState.messages, suggestWorkout),
-}))*/
-
-}
-renderSystemMessage(props) {
-  //if(this.state.workoutSent) {
-    return (
-      <SystemMessage
-        {...props}
-        containerStyle={{
-          marginBottom: 15,
-          height: 125,
-          width: 250,
-          borderRadius: 20,
-          flexDirection: 'column',
-          borderColor: '#ffc8ab',
-          borderWidth: 1,
-          justifyContent: 'center',
-          alignSelf: 'center',
-          alignItems: 'center',
-          backgroundColor: '#FAD4C0',
-        }}
-        wrapperStyle= {{    
-          justifyContent: 'center',
-          alignContent: 'center'
-        }}
-        textStyle={{
-          fontSize: 16,
-          color: 'black',
-          lineHeight: 22,
-          fontWeight: '500',   
-        }}
-      />
-    );
-}
-renderCustomView(props) {
-return(
-<CustomView {...props}
-containerStyle = {{}}
-/>
-);
+    this.setState({visibleSchedule: false})
+    localStorage.setItem("Schedule-Request" + this.state.buddy.username, true)
+    this.setState({workoutSent: true})
+    this.cancel();
+    if(this.state.accepted) {
+      console.log("accepted")
+      sent = {
+        _id: 3,
+        text: (this.state.buddy.name + " confirmed your workout request"),
+        createdAt: new Date(),
+        system: true,
+      }
+      this.setState(previousState => ({
+        messages: GiftedChat.append(previousState.messages, sent),
+      }))
+    }
 }
   render() {
     const minDate = new Date();
     const { selectedStartDate } = this.state;
-    console.log(selectedStartDate)
+    console.log("accepted" + this.state.accepted)
+    //console.log(selectedStartDate)
     return (
         <View style = {styles.container}>    
           <GiftedChat
@@ -327,28 +234,19 @@ containerStyle = {{}}
             bottomOffset={300}
             listViewProps={{marginBottom: 20}}
             renderInputToolbar = {this.renderToolbar}
-            //renderSystemMessage = {this.renderSystemMessage}
-           // renderCustomView = {this.renderCustomView}
-           // renderBubble = {this.renderBubble}
           />
-          <View style = {this.state.workoutSent? styles.workoutSent: styles.none}>
-              <View style = {{flex: 1, flexDirection: 'row',justifyContent: 'flex-start', alignItems: 'center'}}>
-                <View style = {{flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'column'}}>
-                  <Text style ={{fontSize: 16, color: Colors.heading, fontWeight: 'bold', lineHeight: 25,}}>{localStorage.getItem("Selected-Workout-Day")}</Text>
-                  <Text style ={{fontSize: 16, color: Colors.heading, lineHeight: 25,}}>{localStorage.getItem("Selected-Workout-Time")}</Text>
-                  <View style = {{flex: 1, flexDirection: 'row'}}>
-                    <Text style ={{fontSize: 16, color: Colors.heading, fontWeight: 'bold', lineHeight: 25,}}>At: </Text>
-                    <Text style ={{fontSize: 16, color: Colors.heading, lineHeight: 25,}}>{localStorage.getItem("ScheduleLocation")} </Text>
-                  </View>
-                </View>
-                <PendingWorkout pending = {this.state.pending}/>
-              </View>
-            </View>
+          {this.state.workoutSent? <ScheduleStatusBar 
+          sent = {this.state.workoutSent}
+          messages = {this.state.messages}
+          username = {this.state.buddy.username}
+          accepted = {this.state.accepted}/>:null}
           <View style = {styles.calendarButton}>
               <TouchableOpacity
                 onPress = {() => this.setState({visibleSchedule: true})}>
+                  <View style ={{justifyContent: 'center'}}>
               <Image style = {styles.calendarIcon}
                   source = {Images.scheduleworkout}/>
+                  </View>
               </TouchableOpacity>
               </View>
               <Modal
@@ -497,37 +395,36 @@ color: Colors.heading,
   },
   header: {
     fontSize: 24,
-    color: Colors.orange,
+    color: Colors.heading,
     fontWeight:'600',
     fontFamily: "Gill Sans"
   },
   calendarButton: {
     position: 'absolute',
     //backgroundColor: '#ff8f17',
-    backgroundColor: '#ffc98f',
-    height: 60,
-    width: 60,
-    borderRadius: 30,
+    backgroundColor: Colors.orange,
+    height: 55,
+    width: 55,
+    borderRadius: 27.5,
     borderColor:'#f7b063',
-    borderWidth: 1,    
+   // borderWidth: 1,    
     shadowColor: 'gray',
     shadowOffset: {width: 1, height: 5},
-    shadowOpacity: .7,
-    shadowRadius: 4.32,
-    elevation: 7,
-    alignItems: 'center',
+    shadowOpacity: .5,
+    shadowRadius: 3.32,
+    elevation: 5,
+   alignItems: 'center',
     justifyContent:'center',
     bottom: 5,
     left: 20
   },
   calendarIcon: {
-    height: 39,
-    width: 39,
+    height: 28,
+    width: 28,
     aspectRatio: 1,
-    tintColor: '#3b3b3b',
+    tintColor: 'white',
     resizeMode: 'contain',
-    //backgroundColor: 'white'
-   // position: 'absolute'
+
   },
   calendarView: {
     flex: 1,

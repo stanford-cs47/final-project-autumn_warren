@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 14,
+        fontFamily: 'Helvetica',
         color: '#3b3b3b'
     },
     hours: {

@@ -46,7 +46,7 @@ export default class Profile extends React.Component {
                 <View style = {styles.subheading}>
                     <Text style = {styles.location}>{this.props.content.location}</Text>
                 </View>
-                <View>
+                {/*<View>
                 <Button
                     title = 'JOIN WORKOUT'
                     // titleStyle = {styles.buttonText}
@@ -54,7 +54,7 @@ export default class Profile extends React.Component {
                     // buttonStyle = {styles.applyButton}
                     onPress = {() => this.setState({visible: true})}
                 />  
-                </View>
+                </View>*/}
                     
                 <View style = {styles.body}>
                   <Text style = {styles.softHeader} >Details</Text>
@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#5b5b5b',
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    marginTop: 25,
+    //paddingVertical: 5,
   },
   bio: {
     fontWeight: '400',
@@ -136,6 +137,7 @@ const styles = StyleSheet.create({
     color: '#5b5b5b',
     paddingHorizontal: 20,
     paddingVertical: 10,
+    lineHeight: 25
   },
   image: {
     width: '100%',

@@ -70,6 +70,8 @@ const BuddiesStack = createStackNavigator({
     },
   },
   {
+    mode: 'modal',
+    headerBackTitleVisible: false,
     headerMode: 'float',
     initialRouteName: 'Events'
   })

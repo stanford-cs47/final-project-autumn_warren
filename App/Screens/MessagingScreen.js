@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView,  Image, Dimensions, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,  Image, Dimensions, ScrollView, ActivityIndicator,} from 'react-native';
 import { Metrics, Colors, Images } from '../Themes';
-import { GiftedChat, Send, InputToolbar, MessageContainer, SystemMessage, Bubble } from 'react-native-gifted-chat';
+import { GiftedChat, Send, InputToolbar, MessageContainer, SystemMessage, Bubble, CustomView } from 'react-native-gifted-chat';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MyProfile from '../Data/MyProfile';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ScheduleLocationPicker from '../Components/Scheduling/ScheduleLocationPicker';
+import PendingWorkout from '../Components/Scheduling/PendingWorkout';
 import CalendarPicker from 'react-native-calendar-picker';
-import { CheckBox, Button, Divider } from 'react-native-elements';
-import { Overlay } from 'react-native-elements';
+import { Button} from 'react-native-elements';
 import Modal, { ModalFooter, ModalButton, ModalContent, ModalTitle, SlideAnimation } from 'react-native-modals';
 var {height, width} = Dimensions.get('window');
 import PeopleData from '../Data/PeopleList';
@@ -27,7 +27,8 @@ export default class MessagingScreen extends React.Component {
     };
   };
   componentWillMount() {
-    localStorage.setItem("Selected- Workout", "Select a Time");
+    localStorage.setItem("Selected-Workout-Full", "Select a Time");
+    localStorage.setItem("ScheduleLocation", "Any");
     //localStorage.setItem("Visibility", false)
     const params = this.props.navigation.state.params || {};
     console.log(params);
@@ -57,6 +58,8 @@ export default class MessagingScreen extends React.Component {
     });*/
     this.setState({buddy: PeopleData.people[params.username]});
     this.setState({messages: this.getMessages()});
+    //localStorage.setItem("Schedule-Request", false);
+    //this.setState({workoutSent: false})
   }
 
   componentDidMount() {
@@ -103,9 +106,11 @@ export default class MessagingScreen extends React.Component {
     numDays: 0,
     selectedTime: null,
     selectedDate: null,
-    selectedWorkout: (localStorage.getItem("Selected-Workout") || "Select a Time"),
+    selectedWorkout: (localStorage.getItem("Selected-Workout-Full") || "Select a Time"),
     startNum: 0,
-    workoutSent: false,
+    workoutSent: (localStorage.getItem("Schedule-Request") || false),
+    systemMessage: {},
+    pending: true,
   };
   onSend(messages = []) {
     this.setState(previousState => ({
@@ -212,7 +217,7 @@ cancel = ()=>{
       selectedEndDate: null,
       selectedWorkout: "Select a Time",
     });
-    localStorage.setItem("Selected-Workout", "Select a Time");
+    localStorage.setItem("Selected-Workout-Full", "Select a Time");
     localStorage.setItem("Start-Date", null);
     localStorage.setItem("End-Date", null);
     localStorage.setItem("ScheduleLocation", "Any");
@@ -229,22 +234,43 @@ getDate=(date)=> {
   }
 }
 returnToConfirm=(visible, start, end, date)=> { 
-     console.log("date: " + date.day())
+     //console.log("date: " + date.day())
     this.setState({visibleSchedule: visible});
     var dateString = this.getDate(date.day());
     dateString = dateString + ", " + (date.month() + 1) + "/" + date.date();
-    console.log(dateString)
+    //console.log(dateString)
     this.setState({selectedWorkout: dateString + ", " + start + " to " + end})
-    localStorage.setItem("Selected-Workout", dateString + ", " + start + " to " + end)
-    console.log(localStorage.getItem("Selected-Workout"))
+    localStorage.setItem("Selected-Workout-Day", dateString)
+    localStorage.setItem("Selected-Workout-Time", start + " to " + end)
+    localStorage.setItem("Selected-Workout-Full", dateString + ", " + start + " to " + end)
+    //console.log(localStorage.getItem("Selected-Workout"))
 }
-
+componentDidMount() {
+  
+}
 backButton=(visible)=>  {
   this.setState({visibleCalendar: visible});
 }
 sendWorkout=()=>{
-  this.setState({visibleSchedule: false})
+this.setState({visibleSchedule: false})
+localStorage.setItem("Schedule-Request", true)
 this.setState({workoutSent: true})
+//this.setState({pending: false})
+
+/*suggestWorkout = {
+  _id: 3,
+  text: 
+  ("You suggested a workout" + "\n" + "\n" +
+    localStorage.getItem("Selected-Workout-Day") + "\n" 
+  + localStorage.getItem("Selected-Workout-Time") + "\n" + "\n"
+  + "At: " + localStorage.getItem("ScheduleLocation")),
+  createdAt: new Date(),
+  system: true,
+}
+this.setState(previousState => ({
+  messages: GiftedChat.append(previousState.messages, suggestWorkout),
+}))*/
+
 }
 renderSystemMessage(props) {
   //if(this.state.workoutSent) {
@@ -253,33 +279,36 @@ renderSystemMessage(props) {
         {...props}
         containerStyle={{
           marginBottom: 15,
-          height: 100,
-          width: 300,
-          borderRadius: 10,
-          //borderColor: 'gray',
-          //borderWidth: 3,
+          height: 125,
+          width: 250,
+          borderRadius: 20,
+          flexDirection: 'column',
+          borderColor: '#ffc8ab',
+          borderWidth: 1,
           justifyContent: 'center',
           alignSelf: 'center',
-          backgroundColor: '#EFEFEF',
+          alignItems: 'center',
+          backgroundColor: '#FAD4C0',
         }}
         wrapperStyle= {{    
           justifyContent: 'center',
-          alignItems: 'center'
+          alignContent: 'center'
         }}
         textStyle={{
-          fontSize: 14
+          fontSize: 16,
+          color: 'black',
+          lineHeight: 22,
+          fontWeight: '500',   
         }}
       />
     );
-    //this.state.messages.push(currentMessage)
-  //}
 }
-renderBubble(props) {
-  return(
-  <MessageContainer {...props}
-containerStyle = {{backgroundColor: 'gray'}}
-  />
-  );
+renderCustomView(props) {
+return(
+<CustomView {...props}
+containerStyle = {{}}
+/>
+);
 }
   render() {
     const minDate = new Date();
@@ -298,9 +327,23 @@ containerStyle = {{backgroundColor: 'gray'}}
             bottomOffset={300}
             listViewProps={{marginBottom: 20}}
             renderInputToolbar = {this.renderToolbar}
-            renderSystemMessage = {this.renderSystemMessage}
+            //renderSystemMessage = {this.renderSystemMessage}
+           // renderCustomView = {this.renderCustomView}
            // renderBubble = {this.renderBubble}
           />
+          <View style = {this.state.workoutSent? styles.workoutSent: styles.none}>
+              <View style = {{flex: 1, flexDirection: 'row',justifyContent: 'flex-start', alignItems: 'center'}}>
+                <View style = {{flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'column'}}>
+                  <Text style ={{fontSize: 16, color: Colors.heading, fontWeight: 'bold', lineHeight: 25,}}>{localStorage.getItem("Selected-Workout-Day")}</Text>
+                  <Text style ={{fontSize: 16, color: Colors.heading, lineHeight: 25,}}>{localStorage.getItem("Selected-Workout-Time")}</Text>
+                  <View style = {{flex: 1, flexDirection: 'row'}}>
+                    <Text style ={{fontSize: 16, color: Colors.heading, fontWeight: 'bold', lineHeight: 25,}}>At: </Text>
+                    <Text style ={{fontSize: 16, color: Colors.heading, lineHeight: 25,}}>{localStorage.getItem("ScheduleLocation")} </Text>
+                  </View>
+                </View>
+                <PendingWorkout pending = {this.state.pending}/>
+              </View>
+            </View>
           <View style = {styles.calendarButton}>
               <TouchableOpacity
                 onPress = {() => this.setState({visibleSchedule: true})}>
@@ -509,5 +552,27 @@ color: Colors.heading,
     alignContent:'center',
     justifyContent: 'center'
   }, 
+  workoutSent: {
+    height: 80, 
+    width: '100%', 
+   backgroundColor: 'rgba(52, 52, 52, 0.1)', 
+   //opacity: .2,
+    position: 'absolute',
+    flexDirection: 'row',
+    paddingHorizontal: 40,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderColor: '#ededed',
+    borderBottomWidth: .7,
+  },
+  none: {
+    height: 0,
+    width: 0
+  },
+  activityIndicator: {
+    flex: 1, 
+    justifyContent: 'flex-end', 
+    alignItems: 'flex-end'
+  }
 });
   

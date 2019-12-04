@@ -9,6 +9,10 @@ import {
   Image,
   Dimensions,
   AsyncStorage,
+  ScrollView,
+  SafeAreaView,
+  Alert, 
+  TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
@@ -25,6 +29,7 @@ export default class Profile extends React.Component {
     console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
+                  <ScrollView>
                 <Image style = {styles.image} source = {Images[this.props.content.profilePic]}/> 
                 <View style = {styles.heading}>
                     <Text style = {styles.buddyName}>{this.props.content.name}</Text>
@@ -36,6 +41,8 @@ export default class Profile extends React.Component {
                 <Text style = {styles.bio} >{this.props.content.bio}</Text>      
                 <View style = {styles.schedule}>
                   <ScheduleMatchBadge badgeText ={this.props.content.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
+                  </View>
+                  <View style = {styles.schedule}>
                   <ExperienceMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ExperienceMatchBadge>
                 </View>
                 <View style = {styles.body}>
@@ -44,7 +51,12 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Activities</Text>
                   <ActivityList activities = {this.props.content.activities}/>
                 </View> 
-            </View>
+                </ScrollView>
+                <TouchableOpacity style = {styles.button}
+                  onPress = {()=> this.confirm()}>
+                    <Text style = {styles.buttonText}>JOIN</Text>      
+                </TouchableOpacity>
+                </View>
     );
   };
 }
@@ -109,6 +121,7 @@ const styles = StyleSheet.create({
     color: '#5b5b5b',
     paddingHorizontal: 20,
     paddingBottom: 20,
+    lineHeight: 25,
   },
   image: {
     width: 200,
@@ -122,6 +135,29 @@ const styles = StyleSheet.create({
   schedule: {
     flex: 1,
     marginLeft: 20,
+    paddingVertical: 5,
     marginTop: 5,
-  }
+  },
+  button: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: Colors.orange,
+    borderColor: '#8bad95',
+    position: 'absolute',
+    shadowColor: 'gray',
+    bottom: 10,
+    right: 10,
+    shadowOffset: {width: 1, height: 5},
+    shadowOpacity: .7,
+    shadowRadius: 4.32,
+    elevation: 7,
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  }, 
 });

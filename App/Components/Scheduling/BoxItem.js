@@ -14,6 +14,7 @@ import 'localstorage-polyfill';
 const highOverlapTimes = [8, 8.5, 9, 9.5, 10, 10.5, 12, 12.5, 13, 17, 17.5, 20, 20.5, 21, 21.5, 22, 22.5]
 const highOverlapDates = [3, 10, 17, 24, 19]
 const lowOverlapTimes = [8, 12.5, 13, 13.5, 22, 22.5, 23, 23.5]
+const myOtherTimes = [11, 11.5, 12, 12.5, 17, 17.5, 18, 18.5]
 export default class ActivityItem extends React.Component {
     state = {
         chosen: false,
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
    notChosen: {
         width: 140,
         height: 40,
-        backgroundColor: 'gray',
+        backgroundColor: '#adadad',
    },
    chosen: {
         width: 140,
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     hours: {
         width: 70,
         justifyContent: 'flex-start', 
-        alignItems: 'center'  
+        alignItems: 'center' ,
     }, 
     none: {
         width: 5,

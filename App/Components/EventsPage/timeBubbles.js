@@ -7,17 +7,26 @@ import {
 } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { Metrics, Colors, Images } from '../../Themes';
-import SwitchToggle from 'react-native-switch-toggle'
-export default class ScheduleMatchBadge extends React.Component {
+import SwitchToggle from 'react-native-switch-toggle';
+import profile from '../../Data/MyProfile';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+
+export default class TimeBubbles extends React.Component {
+    state = {
+        selected: false,
+    }
+    changeColor() {
+        this.setState({selected: !this.state.selected}); 
+    }
     render () {
         return (
             <View style = {styles.container}>
-                <View style = {this.props.badgeText === 'High'?styles.match: styles.notMatch}>
-                    <Text style = {styles.text}>{this.props.badgeText}</Text>
-                </View>
-                <View style =  {styles.phraseView}>
-                    <Text style = {styles.phrase}>{this.props.type}</Text>
-                </View>
+                <TouchableOpacity onPress = {() => {this.changeColor()}}>
+                    <View style = {this.state.selected ? styles.selected:styles.notSelected}>
+                        <Text style = {styles.text}>{this.props.badgeText}</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -27,20 +36,20 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     },
-    match: {
+    selected: {
         height: 25,
         width:100,
         borderRadius: 5,
-        backgroundColor: '#86bf96',
+        backgroundColor: Colors.orange,
        // borderColor: '#abd1b6',
        // borderWidth: 1,
         justifyContent: 'center'
     },
-    notMatch: {
+    notSelected: {
         height: 25,
         width:100,
         borderRadius: 5,
-        backgroundColor: '#7a7a7a',
+        backgroundColor: 'gray',
        // borderColor: '#abd1b6',
        // borderWidth: 1,
         justifyContent: 'center'

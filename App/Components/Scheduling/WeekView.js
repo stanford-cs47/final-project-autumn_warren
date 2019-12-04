@@ -22,8 +22,10 @@ export default class ScheduleInterface extends React.Component {
     }
     renderList = (day, index)=> {
         return (
-            <View style = {{flex: 1, justifyContent: 'center', paddingVertical: 10, alignItems: 'center'}}>
-            <Text style = {{fontSize: 20, color: '#3b3b3b'}}>{(this.props.start.month() + 1)}/{this.props.start.date() + index}</Text>
+            <View style = {{flex:1, alignItems: 'flex-end'}}>
+                <View style = {{width: 140, alignItems: 'center', marginBottom: 5}}>
+            <Text style = {{fontSize: 20, color: '#4a4a4a'}}>{(this.props.start.month() + 1)}/{this.props.start.date() + index}</Text>
+            </View>
         <FlatList
             data={day.data}
             scrollEnabled = {false}

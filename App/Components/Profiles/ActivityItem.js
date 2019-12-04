@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
        // backgroundColor: Colors.orange,
         //borderColor: '#abd1b6',
         //borderWidth: 1,
-        backgroundColor: 'gray',
+        backgroundColor: '#7a7a7a',
         justifyContent: 'center'
     },
     match: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
        // backgroundColor: Colors.orange,
         //borderColor: '#abd1b6',
         //borderWidth: 1,
-        backgroundColor: Colors.orange,
+        backgroundColor: '#86bf96',
         justifyContent: 'center'
     },
     text: {

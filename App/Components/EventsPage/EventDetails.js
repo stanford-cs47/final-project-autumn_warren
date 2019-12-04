@@ -9,6 +9,9 @@ import {
   Image,
   Dimensions,
   AsyncStorage,
+  SafeAreaView,
+  Alert, 
+  TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../../Themes';
@@ -59,6 +62,10 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >People</Text>
                   {/* <ActivityList activities = {this.props.content.eventAttendies}/> */}
                 </View> 
+                <TouchableOpacity style = {styles.button}
+                  onPress = {()=> this.confirm()}>
+                    <Text style = {styles.buttonText}>JOIN</Text>      
+                </TouchableOpacity>
             </View>
     );
   };
@@ -77,6 +84,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
+    color: 'white',
+    alignSelf: 'center',
     fontWeight: 'bold',
   }, 
   heading: {
@@ -91,7 +100,7 @@ const styles = StyleSheet.create({
   },
   eventTime: {
     fontWeight: '800',
-    fontSize: 24,
+    fontSize: 18,
     color: Colors.orange,
   },
     subheading: {
@@ -102,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 4,
   },
   location: {
-    fontWeight: '600',
+    fontWeight: '300',
     fontSize: 18,
     color: '#5b5b5b',
     marginLeft: 20,
@@ -141,5 +150,21 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 20,
     marginTop: 5,
+  },
+  button: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: Colors.orange,
+    borderColor: '#8bad95',
+    position: 'absolute',
+    shadowColor: 'gray',
+    bottom: 10,
+    right: 10,
+    shadowOffset: {width: 1, height: 5},
+    shadowOpacity: .7,
+    shadowRadius: 4.32,
+    elevation: 7,
+    justifyContent: 'center'
   }
 });

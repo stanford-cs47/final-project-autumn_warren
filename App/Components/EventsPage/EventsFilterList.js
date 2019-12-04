@@ -8,6 +8,9 @@ import ToggleList from '../FilterPage/ToggleList';
 import ToggleItem from '../FilterPage/ToggleItem';
 import { Slider } from 'react-native';
 import { Button } from 'native-base';
+import TimeBubbles from '../EventsPage/timeBubbles';
+import SearchBar from '../SearchBar';
+
 // import Slider from '@react-native-community/slider';
 // import LocationPicker from './LocationPicker';
 
@@ -19,8 +22,6 @@ export default class EventsFilterList extends React.Component  {
     };
 
     render() {
-    console.log("Hellllloo from filter component")
-    //console.log(this.state.experienceFilter)
       return (
             <ScrollView style = {styles.container}>
                 <View style = {styles.filter}>
@@ -40,24 +41,42 @@ export default class EventsFilterList extends React.Component  {
                 </View>
                 <View style = {styles.filter}>
                     <Text style = {styles.header}>
-                        Activities</Text>
-                    <Text style = {styles.info}>
-                        Show buddies who share these activities:</Text>
-                    <ToggleList activities = {ProfileData.profile.activities}/>
+                        Time</Text>
+                        <Text style = {styles.info}>
+                        Only show events with selected times</Text>
+                        <View style = {styles.timeRow}>
+                            <TimeBubbles badgeText ={"TODAY"}></TimeBubbles>
+                            <TimeBubbles badgeText ={"TOMORROW"}></TimeBubbles>
+                            <TimeBubbles badgeText ={"THIS WEEK"}></TimeBubbles>
+                        </View>
+                        <View style = {styles.timeRow}>
+                            <TimeBubbles badgeText ={"THIS WEEKEND"}></TimeBubbles>
+                            <TimeBubbles badgeText ={"NEXT WEEK"}></TimeBubbles>
+                        </View>
                 </View>
                 <View style = {styles.filter}>
-                    <Text style = {styles.header}>Experience</Text>
-                    <Text style = {styles.info}>
-                        Show buddies who share my experience level:</Text>
-                    <ToggleItem 
-                    item = {ProfileData.profile.experience}/>
+                    <Text style = {styles.header}>
+                        Activities</Text>           
+                    <View style = {styles.search}>
+                        <SearchBar loadResults = {this.props.loadResults}/>
+                    </View>
+                    <View style = {styles.timeRow}>
+                        <Text style = {styles.info}>
+                         Only show events for the selected activities</Text>
+                            <ToggleItem 
+                            item = {""}/>
+                    </View>
                 </View>
-                <Button
-                    title="Join Workout"
-                    color={Colors.orange}
-                    onPress={() => Alert.alert('Right button pressed')}
-                    />
-                
+                <View style = {styles.filter}>
+                    <Text style = {styles.header}>Buddies</Text>
+                    <View style = {styles.timeRow}>
+                        <Text style = {styles.info}>
+                            Only show events my buddies have joined   </Text>
+                            <ToggleItem 
+                            item = {""}/>
+                    </View>
+                    
+                </View>
             </ScrollView>
       );
     }
@@ -72,6 +91,15 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         marginBottom: 20,
+    },
+    search: {
+        padding: 20,
+       alignItems: 'center'
+    },
+    timeRow: {
+        flex: 1,
+        flexDirection: 'row',
+        marginBottom: 10,
     },
     header: {
         color: Colors.heading,
@@ -104,5 +132,9 @@ const styles = StyleSheet.create({
     },
     experience: {
         justifyContent: 'flex-end',
+    },
+    borderLine: {
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
     }
 });

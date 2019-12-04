@@ -22,12 +22,12 @@ export default class BuddyProfileScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
-      headerRight: (
-        <TouchableOpacity style={styles.filter}
-          onPress = {navigation.getParam('connectpopup')}>
-          <Text style={styles.filterText}>{navigation.getParam('getButtonText')}</Text>         
-        </TouchableOpacity>
-      ),
+      // headerRight: (
+      //   <TouchableOpacity style={styles.filter}
+      //     onPress = {navigation.getParam('connectpopup')}>
+      //     <Text style={styles.filterText}>{navigation.getParam('getButtonText')}</Text>         
+      //   </TouchableOpacity>
+      // ),
       // headerTitle: (
       //   <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
       //     <Text style={styles.header}> </Text>

@@ -9,6 +9,9 @@ import {
   Image,
   Dimensions,
   AsyncStorage,
+  SafeAreaView,
+  Alert, 
+  TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
@@ -44,6 +47,10 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Activities</Text>
                   <ActivityList activities = {this.props.content.activities}/>
                 </View> 
+                <TouchableOpacity style = {styles.button}
+                  onPress = {()=> this.confirm()}>
+                    <Text style = {styles.buttonText}>JOIN</Text>      
+                </TouchableOpacity>
             </View>
     );
   };
@@ -123,5 +130,27 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 20,
     marginTop: 5,
-  }
+  },
+  button: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: Colors.orange,
+    borderColor: '#8bad95',
+    position: 'absolute',
+    shadowColor: 'gray',
+    bottom: 10,
+    right: 10,
+    shadowOffset: {width: 1, height: 5},
+    shadowOpacity: .7,
+    shadowRadius: 4.32,
+    elevation: 7,
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  }, 
 });

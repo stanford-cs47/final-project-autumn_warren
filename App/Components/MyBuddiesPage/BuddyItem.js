@@ -40,7 +40,7 @@ export default class BuddyItem extends React.Component {
                     <Text note numberOfLines={2}>{this.props.message}</Text>
                   </Body>
                   <Right>
-                    <Text note >2:20 pm</Text>
+                    <Text note >{this.props.time}</Text>
                   </Right>
         </ListItem>
           </TouchableWithoutFeedback>

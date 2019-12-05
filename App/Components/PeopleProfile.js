@@ -22,9 +22,46 @@ import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import {} from 'native-base';
 import { Row, Button} from 'native-base';
+import { isThisISOWeek } from 'date-fns';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
+  state = {
+    visible: false,
+    requestSent: false,
+    pending: false,
+    unmatch: false,
+  }
+  match = () => {
+    this.setState({visible: true}) 
+  }
+  requestSentFunction = () => {
+    this.setState({visible: false}) 
+    if (!this.state.unmatch) {
+      this.setState({pending: true})
+      setTimeout(() => (
+        this.setState({requestSent: !this.state.requestSent}), 
+        this.setState({unmatch: !this.state.unmatch}),
+        this.setState({pending: false}),
+        localStorage.buddies = localStorage.buddies + "," + this.props.content.username
+      ), 3000);
+    } else {
+      setTimeout(() => (
+        this.setState({requestSent: !this.state.requestSent}),
+        this.setState({unmatch: !this.state.unmatch})
+      ), 200);
+        // TODO: need to implemnt removal of item from local storage here
+    }
+  }
+  getButtonText = () => {
+    if (this.state.pending) {
+      return "Pending";
+    }
+    return this.state.requestSent ? "Unmatch": "MATCH";
+  }
+  getPopUpText() {
+    return this.state.requestSent ? "Unmatch with buddy?": "Match with buddy?";
+  }
   render() {
     console.log("activities" + this.props.content.activities)
     return ( 
@@ -53,10 +90,29 @@ export default class Profile extends React.Component {
                 </View> 
                 </ScrollView>
                 <TouchableOpacity style = {styles.button}
-                  onPress = {()=> this.confirm()}>
-                    <Text style = {styles.buttonText}>MATCH</Text>      
+                  onPress = {()=> this.match()}>
+                  <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
                 </TouchableOpacity>
-                </View>
+                <Modal
+                  visible={this.state.visible}
+                  height = {.15}
+                  footer ={
+                    <ModalFooter>
+                      <ModalButton
+                        text="Cancel"
+                        textStyle={styles.popUpButton}
+                        onPress={() => {this.setState({visible: false})} } />
+                      <ModalButton
+                        text="OK"
+                        textStyle={styles.popUpButton}
+                        onPress={() => {this.requestSentFunction()} } />
+                    </ModalFooter>
+                  }>
+                  <ModalContent style = {styles.content}>
+                      <Text style = {styles.popup}>{this.getPopUpText()}</Text>
+                  </ModalContent>
+                </Modal>
+          </View>
     );
   };
 }
@@ -155,9 +211,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 15,
     color: 'white',
     alignSelf: 'center',
     fontWeight: 'bold',
   }, 
+  popup: {
+    fontSize: 20,
+  },
+  popUpButton: {
+    color: Colors.orange
+  },
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    marginHorizontal: 20,
+  }
 });

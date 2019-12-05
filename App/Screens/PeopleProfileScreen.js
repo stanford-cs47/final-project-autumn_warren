@@ -35,15 +35,15 @@ export default class BuddyProfileScreen extends React.Component {
       // )
     };
   };
-  _connectpopup = () => {
-    this.setState({visible: true}) 
-  }
-  requestSentFunction = () => {
-    this.setState({visible: false}) 
-    this.setState({requestSent: true}) 
-    localStorage.buddies = localStorage.buddies + "," + this.props.navigation.state.params.username;
-    this.props.navigation.setParams({getButtonText: "Pending" });
-  }
+  // _connectpopup = () => {
+  //   this.setState({visible: true}) 
+  // }
+  // requestSentFunction = () => {
+  //   this.setState({visible: false}) 
+  //   this.setState({requestSent: true}) 
+  //   localStorage.buddies = localStorage.buddies + "," + this.props.navigation.state.params.username;
+  //   this.props.navigation.setParams({getButtonText: "Pending" });
+  // }
   componentDidMount() {
     if(!this.props.navigation) return;
     const params = this.props.navigation.state.params || {};

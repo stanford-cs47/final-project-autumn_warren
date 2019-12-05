@@ -16,8 +16,8 @@ import {
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
-import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge';
-import ExperienceMatchBadge from '../Components/DiscoverPage/ExperienceMatchBadge';
+import ScheduleMatchBadge from './DiscoverPage/ScheduleMatchBadge';
+import ExperienceMatchBadge from './DiscoverPage/ExperienceMatchBadge';
 import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import {} from 'native-base';
@@ -54,7 +54,7 @@ export default class Profile extends React.Component {
                 </ScrollView>
                 <TouchableOpacity style = {styles.button}
                   onPress = {()=> this.confirm()}>
-                    <Text style = {styles.buttonText}>JOIN</Text>      
+                    <Text style = {styles.buttonText}>MATCH</Text>      
                 </TouchableOpacity>
                 </View>
     );
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
     color: 'white',
     alignSelf: 'center',
     fontWeight: 'bold',

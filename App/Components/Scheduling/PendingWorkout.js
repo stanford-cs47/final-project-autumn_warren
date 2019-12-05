@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { Colors, Images } from '../../Themes';
-import { GiftedChat, } from 'react-native-gifted-chat';
 import { StyleSheet, Text, ActivityIndicator,Dimensions, SafeAreaView, View, Alert, TouchableOpacity, Image} from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import Modal, { ModalFooter, ModalButton, ModalContent, ModalTitle, SlideAnimation } from 'react-native-modals';
-
+var {height, width} = Dimensions.get('window');
 
 export default class PendingWorkout extends React.Component {
 
@@ -28,17 +27,19 @@ export default class PendingWorkout extends React.Component {
             setTimeout(() => (     
                 localStorage.setItem("Workout-Accepted" + this.props.buddy, true),
                 this.setState((
-                    { pending: !this.state.pending,
+                    {
                     accepted: !this.state.accepted }
                 ))
-            ), 4000)
+            ), 3000)
         }
     }
     addToCalendar=()=> {
-this.setState({
-    visible: true
-})
-        localStorage.setItem("Added-to-Calendar" + this.props.buddy, true)
+        if(!localStorage.getItem("Added-to-Calendar" + this.props.buddy)){
+            this.setState({
+                visible: true
+            })
+            localStorage.setItem("Added-to-Calendar" + this.props.buddy, true)
+        }
     }
     cancel=()=> {
         this.setState({visible:false})
@@ -71,6 +72,7 @@ this.setState({
         <Text style = {styles.text}>{!this.state.accepted? "Response Pending": "Workout Confirmed"}</Text>
     </View>
      <Modal
+     width = {width * .6}
      visible={this.state.visible}
      footer = {
          <ModalFooter>
@@ -86,7 +88,7 @@ this.setState({
              />
          </ModalFooter>
      }>
-         <ModalContent>
+         <ModalContent style = {{justifyContent:'center', alignItems: 'center'}}>
              <Text style = {{fontSize: 20}}>Add to Calendar?</Text>
          </ModalContent>
          </Modal>

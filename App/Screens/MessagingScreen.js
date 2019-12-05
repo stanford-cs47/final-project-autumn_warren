@@ -30,9 +30,15 @@ export default class MessagingScreen extends React.Component {
     const params = this.props.navigation.state.params || {};
     localStorage.setItem("Selected-Workout-Full" +  params.username,"Select a Time");
     localStorage.setItem("ScheduleLocation" + params.username, "Any");
-    console.log(params);
+    localStorage.setItem("Start-Date", null)
+    localStorage.setItem("End-Date", null)
     this.setState({buddy: PeopleData.people[params.username]});
     this.setState({messages: this.getMessages()});
+    this.setState({
+      selectedStartDate: null,
+      selectDate: null,
+      selectedWorkout: "Select a Time"
+    })
   }
 
   componentDidMount() {
@@ -77,10 +83,9 @@ export default class MessagingScreen extends React.Component {
     selectedStartDate: (localStorage.getItem("Sart-Date" + this.props.navigation.state.params.username) || null),
     selectedEndDate: (localStorage.getItem("End-Date" +this.props.navigation.state.params.username )|| null),
     numDays: 0,
-    selectedTime: null,
-    selectedDate: null,
     selectedWorkout: (localStorage.getItem("Selected-Workout-Full" + this.props.navigation.state.params.username) || "Select a Time"),
     startNum: 0,
+    location: (localStorage.getItem("ScheduleLocation" + this.props.navigation.state.params.username) || "Any"),
     workoutSent: (localStorage.getItem("Schedule-Request" + this.props.navigation.state.params.username) || false),
     accepted: (localStorage.getItem("Workout-Accepted" + this.props.navigation.state.params.username) || false),
   };
@@ -95,10 +100,6 @@ export default class MessagingScreen extends React.Component {
     msgCopy.unshift(messages);
 
     localStorage.setItem(this.props.navigation.state.params.username, JSON.stringify(msgCopy));
-    console.log("Messages: " + this.state.messages);
-    console.log(this.state.messages);
-    console.log("Message copy: " + msgCopy);
-    console.log(msgCopy);
 
   }
   scheduleWorkout() {
@@ -119,9 +120,12 @@ renderToolbar(props) {
   return <InputToolbar {...props} 
   containerStyle={styles.inputToolbar} />
 }
+chooseWorkout=()=> {
+  this.setState({visibleSchedule: true})
+}
 onDateChange = (date, type)=> {
   if (type === 'END_DATE') {
-    localStorage.setItem("End-Date", date);
+    localStorage.setItem("End-Date" + this.state.buddy.username, date);
     console.log("end" + date.date())
     this.setState({numDays: (date.date() - this.state.startNum + 1)})
     this.setState({
@@ -158,7 +162,7 @@ selectTime (){
     this.setState({numDays: 0});
   }
   this.props.navigation.navigate('Scheduling', {start: this.state.selectedStartDate, 
-    end: this.state.selectedEndDate, days: this.state.numDays, time: this.state.selectedTime,
+    end: this.state.selectedEndDate, days: this.state.numDays,
     confirm: this.returnToConfirm, back: this.backButton
   })
 }
@@ -168,6 +172,7 @@ cancel = ()=>{
       selectedStartDate: null,
       selectedEndDate: null,
       selectedWorkout: "Select a Time",
+      startNum: 0,
     });
     localStorage.setItem("Selected-Workout-Full" + this.state.buddy.username, "Select a Time");
     localStorage.setItem("Start-Date" + this.state.buddy.username, null);
@@ -187,6 +192,7 @@ getDate=(date)=> {
 }
 returnToConfirm=(visible, start, end, date)=> { 
     this.setState({visibleSchedule: visible});
+    this.setState({ location: localStorage.getItem("ScheduleLocation" + this.state.buddy.username)})
     var dateString = this.getDate(date.day());
     dateString = dateString + ", " + (date.month() + 1) + "/" + date.date();
     this.setState({selectedWorkout: dateString + ", " + start + " to " + end})
@@ -199,11 +205,12 @@ backButton=(visible)=>  {
   this.setState({visibleCalendar: visible});
 }
 sendWorkout=()=>{
+  if(this.state.selectedWorkout !== "Select a Time") {
     this.setState({visibleSchedule: false})
     localStorage.setItem("Schedule-Request" + this.state.buddy.username, true)
     this.setState({workoutSent: true})
-    this.cancel();
-    if(this.state.accepted) {
+    //this.cancel();
+    /*if(this.state.accepted) {
       console.log("accepted")
       sent = {
         _id: 3,
@@ -214,12 +221,12 @@ sendWorkout=()=>{
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, sent),
       }))
-    }
+    }*/
+  }
 }
   render() {
     const minDate = new Date();
     const { selectedStartDate } = this.state;
-    console.log("accepted" + this.state.accepted)
     //console.log(selectedStartDate)
     return (
         <View style = {styles.container}>    
@@ -242,7 +249,7 @@ sendWorkout=()=>{
           accepted = {this.state.accepted}/>:null}
           <View style = {styles.calendarButton}>
               <TouchableOpacity
-                onPress = {() => this.setState({visibleSchedule: true})}>
+                onPress = {this.chooseWorkout}>
                   <View style ={{justifyContent: 'center'}}>
               <Image style = {styles.calendarIcon}
                   source = {Images.scheduleworkout}/>
@@ -270,7 +277,7 @@ sendWorkout=()=>{
               </ModalTitle>
               <ModalContent style = {styles.workoutContent}>     
                 <View style = {styles.location}>
-                     <ScheduleLocationPicker picker = {this.picker}/>
+                     <ScheduleLocationPicker buddy = {this.state.buddy.username}/>
                 </View>
                 <View style = {styles.time}>
                   <Button 
@@ -314,7 +321,7 @@ sendWorkout=()=>{
     <ModalTitle
         title = "Choose Date(s)"/>
     <ModalContent style = {styles.content}>
-<View style = {{flex:6,}}>          
+<View style = {{flex:6}}>          
 <CalendarPicker
           height = {height * .4}
           minDate = {minDate}
@@ -324,6 +331,7 @@ sendWorkout=()=>{
           style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-17 12:25:32', 
           style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-24 12:25:32', 
           style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-19 12:25:32', 
+          style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-27 12:25:32', 
           style: {backgroundColor: '#FAD4C0'}}]}
           onDateChange={this.onDateChange}
           selectedDayColor = {Colors.orange}

@@ -70,7 +70,6 @@ export default class SchedulingScreen extends React.Component {
           var second = this.state.time[i + 1].num;
           if( second - first > .5) {
             this.setState({wrong: true})
-            console.log("NOT IN CONSECTUIVE ORDER");
             return;
           }
         }

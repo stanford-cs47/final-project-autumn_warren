@@ -26,7 +26,6 @@ export default class BuddyItem extends React.Component {
         }
       }
     render() {
-        const { search } = this.state;
         return (
             <View style = {styles.container}>
             <TouchableWithoutFeedback 
@@ -35,15 +34,15 @@ export default class BuddyItem extends React.Component {
                   <Left>
                     <Thumbnail source={ Images[this.props.username]} />
                   </Left>
-                  <Body>
+                  <Body style = {{justifyContent: 'center'}}>
                     <Text>{this.props.name}</Text>
-                    <Text note numberOfLines={2}>{this.props.message}</Text>
+                    <Text note >{this.props.message} {"\n"}</Text>
                   </Body>
                   <Right>
                     <Text note >{this.props.time}</Text>
                   </Right>
         </ListItem>
-          </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
         </View>
         );
   }
@@ -51,9 +50,6 @@ export default class BuddyItem extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-  flex: 1,
-  //backgroundColor:'gray'
-  //width: '100%',
-  //flexDirection: 'column',
+flex: 1,
   },
 });

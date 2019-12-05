@@ -5,7 +5,7 @@ import { material } from 'react-native-typography';
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
 import PeopleData from '../Data/PeopleList';
-import Profile from '../Components/Profile';
+import Profile from '../Components/PeopleProfile';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import { CheckBox, Button, Divider } from 'react-native-elements';

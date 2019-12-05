@@ -5,13 +5,30 @@ import { material } from 'react-native-typography';
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
 import profile from '../Data/MyProfile';
-import Profile from '../Components/Profile';
+import MyProfile from '../Components/MyProfile';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
-import { CheckBox, Button, Divider } from 'react-native-elements';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-export default class BuddyProfileScreen extends React.Component {
+export default class MyProfileScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+     return {
+      headerRight: (
+        <TouchableOpacity style = {{marginRight: 15}}>
+            <MaterialCommunityIcons
+                name = "settings-outline"
+                size = {30}
+                color = {Colors.orange}/>
+        </TouchableOpacity>
+      ),
+    headerTitle: (
+         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
+           <Text style={styles.header}> MY PROFILE </Text>
+         </SafeAreaView>
+       ),
+     };
+   };
   state = {
     content: {},
     loading: true,
@@ -19,11 +36,6 @@ export default class BuddyProfileScreen extends React.Component {
     visible: false,
     requestSent: false,
   }
-  static navigationOptions = ({ navigation }) => {
-    const params = navigation.state.params || {};
-    return {
-    };
-  };
   _connectpopup = () => {
     this.setState({visible: true}) 
   }
@@ -59,25 +71,6 @@ export default class BuddyProfileScreen extends React.Component {
     return (
       <View style={styles.container}>
         {this.getProfileContent()}
-        <Modal
-              visible={this.state.visible}
-              height = {.15}
-              footer ={
-                <ModalFooter>
-                  <ModalButton
-                    text="Cancel"
-                    textStyle={styles.button}
-                    onPress={() => {this.setState({visible: false})} } />
-                  <ModalButton
-                    text="OK"
-                    textStyle={styles.button}
-                    onPress={() => {this.requestSentFunction()} } />
-                </ModalFooter>
-              }>
-              <ModalContent style = {styles.content}>
-                  <Text style = {styles.popup}>Send Friend Request?</Text>
-              </ModalContent>
-          </Modal>
       </View>
     );
   }
@@ -89,7 +82,7 @@ export default class BuddyProfileScreen extends React.Component {
       );
     } else {
     return (
-      <Profile content={content}/>
+      <MyProfile content={content}/>
     );
   }
 }
@@ -102,7 +95,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: Colors.snow,
   },
   header: {
     fontSize: 24,

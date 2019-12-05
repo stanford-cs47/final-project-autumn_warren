@@ -64,7 +64,7 @@ export default class EventsFilterList extends React.Component  {
                         <Text style = {styles.info}>
                          Only show events for the selected activities</Text>
                             <ToggleItem 
-                            item = {""}/>
+                            item = "onlyShowActivities"/>
                     </View>
                 </View>
                 <View style = {styles.filter}>
@@ -73,7 +73,7 @@ export default class EventsFilterList extends React.Component  {
                         <Text style = {styles.info}>
                             Only show events my buddies have joined   </Text>
                             <ToggleItem 
-                            item = {""}/>
+                            item = "onlyShowBuddies"/>
                     </View>
                     
                 </View>

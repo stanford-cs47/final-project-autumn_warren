@@ -19,6 +19,8 @@ import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-moda
 import {} from 'native-base';
 import { Row, Button} from 'native-base';
 import EventPeopleList from './EventPeopleList';
+import EventsDataList from '../../Data/EventsDataList';
+import ProfileData from '../../Data/MyProfile';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
@@ -29,13 +31,27 @@ export default class Profile extends React.Component {
     this.setState({visible: true}) 
   }
   requestSentFunction = () => {
+    var newState = "yes";
+    var joined = localStorage.getItem(this.props.content.eventId);
+    if(joined) {
+      if(joined == "yes") {
+        newState = "no";
+      }
+    }
+    localStorage.setItem(this.props.content.eventId, newState);
     this.setState({visible: false}) 
     setTimeout(() => (
       this.setState({requestSent: !this.state.requestSent}) 
     ), 200);
   }
   getButtonText = () => {
-    return this.state.requestSent ? "Leave": "JOIN";
+    var joined = localStorage.getItem(this.props.content.eventId);
+    if(joined) {
+      if(joined == "yes") {
+        return "Leave";
+      }
+    }
+    return "JOIN";
   }
   getPopUpText() {
     return this.state.requestSent ? "Leave Event?": "Join Event?";
@@ -66,7 +82,7 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Details</Text>
                   <Text style = {styles.bio} >{this.props.content.details}</Text>
                   <Text style = {styles.softHeader} >People</Text>
-                  <EventPeopleList attendiesImages = {this.props.content.eventAttendies}/>
+                  <EventPeopleList attendiesImages = {getEventAttendees(this.props.content.eventId)}/>
                 </View> 
                 <TouchableOpacity style = {styles.button}
                   onPress = {()=> this.popUp()}>
@@ -95,6 +111,25 @@ export default class Profile extends React.Component {
     );
   };
 }
+
+function getEventAttendees(id) {
+  console.log("function call");
+  var attendees = [];
+  for(var i = 0; i < EventsDataList.events[id].eventAttendies.length; i++) {
+    attendees.push(EventsDataList.events[id].eventAttendies[i]);
+  }
+  var amIAttending = localStorage.getItem(id);
+  if(amIAttending) {
+    if(amIAttending == "yes") {
+      console.log("insertion");
+      attendees.push(ProfileData.profile.profilePic);
+    }
+  }
+  console.log("Event Attendies:");
+  console.log(attendees);
+  return attendees;
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

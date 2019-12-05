@@ -13,7 +13,6 @@ var profile = {
     experience: "Beginner",
     profileAvatar: "",
     profilePic: "",
-    //buddies: []
 };
 var buddyUsernames = ['amys'];
 

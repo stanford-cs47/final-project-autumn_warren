@@ -22,9 +22,25 @@ import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import {} from 'native-base';
 import { Row, Button} from 'native-base';
+import { isThisISOWeek } from 'date-fns';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
+  state = {
+    visible: false,
+    requestSent: false,
+  }
+  match = () => {
+    this.setState({visible: true}) 
+  }
+  requestSentFunction = () => {
+    this.setState({visible: false}) 
+    this.setState({requestSent: true}) 
+    localStorage.buddies = localStorage.buddies + "," + this.props.content.username;
+  }
+  getButtonText = () => {
+    return this.state.requestSent ? "Pending": "MATCH";
+  }
   render() {
     console.log("activities" + this.props.content.activities)
     return ( 
@@ -53,10 +69,29 @@ export default class Profile extends React.Component {
                 </View> 
                 </ScrollView>
                 <TouchableOpacity style = {styles.button}
-                  onPress = {()=> this.confirm()}>
-                    <Text style = {styles.buttonText}>MATCH</Text>      
+                  onPress = {()=> this.match()}>
+                  <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
                 </TouchableOpacity>
-                </View>
+                <Modal
+                  visible={this.state.visible}
+                  height = {.15}
+                  footer ={
+                    <ModalFooter>
+                      <ModalButton
+                        text="Cancel"
+                        textStyle={styles.popUpButton}
+                        onPress={() => {this.setState({visible: false})} } />
+                      <ModalButton
+                        text="OK"
+                        textStyle={styles.popUpButton}
+                        onPress={() => {this.requestSentFunction()} } />
+                    </ModalFooter>
+                  }>
+                  <ModalContent style = {styles.content}>
+                      <Text style = {styles.popup}>Send Friend Request?</Text>
+                  </ModalContent>
+                </Modal>
+          </View>
     );
   };
 }
@@ -160,4 +195,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: 'bold',
   }, 
+  popup: {
+    fontSize: 20,
+  },
+  popUpButton: {
+    color: Colors.orange
+  },
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    marginHorizontal: 20,
+  }
 });

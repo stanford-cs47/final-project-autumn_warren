@@ -22,19 +22,24 @@ import EventPeopleList from './EventPeopleList';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
-    joinWorkout () {
-        this.setState({visible: false});
-        this.props.navigation.navigate('Discover');
-        return (
-    <Button
-        title = 'APPLY'
-        titleStyle = {styles.buttonText}
-        raised = {true}
-        buttonStyle = {styles.applyButton}
-        onPress = {() => this.setState({visible: true})}
-    />
-        )
-      }
+  state = {
+    visible: false,
+  }
+  popUp = () => {
+    this.setState({visible: true}) 
+  }
+  requestSentFunction = () => {
+    this.setState({visible: false}) 
+    setTimeout(() => (
+      this.setState({requestSent: !this.state.requestSent}) 
+    ), 200);
+  }
+  getButtonText = () => {
+    return this.state.requestSent ? "Leave": "JOIN";
+  }
+  getPopUpText() {
+    return this.state.requestSent ? "Leave Event?": "Join Event?";
+  }
   render() {
     return ( 
         <View style = {styles.container}>
@@ -53,7 +58,7 @@ export default class Profile extends React.Component {
                     // titleStyle = {styles.buttonText}
                     raised = {true}
                     // buttonStyle = {styles.applyButton}
-                    onPress = {() => this.setState({visible: true})}
+                    // onPress = {() => this.setState({visible: true})}
                 />  
                 </View>
                     
@@ -64,9 +69,28 @@ export default class Profile extends React.Component {
                   <EventPeopleList attendiesImages = {this.props.content.eventAttendies}/>
                 </View> 
                 <TouchableOpacity style = {styles.button}
-                  onPress = {()=> this.confirm()}>
-                    <Text style = {styles.buttonText}>JOIN</Text>      
+                  onPress = {()=> this.popUp()}>
+                <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
                 </TouchableOpacity>
+                <Modal
+                  visible={this.state.visible}
+                  height = {.15}
+                  footer ={
+                    <ModalFooter>
+                      <ModalButton
+                        text="Cancel"
+                        textStyle={styles.popUpButton}
+                        onPress={() => {this.setState({visible: false})} } />
+                      <ModalButton
+                        text="OK"
+                        textStyle={styles.popUpButton}
+                        onPress={() => {this.requestSentFunction()} } />
+                    </ModalFooter>
+                  }>
+                  <ModalContent style = {styles.content}>
+                      <Text style = {styles.popup}>{this.getPopUpText()}</Text>
+                  </ModalContent>
+                </Modal>
             </View>
     );
   };
@@ -167,5 +191,17 @@ const styles = StyleSheet.create({
     shadowRadius: 4.32,
     elevation: 7,
     justifyContent: 'center'
+  },
+  popup: {
+    fontSize: 20,
+  },
+  popUpButton: {
+    color: Colors.orange
+  },
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    marginHorizontal: 20,
   }
 });

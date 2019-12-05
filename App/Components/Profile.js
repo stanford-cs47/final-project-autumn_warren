@@ -29,17 +29,38 @@ export default class Profile extends React.Component {
   state = {
     visible: false,
     requestSent: false,
+    pending: false,
+    unmatch: false,
   }
   match = () => {
     this.setState({visible: true}) 
   }
   requestSentFunction = () => {
     this.setState({visible: false}) 
-    this.setState({requestSent: true}) 
-    localStorage.buddies = localStorage.buddies + "," + this.props.content.username;
+    if (!this.state.unmatch) {
+      this.setState({pending: true})
+      setTimeout(() => (
+        this.setState({requestSent: !this.state.requestSent}), 
+        this.setState({unmatch: !this.state.unmatch}),
+        this.setState({pending: false}),
+        localStorage.buddies = localStorage.buddies + "," + this.props.content.username
+      ), 3000);
+    } else {
+      setTimeout(() => (
+        this.setState({requestSent: !this.state.requestSent}),
+        this.setState({unmatch: !this.state.unmatch})
+      ), 200);
+        // TODO: need to implemnt removal of item from local storage here
+    }
   }
   getButtonText = () => {
-    return this.state.requestSent ? "Pending": "MATCH";
+    if (this.state.pending) {
+      return "Pending";
+    }
+    return this.state.requestSent ? "Unmatch": "MATCH";
+  }
+  getPopUpText() {
+    return this.state.requestSent ? "Unmatch with buddy?": "Match with buddy?";
   }
   render() {
     console.log("activities" + this.props.content.activities)
@@ -88,7 +109,7 @@ export default class Profile extends React.Component {
                     </ModalFooter>
                   }>
                   <ModalContent style = {styles.content}>
-                      <Text style = {styles.popup}>Send Friend Request?</Text>
+                      <Text style = {styles.popup}>{this.getPopUpText()}</Text>
                   </ModalContent>
                 </Modal>
           </View>

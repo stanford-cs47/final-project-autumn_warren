@@ -11,7 +11,7 @@ var event1 = {
     eventId: "event1",
     location: "The Dish",
     time: "Sat, Nov 2.  8am",
-    eventAttendies: ["Jan R.", "Kristen S.", "Ron L."],
+    eventAttendies: ["samGPic", "tinaFPic", "connorBPic"],
     eventImage: "TrailRun1",
     details: "Join us for a 10-mile run at the Dish! All levels welcome!",
     activity: "Running",

@@ -18,6 +18,7 @@ import { Metrics, Colors, Images } from '../../Themes';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import {} from 'native-base';
 import { Row, Button} from 'native-base';
+import EventPeopleList from './EventPeopleList';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
@@ -60,7 +61,7 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Details</Text>
                   <Text style = {styles.bio} >{this.props.content.details}</Text>
                   <Text style = {styles.softHeader} >People</Text>
-                  {/* <ActivityList activities = {this.props.content.eventAttendies}/> */}
+                  <EventPeopleList attendiesImages = {this.props.content.eventAttendies}/>
                 </View> 
                 <TouchableOpacity style = {styles.button}
                   onPress = {()=> this.confirm()}>

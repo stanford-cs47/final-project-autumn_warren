@@ -54,7 +54,7 @@ export default class Profile extends React.Component {
                 </ScrollView>
                 <TouchableOpacity style = {styles.button}
                   onPress = {()=> this.confirm()}>
-                    <Text style = {styles.buttonText}>JOIN</Text>      
+                    <Text style = {styles.buttonText}>MATCH</Text>      
                 </TouchableOpacity>
                 </View>
     );
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 15,
     color: 'white',
     alignSelf: 'center',
     fontWeight: 'bold',

@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19004,
+  "packagerPid": 64778,
+  "expoServerNgrokUrl": "https://pv-u5a.anonymous.2fit.exp.direct",
+  "packagerNgrokUrl": "https://packager.pv-u5a.anonymous.2fit.exp.direct",
+  "ngrokPid": 64796
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { StyleSheet, Text, View, SafeAreaView,  Image, Dimensions, ScrollView, ActivityIndicator,} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,  Image, Dimensions, Animated, KeyboardAvoidingView} from 'react-native';
 import { Metrics, Colors, Images } from '../Themes';
 import { GiftedChat, Send, InputToolbar, MessageContainer, SystemMessage, Bubble, CustomView } from 'react-native-gifted-chat';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -14,7 +14,7 @@ import Modal, { ModalFooter, ModalButton, ModalContent, ModalTitle, SlideAnimati
 var {height, width} = Dimensions.get('window');
 import PeopleData from '../Data/PeopleList';
 import 'localstorage-polyfill';
-
+import { KeyboardAwareScrollView, KeyboardAwareSectionList } from 'react-native-keyboard-aware-scroll-view'
 
 export default class MessagingScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -59,12 +59,7 @@ export default class MessagingScreen extends React.Component {
       return JSON.parse(messagesString);
     } else {
       if(!PeopleData.people[params.username].message) {
-        return [{ 
-          _id: 3,
-          text: 'Send your new buddy a message!',
-          system: true,
-          createdAt: new Date(),
-        }];
+        return [];
       } else {
         return [
           {
@@ -220,22 +215,16 @@ sendWorkout=()=>{
     localStorage.setItem("Schedule-Request" + this.state.buddy.username, true)
     this.setState({workoutSent: true})
     localStorage.setItem("Workout-Canceled" + this.props.username, false)
-    //this.cancel();
-    /*if(this.state.accepted) {
-      console.log("accepted")
-      sent = {
-        _id: 3,
-        text: (this.state.buddy.name + " confirmed your workout request"),
-        createdAt: new Date(),
-        system: true,
-      }
-      this.setState(previousState => ({
-        messages: GiftedChat.append(previousState.messages, sent),
-      }))
-    }*/
   }
 }
   render() {
+    const dates = [{date: '2019-12-03 12:25:32', 
+    style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-10 12:25:32', 
+    style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-17 12:25:32', 
+    style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-24 12:25:32', 
+    style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-19 12:25:32', 
+    style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-27 12:25:32', 
+    style: {backgroundColor: '#FAD4C0'}}]
     const minDate = new Date();
     const { selectedStartDate } = this.state;
     //console.log(selectedStartDate)
@@ -249,7 +238,7 @@ sendWorkout=()=>{
             }}
             extraData = {this.state}
             renderSend = {this.renderSend}
-            bottomOffset={300}
+           bottomOffset={300}
             listViewProps={{marginBottom: 20}}
             renderInputToolbar = {this.renderToolbar}
           />
@@ -337,13 +326,7 @@ sendWorkout=()=>{
           height = {height * .4}
           minDate = {minDate}
           maxDate = {'2019-12-31 12:25:32'}
-          customDatesStyles = {[{date: '2019-12-03 12:25:32', 
-          style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-10 12:25:32', 
-          style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-17 12:25:32', 
-          style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-24 12:25:32', 
-          style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-19 12:25:32', 
-          style: {backgroundColor: '#FAD4C0'}}, {date: '2019-12-27 12:25:32', 
-          style: {backgroundColor: '#FAD4C0'}}]}
+          customDatesStyles = {dates}
           onDateChange={this.onDateChange}
           selectedDayColor = {Colors.orange}
           allowRangeSelection = {true}
@@ -362,8 +345,8 @@ sendWorkout=()=>{
               </View>
               </ModalContent>
             </Modal>
-</View>
-    )
+            < KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={100}/>
+</View>    )
   }
 }
 

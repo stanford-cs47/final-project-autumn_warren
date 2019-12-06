@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Button, TextInput, TouchableOpacity, Dimensions, Text } from 'react-native'
+import { StyleSheet, View, Button, TextInput, TouchableOpacity, Dimensions, Text, Alert } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import { Keyboard } from 'react-native';
 import { Colors } from '../Themes';
@@ -20,8 +20,9 @@ onChangeText = searchText => {
 
   getBuddies = () => {
     Keyboard.dismiss();
-    var results =  this.props.loadResults(this.state.searchText);
-    this.setState({buddy: results});
+    Alert.alert("Coming Soon!", "Feature not implemented in this app prototype.");
+    // var results =  this.props.loadResults(this.state.searchText)
+    // this.setState({buddy: results});
     //this.setState({searchText: ''})
   };
   render() {

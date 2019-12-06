@@ -4,13 +4,9 @@ import {
   StyleSheet,
   View,
   Text,
-  Linking,
-  TouchableWithoutFeedback,
+  ScrollView,
   Image,
   Dimensions,
-  AsyncStorage,
-  SafeAreaView,
-  Alert, 
   TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
@@ -85,6 +81,7 @@ export default class Profile extends React.Component {
   render() {
     return ( 
         <View style = {styles.container}>
+                <ScrollView>
                 <Image style = {styles.image} source = {Images[this.props.content.eventImage]}/> 
 
                 <View style = {styles.heading}>
@@ -110,6 +107,7 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >People</Text>
                   <EventPeopleList attendiesImages = {getEventAttendees(this.props.content.eventId)}/>
                 </View> 
+                </ScrollView>
                 <TouchableOpacity style = {styles.button}
                   onPress = {()=> this.popUp()}>
                 <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
@@ -133,7 +131,7 @@ export default class Profile extends React.Component {
                       <Text style = {styles.popup}>{this.getPopUpText()}</Text>
                   </ModalContent>
                 </Modal>
-            </View>
+                </View>
     );
   };
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, SafeAreaView,ActivityIndicator, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,ActivityIndicator, Image, ScrollView } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
@@ -22,17 +22,6 @@ export default class SingleEventScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
-      // headerRight: (
-      //   <TouchableOpacity style={styles.filter}
-      //     onPress = {navigation.getParam('connectpopup')}>
-      //     <Text style={styles.filterText}>{navigation.getParam('getButtonText')}</Text>         
-      //   </TouchableOpacity>
-      // ),
-      // headerTitle: (
-      //   <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
-      //     <Text style={styles.header}> </Text>
-      //   </SafeAreaView>
-      // )
     };
   };
   _connectpopup = () => {

@@ -14,7 +14,7 @@ const images = {
   poojak: require('../Images/poojaKPic.png'),
   samg: require('../Images/samGPic.png'),
   tinaf: require('../Images/tinaFPic.png'),
-  collinm: require('../Images/collinMPic.png'),
+  colinm: require('../Images/collinMPic.png'),
   maryl: require('../Images/maryLPic.png'),
   TrailRun1: require('../Images/1TrailRun.png'),
   SoulCycle2: require('../Images/2SoulCycle.png'),

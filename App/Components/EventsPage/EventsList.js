@@ -6,6 +6,7 @@ import { useState } from 'react';
 import EventsData from '../../Data/EventsDataList';
 import PeopleData from '../../Data/PeopleList';
 import ProfileData from '../../Data/MyProfile';
+import { Metrics, Colors, Images } from '../../Themes';
 import 'localstorage-polyfill';
 
 
@@ -27,7 +28,9 @@ export default function EventsList (props)  {
 );
     return (
       <View style={styles.container}>
-
+    <View style = {{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
+        <Text style = {styles.Events}>Find Events</Text>
+      </View>
     <FlatList
               data={getMatchingEvents()}
               renderItem = { ({ item }) => renderEvent(EventsData.events[item])}
@@ -118,4 +121,12 @@ const styles = StyleSheet.create({
   //width: '100%',
   flexDirection: 'column',
   },
+  Events: {
+    fontSize: 22,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+    color: Colors.heading,
+    fontWeight: 'bold'
+
+  }
 });

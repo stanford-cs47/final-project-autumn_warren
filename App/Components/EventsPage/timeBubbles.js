@@ -36,20 +36,25 @@ const styles = StyleSheet.create({
     container: {
     flex: 1,
     flexDirection: 'row',
+    // marginLeft: 5,
+    // marginRight: 5,
+    justifyContent: "center",
+    alignItems: "center"
     },
     selected: {
-        height: 25,
-        width:100,
-        borderRadius: 5,
+        flex: 1,
+        padding: 10,
+        borderRadius: 10,
         backgroundColor: Colors.orange,
+
        // borderColor: '#abd1b6',
        // borderWidth: 1,
         justifyContent: 'center'
     },
     notSelected: {
-        height: 25,
-        width:100,
-        borderRadius: 5,
+        flex: 1,
+        padding: 10,
+        borderRadius: 10,
         backgroundColor: 'gray',
        // borderColor: '#abd1b6',
        // borderWidth: 1,

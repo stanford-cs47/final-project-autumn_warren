@@ -75,7 +75,7 @@ var event6 = {
     eventId: "event6",
     location: "Foothill 16",
     time: "Tues, Dec 10.  6am",
-    eventAttendies: ["collinm", "connorb"],
+    eventAttendies: ["colinm", "connorb"],
     eventImage: "LosAltosCycling6",
     details: "We do a 90-minute cycling circuit along the Atrastradero Foothills in Los Altos before work every Tuesday. We go rain or shine! Join us if you think life is better in lycra!",
     activity: "Cycling",

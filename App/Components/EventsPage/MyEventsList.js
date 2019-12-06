@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   flexDirection: 'column',
   },
   myEvents: {
-    fontSize: 22,
+    fontSize: 20,
     paddingHorizontal: 20,
     paddingBottom: 10,
     color: Colors.heading,

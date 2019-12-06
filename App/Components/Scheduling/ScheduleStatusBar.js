@@ -17,9 +17,7 @@ export default class ScheduleStatusBar extends React.Component {
         modal: true,
     }
 cancelWorkout=()=> {
-    this.setState({
-        visible: true,
-    })
+    Alert.alert("Coming Soon!", "Feature not implemented in this app prototype.");
 }
 cancel=()=> {
     this.setState({
@@ -75,22 +73,6 @@ confirm=()=> {
       size = {20}/>
       </TouchableOpacity>
       </View>
-      <Modal
-            width = {width * .6}
-            visible={this.state.visible}
-            footer = {
-        <ModalFooter>
-          <ModalButton
-              text= 'OK'
-              textStyle={{color: Colors.heading, fontSize: 18}}
-              onPress = {()=>this.cancel()}
-            />
-        </ModalFooter>
-    }>
-        <ModalContent style = {{justifyContent:'center', alignItems: 'center'}}>
-            <Text style = {{fontSize: 20}}>Cancellation is not yet implemented</Text>
-        </ModalContent>
-        </Modal> 
         </View>
     );
 }

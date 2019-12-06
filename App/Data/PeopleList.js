@@ -85,7 +85,7 @@ var person6 = {
     bio: "I'm looking for someone to keep me motivated!",
     activities: ["Weightlifting", "Swimming", "Volleyball"],
     profileAvatar: "swimming",
-    profilePic: "collinm",
+    profilePic: "colinm",
     schedule: "Low",
     experience: "Expert",
     longBio: "It’s all business for me – keep moving if you’re looking for a pal. I’m deadest on getting a six-pack for beach week and I don’t need any distractions. I lift weights and do high intensity interval training, but I’ll also do some volleyball or swim in my off hours."

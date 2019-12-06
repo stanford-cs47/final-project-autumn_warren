@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, Image, ScrollView } from 'react-native';
 import { material } from 'react-native-typography';
 import EventsList from '../Components/EventsPage/EventsList'
 import { Metrics, Colors, Images } from '../Themes';
@@ -42,10 +42,10 @@ export default class EventsScreen extends React.Component {
   }
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.container}>
         <MyEventsList onEventRequested = {this.onEventRequested}/>
         <EventsList onEventRequested = {this.onEventRequested}/>
-      </SafeAreaView >
+      </ScrollView >
     );
   }
 }
@@ -53,7 +53,8 @@ export default class EventsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 20,
+    paddingHorizontal: 10,
   },
   header: {
     fontSize: 24,

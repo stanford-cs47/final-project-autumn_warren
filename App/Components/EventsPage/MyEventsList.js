@@ -6,13 +6,13 @@ import { useState } from 'react';
 import EventsData from '../../Data/EventsDataList';
 import PeopleData from '../../Data/PeopleList';
 import ProfileData from '../../Data/MyProfile';
+import { Divider } from 'react-native-elements';
+
 import 'localstorage-polyfill';
+import { Colors } from '../../Themes';
 
 
-export default function MyEventsList(props)  {
-  /*state = {
-    hasEvents: false,
-  }*/
+export default function EventsList (props)  {
   onEventPressed = (eventId) => {
     // console.log("Event requested:"+ eventId)
     props.onEventRequested(eventId);
@@ -27,89 +27,37 @@ export default function MyEventsList(props)  {
       onEventPressed={onEventPressed}
     />
 );
+const events = JSON.parse(localStorage.myEvents || "[]");
     return (
-      <View style={styles.container}>
-        {/*{this.state.hasEvents?<Text style = {{fontSize: 20}}>My Events: </Text>:null}*/}
+      (events.length > 0)?<View style={styles.container}>
+        <View style = {{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
+        <Text style = {styles.myEvents}>My Events </Text>
+        </View>
     <FlatList
-              data={getMatchingEvents()}
+              data={JSON.parse(localStorage.myEvents || "[]")}
               renderItem = { ({ item }) => renderEvent(EventsData.events[item])}
               keyExtractor={item => item}
               numColumns={2}
            />
-      </View>
+           <Divider style={{ backgroundColor: "#d1d1d1", height: 1}} />
+      </View>:null
     );
-  }
-
-function getMatchingEvents() {
-  console.log("PAGE LOAD, BEGIN EVALUATION");
-  var initialList = [];
-
-  var acceptableDayCodes = [];
-  if(localStorage.getItem("TODAY") && localStorage.getItem("TODAY") == "true") {
-    acceptableDayCodes.push(0);
-  }
-  if(localStorage.getItem("TOMORROW") && localStorage.getItem("TOMORROW") == "true") {
-    acceptableDayCodes.push(1);
-  }
-  if(localStorage.getItem("THIS WEEKEND") && localStorage.getItem("THIS WEEKEND") == "true") {
-    acceptableDayCodes.push(1);
-    acceptableDayCodes.push(2);
-  }
-  if(localStorage.getItem("THIS WEEK") && localStorage.getItem("THIS WEEK") == "true") {
-    for(var i = 0; i < 7; i++) {
-      acceptableDayCodes.push(i);
-    }
-  }
-  if(localStorage.getItem("NEXT WEEK") && localStorage.getItem("NEXT WEEK") == "true") {
-    acceptableDayCodes.push(-1);
-  }
-
-  for(var i = 0; i < EventsData.eventIds.length; i++) {
-    var eventID = EventsData.eventIds[i];
-    console.log("Reviewing:  " + eventID);
-    var matches = true;
-
-    if(acceptableDayCodes.length > 0) {
-      if(!acceptableDayCodes.includes(EventsData.events[eventID].dayDistance)) {
-        console.log("Didn't match.");
-        matches = false;
-      }
-    }
-
-   
-    if(localStorage.getItem("onlyShowBuddies") && localStorage.getItem("onlyShowBuddies") == "true") {
-      var buddies = localStorage.buddies.split(',');  
-      var hasBuddy = false;
-      for(var j = 0; j < buddies.length; j++) {
-        if(EventsData.events[eventID].eventAttendies.includes(PeopleData.people[buddies[j]].profilePic)) {
-          hasBuddy = true;
-        }
-      }
-      if(!hasBuddy) {
-        matches = false;
-      }
-    }
-
-    var distanceFilter = localStorage.getItem("distanceFilter");
-    if(distanceFilter) {
-      if(EventsData.events[eventID].distance > parseFloat(distanceFilter)) {
-        matches = false;
-      }
-    }
-
-    if(matches) {
-      console.log("Added " + i);
-      initialList.push(eventID);
-    }
-    
-  }
-  return initialList;
 }
+
 
 const styles = StyleSheet.create({
   container: {
   flex: 1,
+  paddingBottom: 5,
   //width: '100%',
   flexDirection: 'column',
   },
+  myEvents: {
+    fontSize: 22,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+    color: Colors.heading,
+    fontWeight: 'bold'
+
+  }
 });

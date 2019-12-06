@@ -9,6 +9,7 @@ const images = {
   cycling: require('../Images/cycling.png'),
   running: require('../Images/running.png'),
   amys: require('../Images/amys.png'),
+  bobc: require('../Images/bobc.png'),
   connorb: require('../Images/connorBPic.png'),
   poojak: require('../Images/poojaKPic.png'),
   samg: require('../Images/samGPic.png'),
@@ -23,6 +24,9 @@ const images = {
   LosAltosCycling6: require('../Images/6LosAltosCycling.png'),
   YogaWithYolanda7: require('../Images/7YogaWithYolanda.png'),
   BodyattackWithHenry8: require('../Images/8BodyattackWithHenry.png'),
+  running2: require('../Images/running2.png'),
+  weightlifting2: require('../Images/weightlifting2.png'),
+
 }
 
 export default images

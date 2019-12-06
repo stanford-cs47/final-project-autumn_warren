@@ -12,7 +12,7 @@ import 'localstorage-polyfill';
 export default function EventsList (props)  {
 
   onEventPressed = (eventId) => {
-    // console.log("Event requested:"+ eventId)
+    console.log("Event requested:"+ eventId)
     props.onEventRequested(eventId);
   }
   renderEvent = (event) => (
@@ -67,6 +67,13 @@ function getMatchingEvents() {
     console.log("Reviewing:  " + eventID);
     var matches = true;
 
+    if(localStorage.myEvents) {
+      var events = JSON.parse(localStorage.myEvents);
+      if(events.includes(eventID)) {
+        matches = false;
+      }
+    }
+
     if(acceptableDayCodes.length > 0) {
       if(!acceptableDayCodes.includes(EventsData.events[eventID].dayDistance)) {
         console.log("Didn't match.");
@@ -107,6 +114,7 @@ function getMatchingEvents() {
 const styles = StyleSheet.create({
   container: {
   flex: 1,
+  marginTop: 10,
   //width: '100%',
   flexDirection: 'column',
   },

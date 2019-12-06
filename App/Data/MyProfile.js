@@ -12,7 +12,7 @@ var profile = {
     personality: "Fanatic",
     experience: "Beginner",
     profileAvatar: "",
-    profilePic: "",
+    profilePic: "bobc",
 };
 var buddyUsernames = ['amys'];
 

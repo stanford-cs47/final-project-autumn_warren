@@ -62,7 +62,7 @@ var event5 = {
     eventId: "event5",
     location: "ACSR",
     time: "Mon, Dec 9.  8pm",
-    eventAttendies: ["maryl", "sameg"],
+    eventAttendies: ["maryl", "samg"],
     eventImage: "DropSets5",
     details: "One hour of all drop sets with arms. Blake leads this workout at the ACSR on Stanford’s campus.",
     activity: "Weightlifting",

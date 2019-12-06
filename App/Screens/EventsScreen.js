@@ -47,14 +47,6 @@ export default class EventsScreen extends React.Component {
       <ScrollView>
         <MyEventsList onEventRequested = {this.onEventRequested}/>
         <EventsList onEventRequested = {this.onEventRequested}/>
-        <TouchableOpacity style = {styles.button}
-      onPress = {()=> this.add()}>
-      <MaterialCommunityIcons 
-          name = "plus"
-          size = {50}
-          color = 'white'
-          style = {{alignSelf: 'center'}}/>
-    </TouchableOpacity>
       </ScrollView>
     );
   }

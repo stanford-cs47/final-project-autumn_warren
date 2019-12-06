@@ -46,6 +46,9 @@ function getMatchingUsers() {
     console.log("Reviewing:  " + username);
     var matches = true;
     var location = localStorage.getItem("Location");
+    if(username == "bobc") {
+      matches = false;
+    }
     if(localStorage.buddies.includes(username)) {
       console.log("Already buddies with " + username + ", filtering");
       matches = false;

@@ -9,17 +9,19 @@ import EventPeopleListItem from './EventPeopleListItem';
 
 export default function EventPeopleList (props)  {
 
-    renderActivity = (item) => (
+    renderActivity = (item, item2) => (
          console.log("person Image: ", item),
+         console.log("person name: ", item2),
+
     <EventPeopleListItem
-        personImage = {item}
+        person = {item}
       />
   );
       return (
         <View style={styles.container}>
   
       <FlatList
-                data={props.attendiesImages}
+                data={props.attendies}
                 renderItem = { ({ item }) => renderActivity(item)}
                 keyExtractor={item => item}
                 horizontal = {true}

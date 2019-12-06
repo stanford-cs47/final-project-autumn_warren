@@ -17,9 +17,7 @@ export default class ScheduleStatusBar extends React.Component {
         modal: true,
     }
 cancelWorkout=()=> {
-    this.setState({
-        visible: true,
-    })
+    Alert.alert("Coming Soon!", "Feature not implemented in this app prototype.");
 }
 cancel=()=> {
     this.setState({

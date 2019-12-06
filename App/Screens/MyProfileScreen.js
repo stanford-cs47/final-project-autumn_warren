@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, SafeAreaView,ActivityIndicator, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,ActivityIndicator, Image , Alert} from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics, Colors, Images } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
@@ -15,7 +15,8 @@ export default class MyProfileScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
      return {
       headerRight: (
-        <TouchableOpacity style = {{marginRight: 15}}>
+        <TouchableOpacity style = {{marginRight: 15}}
+          onPress = {navigation.getParam('alertPopup')}>
             <MaterialCommunityIcons
                 name = "settings-outline"
                 size = {30}
@@ -36,8 +37,8 @@ export default class MyProfileScreen extends React.Component {
     visible: false,
     requestSent: false,
   }
-  _connectpopup = () => {
-    this.setState({visible: true}) 
+  _alertPopup = () => {
+    Alert.alert("Coming Soon!", "Feature not implemented in this app prototype.")
   }
   requestSentFunction = () => {
     this.setState({visible: false}) 
@@ -48,8 +49,7 @@ export default class MyProfileScreen extends React.Component {
   componentDidMount() {
     if(!this.props.navigation) return;
     const params = this.props.navigation.state.params || {};
-    this.props.navigation.setParams({ connectpopup: this._connectpopup })
-    this.props.navigation.setParams({ getButtonText: "Connect" });
+    this.props.navigation.setParams({ alertPopup: this._alertPopup })
 
     const username = profile.profile.username;
     this.setState({user: username});

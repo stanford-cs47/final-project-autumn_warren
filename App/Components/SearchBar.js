@@ -20,20 +20,6 @@ onChangeText = searchText => {
 
   getBuddies = () => {
     Keyboard.dismiss();
-    // Alert.alert(
-    //   'Alert',
-    //   'Feature not implemented in this app prototype.',
-    //   [
-    //     {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-    //     {
-    //       text: 'Cancel',
-    //       onPress: () => console.log('Cancel Pressed'),
-    //       style: 'cancel',
-    //     },
-    //     {text: 'OK', onPress: () => console.log('OK Pressed')},
-    //   ],
-    //   {cancelable: false},
-    // );
     Alert.alert("Coming Soon!", "Feature not implemented in this app prototype.");
     // var results =  this.props.loadResults(this.state.searchText)
     // this.setState({buddy: results});

@@ -38,6 +38,26 @@ export default class Profile extends React.Component {
         newState = "no";
       }
     }
+    var myEvents = localStorage.getItem("myEvents");
+    if(!myEvents) {
+      myEvents = [];
+      myEvents.push(this.props.content.eventId)
+      localStorage.setItem("myEvents", JSON.stringify(myEvents));
+    } else {
+      myEvents = JSON.parse(myEvents);
+      if(newState == "yes") {
+        myEvents.push(this.props.content.eventId);
+      }
+      else 
+      {
+        var index = myEvents.indexOf(this.props.content.eventId);
+        if (index > -1) {
+          myEvents.splice(index, 1);
+        }     
+      }
+      localStorage.setItem("myEvents", JSON.stringify(myEvents));
+    }
+
     localStorage.setItem(this.props.content.eventId, newState);
     this.setState({visible: false}) 
     setTimeout(() => (
@@ -54,7 +74,13 @@ export default class Profile extends React.Component {
     return "JOIN";
   }
   getPopUpText() {
-    return this.state.requestSent ? "Leave Event?": "Join Event?";
+    var joined = localStorage.getItem(this.props.content.eventId);
+    if(joined) {
+      if(joined == "yes") {
+        return "Leave Event?";
+      }
+    }
+    return "Join Event?";
   }
   render() {
     return ( 

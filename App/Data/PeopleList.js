@@ -103,6 +103,19 @@ var person7 = {
     profileAvatar: "",
     profilePic: "amys",
     message: "Sorry I am running late, I will be there in five. See you Soon!"
+}
+var profile = {
+    name: "Me",
+    username: "bobc",
+    location: "Palo Alto",
+    age: "25",
+    bio: "I want to benchpress!",
+    longBio: "Want a partner I can trust. I’ve talked to a few personal trainers over the last few weeks and I can’t help but feel like they’re just in it for a quick buck. I’m looking for someone else who wants an accountability buddy and is in it for the long haul. I’ve been a Bay Area resident my whole life, and I paint for fun!",
+    activities: ["Weightlifting", "Running"],
+    personality: "Fanatic",
+    experience: "Beginner",
+    profileAvatar: "",
+    profilePic: "bobc",
 };
 
 addPerson(person1);
@@ -112,5 +125,6 @@ addPerson(person4);
 addPerson(person5);
 addPerson(person6);
 addPerson(person7);
+addPerson(profile);
 
 export default { people, users };

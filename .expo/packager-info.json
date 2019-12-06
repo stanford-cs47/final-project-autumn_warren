@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19005,
+  "packagerPid": 10511,
+  "expoServerNgrokUrl": "https://tn-3dh.anonymous.2fit.exp.direct",
+  "packagerNgrokUrl": "https://packager.tn-3dh.anonymous.2fit.exp.direct",
+  "ngrokPid": 10522,
   "webpackServerPort": null
 }

@@ -105,7 +105,7 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Details</Text>
                   <Text style = {styles.bio} >{this.props.content.details}</Text>
                   <Text style = {styles.softHeader} >People</Text>
-                  <EventPeopleList attendiesImages = {getEventAttendees(this.props.content.eventId)}/>
+                  <EventPeopleList attendies = {getEventAttendees(this.props.content.eventId)}/>
                 </View> 
                 </ScrollView>
                 <TouchableOpacity style = {styles.button}
@@ -152,6 +152,23 @@ function getEventAttendees(id) {
   console.log("Event Attendies:");
   console.log(attendees);
   return attendees;
+}
+function getNames(id) {
+  console.log("function call");
+  var names = [];
+  for(var i = 0; i < EventsDataList.events[id].eventAttendies.length; i++) {
+    names.push(EventsDataList.events[id].eventNames[i]);
+  }
+  var amIAttending = localStorage.getItem(id);
+  if(amIAttending) {
+    if(amIAttending == "yes") {
+      console.log("insertion");
+      names.push("Me");
+    }
+  }
+  // console.log("Event Attendies:");
+  // console.log(attendees);
+  return names;
 }
 
 const styles = StyleSheet.create({

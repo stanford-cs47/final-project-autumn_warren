@@ -11,6 +11,7 @@ import { Metrics, Colors, Images } from '../../Themes';
 import SwitchToggle from 'react-native-switch-toggle'
 import profile from '../../Data/MyProfile';
 import EventData from '../../Data/EventsDataList';
+import PeopleList from '../../Data/PeopleList';
 
 export default class EventPeopleListItem extends React.Component {
     state = {
@@ -29,12 +30,13 @@ export default class EventPeopleListItem extends React.Component {
     //     // }
     // }
     render () {
+        console.log("Hello Kaughlin: ", PeopleList.people[this.props.person].name);
         return (
             <View style = {styles.container}>
-                <View>
+                <View stle = {this.person}>
                 {/* // style = {this.state.matches? styles.match : styles.notMatch } > */}
-                    <Image style = {styles.peopleImage} source = {Images[this.props.personImage]}/> 
-                    {/* <Text style = {styles.text}>{this.props.activity}</Text> */}
+                    <Image style = {styles.peopleImage} source = {Images[this.props.person]}/> 
+                    <Text style = {styles.text}>{PeopleList.people[this.props.person].name}</Text>
                 </View>
             </View>
         );
@@ -45,6 +47,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 10,
     },
+    person: {
+        flexDirection: 'column',
+    },
     peopleImage: {
         width: 70,
         height: 70,
@@ -54,7 +59,6 @@ const styles = StyleSheet.create({
         // alignSelf: 'center',
         marginTop: 20,
     },
-
     notMatch: {
         flex: 1,
         padding: 10,
@@ -77,7 +81,6 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 17,
-        color: 'white',
         alignSelf: 'center',
         fontFamily: "Gill Sans"
     },

@@ -40,7 +40,7 @@ export default class Profile extends React.Component {
         this.setState({unmatch: !this.state.unmatch}),
         this.setState({pending: false}),
         localStorage.buddies = localStorage.buddies + "," + this.props.content.username
-      ), 3000);
+      ), 100);
     } else {
       setTimeout(() => (
         this.setState({requestSent: !this.state.requestSent}),
@@ -59,7 +59,6 @@ export default class Profile extends React.Component {
     return this.state.requestSent ? "Unmatch with buddy?": "Match with buddy?";
   }
   render() {
-    console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
                   <ScrollView>
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    marginBottom: 25,
+    //marginBottom: 25,
     width: width,
     alignItems: 'flex-start',
     flexDirection: 'column',

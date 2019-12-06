@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     backgroundColor: 'white',
     borderRadius: 10,
-    width: '100%',
+    //width: width * .3,
     height: height * .22,
     paddingHorizontal: 15,
     paddingVertical: 15,

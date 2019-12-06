@@ -22,7 +22,6 @@ import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-moda
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
   render() {
-    console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
                   <ScrollView>
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    marginBottom: 25,
+    //marginBottom: 25,
     width: width,
     alignItems: 'flex-start',
     flexDirection: 'column',

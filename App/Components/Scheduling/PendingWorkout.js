@@ -30,7 +30,7 @@ export default class PendingWorkout extends React.Component {
                     {
                     accepted: !this.state.accepted }
                 ))
-            ), 3000)
+            ), 1000)
         }
     }
     addToCalendar=()=> {

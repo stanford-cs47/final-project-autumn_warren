@@ -13,7 +13,7 @@ export default class ScheduleStatusBar extends React.Component {
         buddy: this.props.username,
         pending: true,
         visible: false,
-        canceled: localStorage.getItem("Workout-Canceled" + this.props.username),
+        canceled: (localStorage.getItem("Workout-Canceled" + this.props.username) || false),
         modal: true,
     }
 cancelWorkout=()=> {
@@ -44,8 +44,8 @@ confirm=()=> {
     render() {
         console.log("canceled: " + this.state.canceled)
     return (
-        <View style = {!this.state.canceled? styles.workoutSent: null}> 
-        {!this.state.canceled?<View style = {{flex:1}}>
+        <View style = {styles.workoutSent}> 
+        <View style = {{flex:1}}>
             <View style = {{justifyContent: 'center', alignItems: 'center'}}>
             <Text style ={styles.header}>Next Workout</Text>
             </View>
@@ -74,26 +74,21 @@ confirm=()=> {
       color = {Colors.orange}
       size = {20}/>
       </TouchableOpacity>
-      </View>:null}
+      </View>
       <Modal
             width = {width * .6}
             visible={this.state.visible}
             footer = {
         <ModalFooter>
           <ModalButton
-              text= 'No'
-              textStyle={{color: Colors.heading, fontSize: 16}}
+              text= 'OK'
+              textStyle={{color: Colors.heading, fontSize: 18}}
               onPress = {()=>this.cancel()}
-            />
-            <ModalButton
-              text= 'Yes'
-              textStyle={{color: '#ff9524', fontSize: 16}}
-              onPress = {()=> this.confirm()}
             />
         </ModalFooter>
     }>
-        <ModalContent style = {{justifyContent:'center', alignContent: 'center'}}>
-            <Text style = {{fontSize: 20}}>Are you sure you want to cancel your workout?</Text>
+        <ModalContent style = {{justifyContent:'center', alignItems: 'center'}}>
+            <Text style = {{fontSize: 20}}>Cancellation is not yet implemented</Text>
         </ModalContent>
         </Modal> 
         </View>

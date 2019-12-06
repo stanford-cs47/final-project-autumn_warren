@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { StyleSheet, Text, View, SafeAreaView,  Image, Dimensions, ScrollView, ActivityIndicator,} from 'react-native';
 import { Metrics, Colors, Images } from '../Themes';
 import { GiftedChat, Send, InputToolbar, MessageContainer, SystemMessage, Bubble, CustomView } from 'react-native-gifted-chat';
@@ -28,16 +29,17 @@ export default class MessagingScreen extends React.Component {
   };
   componentWillMount() {
     const params = this.props.navigation.state.params || {};
-    localStorage.setItem("Selected-Workout-Full" +  params.username,"Select a Time");
-    localStorage.setItem("ScheduleLocation" + params.username, "Any");
-    localStorage.setItem("Start-Date", null)
-    localStorage.setItem("End-Date", null)
+    //localStorage.setItem("Selected-Workout-Full" +  params.username,"Select a Time");
+    //localStorage.setItem("ScheduleLocation" + params.username, "Any");
+    //localStorage.setItem("Start-Date", null)
+    //localStorage.setItem("End-Date", null)
     this.setState({buddy: PeopleData.people[params.username]});
     this.setState({messages: this.getMessages()});
     this.setState({
       selectedStartDate: null,
       selectDate: null,
-      selectedWorkout: "Select a Time"
+      selectedWorkout: "Select a Time",
+      location: "Any",
     })
   }
 
@@ -126,7 +128,10 @@ renderToolbar(props) {
   containerStyle={styles.inputToolbar} />
 }
 chooseWorkout=()=> {
+  console.log("can click"+ localStorage.getItem("Schedule-Request" + this.state.buddy.username))
+  if(!this.state.workoutSent) {
   this.setState({visibleSchedule: true})
+  }
 }
 onDateChange = (date, type)=> {
   if (type === 'END_DATE') {
@@ -187,12 +192,12 @@ cancel = ()=>{
 getDate=(date)=> {
   switch(date) {
     case 0: return "Sunday"
-      case 1: return "Monday"
-      case 2: return "Tuesday"
-      case 3: return "Wednesday"
-      case 4: return "Thursday"
-      case 5: return "Friday"
-      case 6: return "Saturday"
+    case 1: return "Monday"
+    case 2: return "Tuesday"
+    case 3: return "Wednesday"
+    case 4: return "Thursday"
+    case 5: return "Friday"
+    case 6: return "Saturday"
   }
 }
 returnToConfirm=(visible, start, end, date)=> { 
@@ -214,6 +219,7 @@ sendWorkout=()=>{
     this.setState({visibleSchedule: false})
     localStorage.setItem("Schedule-Request" + this.state.buddy.username, true)
     this.setState({workoutSent: true})
+    localStorage.setItem("Workout-Canceled" + this.props.username, false)
     //this.cancel();
     /*if(this.state.accepted) {
       console.log("accepted")
@@ -247,7 +253,7 @@ sendWorkout=()=>{
             listViewProps={{marginBottom: 20}}
             renderInputToolbar = {this.renderToolbar}
           />
-          {this.state.workoutSent? <ScheduleStatusBar 
+          {this.state.workoutSent !== false? <ScheduleStatusBar 
           sent = {this.state.workoutSent}
           messages = {this.state.messages}
           username = {this.state.buddy.username}

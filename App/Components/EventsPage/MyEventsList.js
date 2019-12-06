@@ -9,20 +9,13 @@ import ProfileData from '../../Data/MyProfile';
 import 'localstorage-polyfill';
 
 
-export default class MyEventsList extends React.Component()  {
-  state = {
+export default function MyEventsList(props)  {
+  /*state = {
     hasEvents: false,
-  }
-componentWillMount() {
-  if(/*array is not empty*/) {
-  this.setState({
-hasEvents: true
-  })
-}
-}
+  }*/
   onEventPressed = (eventId) => {
     // console.log("Event requested:"+ eventId)
-    this.props.onEventRequested(eventId);
+    props.onEventRequested(eventId);
   }
   renderEvent = (event) => (
   <EventsListItem
@@ -34,10 +27,9 @@ hasEvents: true
       onEventPressed={onEventPressed}
     />
 );
-render() {
     return (
       <View style={styles.container}>
-        {this.state.hasEvents?<Text style = {{fontSize: 20}}>My Events: </Text>:null}
+        {/*{this.state.hasEvents?<Text style = {{fontSize: 20}}>My Events: </Text>:null}*/}
     <FlatList
               data={getMatchingEvents()}
               renderItem = { ({ item }) => renderEvent(EventsData.events[item])}
@@ -47,7 +39,6 @@ render() {
       </View>
     );
   }
-}
 
 function getMatchingEvents() {
   console.log("PAGE LOAD, BEGIN EVALUATION");

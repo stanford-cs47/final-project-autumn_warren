@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   StyleSheet,
@@ -11,6 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Metrics, Colors, Images } from '../Themes';
 import ScheduleMatchBadge from './DiscoverPage/ScheduleMatchBadge';
 import ExperienceMatchBadge from './DiscoverPage/ExperienceMatchBadge';
@@ -29,8 +29,10 @@ export default class Profile extends React.Component {
     unmatch: false,
   }
   match = () => {
+    if(!this.state.requestSent) {
     this.setState({visible: true}) 
   }
+}
   requestSentFunction = () => {
     this.setState({visible: false}) 
     if (!this.state.unmatch) {
@@ -40,12 +42,13 @@ export default class Profile extends React.Component {
         this.setState({unmatch: !this.state.unmatch}),
         this.setState({pending: false}),
         localStorage.buddies = localStorage.buddies + "," + this.props.content.username
-      ), 100);
+      ), 600);
     } else {
       setTimeout(() => (
         this.setState({requestSent: !this.state.requestSent}),
         this.setState({unmatch: !this.state.unmatch})
       ), 200);
+
         // TODO: need to implemnt removal of item from local storage here
     }
   }
@@ -86,7 +89,12 @@ export default class Profile extends React.Component {
                 </ScrollView>
                 <TouchableOpacity style = {styles.button}
                   onPress = {()=> this.match()}>
-                  <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
+                  {!this.state.requestSent?<Text style = {styles.buttonText}>{this.getButtonText()}</Text>:
+                                   <MaterialCommunityIcons 
+                                       name = "check"
+                                       size = {50}
+                                       color = 'white'
+                                       style = {{alignSelf: 'center'}}/>}
                 </TouchableOpacity>
                 <Modal
                   visible={this.state.visible}

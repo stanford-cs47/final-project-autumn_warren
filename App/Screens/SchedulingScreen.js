@@ -110,7 +110,7 @@ export default class SchedulingScreen extends React.Component {
 
             </TouchableOpacity>
             <Modal visible = {this.state.wrong}
-
+            width= {.8}
             footer = {
               <ModalFooter>
                 <ModalButton
@@ -125,7 +125,7 @@ export default class SchedulingScreen extends React.Component {
              </ModalContent>
              </Modal>     
              <Modal visible = {this.state.sameDay}
-
+            width= {.8}
 footer = {
   <ModalFooter>
     <ModalButton

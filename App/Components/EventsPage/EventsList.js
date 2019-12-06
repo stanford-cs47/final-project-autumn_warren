@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //consider using this!
-import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-native';
+import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, TouchableOpacity } from 'react-native';
 import EventsListItem from './EventsListItem'
 import { useState } from 'react';
 import EventsData from '../../Data/EventsDataList';
 import PeopleData from '../../Data/PeopleList';
 import ProfileData from '../../Data/MyProfile';
 import { Metrics, Colors, Images } from '../../Themes';
+import { Entypo, FontAwesome, FontAwesome5, MaterialIcons,MaterialCommunityIcons } from '@expo/vector-icons';
+
 import 'localstorage-polyfill';
 
 
@@ -128,5 +130,21 @@ const styles = StyleSheet.create({
     color: Colors.heading,
     fontWeight: 'bold'
 
-  }
+  },
+  button: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: Colors.orange,
+    borderColor: '#ffb361',
+    position: 'absolute',
+    shadowColor: 'gray',
+    bottom: 10,
+    right: 10,
+    shadowOffset: {width: 1, height: 3},
+    shadowOpacity: .4,
+    shadowRadius: 3.32,
+    elevation: 4,
+    justifyContent: 'center'
+  },
 });

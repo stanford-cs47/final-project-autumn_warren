@@ -7,6 +7,7 @@ import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Font from 'expo-font';
 import 'localstorage-polyfill'
+import MyEventsList from '../Components/EventsPage/MyEventsList'
 import test from '../Data/Test.js';
 
 export default class EventsScreen extends React.Component {
@@ -42,6 +43,7 @@ export default class EventsScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <MyEventsList onEventRequested = {this.onEventRequested}/>
         <EventsList onEventRequested = {this.onEventRequested}/>
       </SafeAreaView >
     );

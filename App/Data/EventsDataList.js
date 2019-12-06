@@ -15,6 +15,7 @@ var event1 = {
     eventImage: "TrailRun1",
     details: "Join us for a 10-mile run at the Dish! All levels welcome!",
     activity: "Running",
+    distance: 2.5,
     dayDistance: 0
 }
 var event2 = {
@@ -26,6 +27,7 @@ var event2 = {
     eventImage: "SoulCycle2",
     details: "Sammy is leading a 60-minute Soul Cycle workout this Sunday. Join us for an intense afternoon spin.",
     activity: "Cycling",
+    distance: 1.1,
     dayDistance: 1
 }
 
@@ -38,6 +40,7 @@ var event3 = {
     eventImage: "CoupleCrossfit3",
     details: "Couple’s Crossfit gives partners the opportunity to get in shape together with partner crossfit exercises. We meet every Sunday afternoon!",
     activity: "Crossfit",
+    distance: 2.7,
     dayDistance: 2
 }
 
@@ -50,6 +53,7 @@ var event4 = {
     eventImage: "TurkeyTrot4",
     details: "Prepping for the Stanford 5k Turkey Trot for Thanksgiving? Join other beginner runners at the Stanford Track to get that cardio up before your big day!",
     activity: "Running",
+    distance: 5.4,
     dayDistance: 3
 }
 
@@ -62,6 +66,7 @@ var event5 = {
     eventImage: "DropSets5",
     details: "One hour of all drop sets with arms. Blake leads this workout at the ACSR on Stanford’s campus.",
     activity: "Weightlifting",
+    distance: 1.1,
     dayDistance: 3
 }
 
@@ -74,6 +79,7 @@ var event6 = {
     eventImage: "LosAltosCycling6",
     details: "We do a 90-minute cycling circuit along the Atrastradero Foothills in Los Altos before work every Tuesday. We go rain or shine! Join us if you think life is better in lycra!",
     activity: "Cycling",
+    distance: 1.1,
     dayDistance: 4
 }
 
@@ -86,6 +92,7 @@ var event7 = {
     eventImage: "YogaWithYolanda7",
     details: "Bikram Yoga in San Bruno is a 60-minute yoga session with advanced yoga students who are eager to find peace and balance through establishing a mind-body connection. There is a $5 fee to enter the studio.",
     activity: "Yoga",
+    distance: 6.7,
     dayDistance: 5
 }
 
@@ -98,6 +105,7 @@ var event8 = {
     eventImage: "BodyattackWithHenry8",
     details: "Bodyattack is a dance fitness workout that happens all around the country. I’ve been teaching Bodyattack for 2 years here in San Mateo and I love dance fitness with all my heart. Join me and my students for a great group workout.",
     activity: "Dance",
+    distance: 10.4,
     dayDistance: 5
 }
 

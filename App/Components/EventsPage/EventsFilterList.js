@@ -19,6 +19,7 @@ export default class EventsFilterList extends React.Component  {
     state = {
         personalityChecked: false,
         experienceChecked: false,   
+        distance: localStorage.getItem("distanceFilter") || "15.0"
     };
 
     render() {
@@ -29,14 +30,16 @@ export default class EventsFilterList extends React.Component  {
                         Location </Text>
                         <Slider
                             style={{width: 400, height: 40}}
-                            minimumValue={0}
-                            maximumValue={100}
+                            minimumValue={0.1}
+                            maximumValue={20}
                             minimumTrackTintColor={Colors.orange}
                             maximumTrackTintColor="000000"
+                            value={this.state.distance}
+                            onValueChange={(value) => {this.sliderValueChange(value)} }
                         />
                         <View style = {styles.filter}>
                             <Text style = {styles.info}>
-                            Only show events within this distance</Text>
+                            Only show events within {parseFloat(this.state.distance).toFixed(1)} miles</Text>
                         </View>    
                 </View>
                 <View style = {styles.filter}>
@@ -80,7 +83,14 @@ export default class EventsFilterList extends React.Component  {
             </ScrollView>
       );
     }
+
+    sliderValueChange(value) {
+        this.setState({distance: value});
+        localStorage.setItem("distanceFilter", value);
+    }
 }
+
+
 
 
 const styles = StyleSheet.create({

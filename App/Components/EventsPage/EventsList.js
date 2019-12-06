@@ -88,6 +88,13 @@ function getMatchingEvents() {
       }
     }
 
+    var distanceFilter = localStorage.getItem("distanceFilter");
+    if(distanceFilter) {
+      if(EventsData.events[eventID].distance > parseFloat(distanceFilter)) {
+        matches = false;
+      }
+    }
+
     if(matches) {
       console.log("Added " + i);
       initialList.push(eventID);

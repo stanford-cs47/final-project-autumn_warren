@@ -1,17 +1,13 @@
 
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  Linking,
-  TouchableWithoutFeedback,
   Image,
   Dimensions,
   AsyncStorage,
   ScrollView,
-  SafeAreaView,
-  Alert, 
   TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';

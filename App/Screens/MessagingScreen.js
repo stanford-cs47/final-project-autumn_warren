@@ -57,7 +57,12 @@ export default class MessagingScreen extends React.Component {
       return JSON.parse(messagesString);
     } else {
       if(!PeopleData.people[params.username].message) {
-        return [];
+        return [{ 
+          _id: 3,
+          text: 'Send your new buddy a message!',
+          system: true,
+          createdAt: new Date(),
+        }];
       } else {
         return [
           {

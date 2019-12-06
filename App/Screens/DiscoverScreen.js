@@ -13,6 +13,7 @@ export default class DiscoverScreen extends React.Component {
   componentDidMount() {
     this.subs = [
       this.props.navigation.addListener("willFocus", () => {
+        console.log("Force update!!!");
         this.forceUpdate();
       }),
     ];

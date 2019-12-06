@@ -22,7 +22,6 @@ import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-moda
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
   render() {
-    console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
                   <ScrollView>

@@ -45,7 +45,6 @@ function getMatchingUsers() {
     var username = PeopleData.users[i];
     console.log("Reviewing:  " + username);
     var matches = true;
-    console.log("My activities:");
     var location = localStorage.getItem("Location");
     if(localStorage.buddies.includes(username)) {
       console.log("Already buddies with " + username + ", filtering");
@@ -63,7 +62,6 @@ function getMatchingUsers() {
         }
     }
     if(localStorage.getItem(ProfileData.profile.experience) == "true" && PeopleData.people[username].experience != ProfileData.profile.experience) {
-      console.log("Experience is filtered for, and doesn't match.");
       matches = false;
     }
     for(var j = 0; j < ProfileData.profile.activities.length; j++) {
@@ -75,7 +73,6 @@ function getMatchingUsers() {
           }
         }
         if(!activityShared) {
-          console.log("An activity is filtered for, and it doesn't match");
           matches = false;
         }
         

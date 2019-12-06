@@ -52,24 +52,13 @@ export default class BuddyProfileScreen extends React.Component {
 
     const username = params.username;
     this.setState({user: username});
-    this.loadUserContent(username);
-  }
-
-  findBuddy(username) {
-    return PeopleData.people[username];
-  } 
-  loadUserContent = async (username) => {
-    this.setState({loading: true});
-    await this.sleep(500); 
-    const result = this.findBuddy(username);
-    console.log(result);
-    this.setState({content: result});
+    this.setState({content: PeopleData.people[username]});
     this.setState({loading: false});
   }
    render() {
     return (
       <View style={styles.container}>
-        {this.getProfileContent()}
+        <Profile content={this.state.content}/>
         <Modal
               visible={this.state.visible}
               height = {.15}
@@ -92,21 +81,6 @@ export default class BuddyProfileScreen extends React.Component {
       </View>
     );
   }
-  getProfileContent = () => {
-    const { content, loading } = this.state;
-    if (loading) {
-      return (
-        <ActivityIndicator />
-      );
-    } else {
-    return (
-      <Profile content={content}/>
-    );
-  }
-}
-sleep = (ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 }
 
 const styles = StyleSheet.create({

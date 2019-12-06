@@ -4,6 +4,7 @@ import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-n
 import EventsListItem from './EventsListItem'
 import { useState } from 'react';
 import EventsData from '../../Data/EventsDataList';
+import PeopleData from '../../Data/PeopleList';
 import ProfileData from '../../Data/MyProfile';
 import 'localstorage-polyfill';
 
@@ -40,42 +41,62 @@ export default function EventsList (props)  {
 function getMatchingEvents() {
   console.log("PAGE LOAD, BEGIN EVALUATION");
   var initialList = [];
+
+  var acceptableDayCodes = [];
+  if(localStorage.getItem("TODAY") && localStorage.getItem("TODAY") == "true") {
+    acceptableDayCodes.push(0);
+  }
+  if(localStorage.getItem("TOMORROW") && localStorage.getItem("TOMORROW") == "true") {
+    acceptableDayCodes.push(1);
+  }
+  if(localStorage.getItem("THIS WEEKEND") && localStorage.getItem("THIS WEEKEND") == "true") {
+    acceptableDayCodes.push(1);
+    acceptableDayCodes.push(2);
+  }
+  if(localStorage.getItem("THIS WEEK") && localStorage.getItem("THIS WEEK") == "true") {
+    for(var i = 0; i < 7; i++) {
+      acceptableDayCodes.push(i);
+    }
+  }
+  if(localStorage.getItem("NEXT WEEK") && localStorage.getItem("NEXT WEEK") == "true") {
+    acceptableDayCodes.push(-1);
+  }
+
   for(var i = 0; i < EventsData.eventIds.length; i++) {
     var eventID = EventsData.eventIds[i];
     console.log("Reviewing:  " + eventID);
     var matches = true;
-    console.log("My activities:");
-    var location = localStorage.getItem("Location");
-    if(location != null && location != "Any") {
-        var locationMatch = false;
-        for(var j = 0; j < EventsData.events[eventID].locations.length; j++) {
-          if(EventsData.events[eventID].locations[j] == location) {
-            locationMatch = true;
-          }
-        }
-        if(!locationMatch) {
-          matches = false;
-        }
-    }
-    if(localStorage.getItem(ProfileData.profile.experience) == "true" && EventsData.events[eventID].experience != ProfileData.profile.experience) {
-      console.log("Experience is filtered for, and doesn't match.");
-      matches = false;
-    }
-    for(var j = 0; j < ProfileData.profile.activities.length; j++) {
-      if(localStorage.getItem(ProfileData.profile.activities[j]) == "true") {
-        var activityShared = false;
-        for(var k = 0; k < EventsData.events[eventID].activities.length; k++) {
-          if(EventsData.events[eventID].activities[k] == ProfileData.profile.activities[j]) {
-            activityShared = true;
-          }
-        }
-        if(!activityShared) {
-          console.log("An activity is filtered for, and it doesn't match");
-          matches = false;
-        }     
+
+    if(acceptableDayCodes.length > 0) {
+      if(!acceptableDayCodes.includes(EventsData.events[eventID].dayDistance)) {
+        console.log("Didn't match.");
+        matches = false;
       }
     }
+
+   
+    if(localStorage.getItem("onlyShowBuddies") && localStorage.getItem("onlyShowBuddies") == "true") {
+      var buddies = localStorage.buddies.split(',');  
+      var hasBuddy = false;
+      for(var j = 0; j < buddies.length; j++) {
+        if(EventsData.events[eventID].eventAttendies.includes(PeopleData.people[buddies[j]].profilePic)) {
+          hasBuddy = true;
+        }
+      }
+      if(!hasBuddy) {
+        matches = false;
+      }
+    }
+
+    var distanceFilter = localStorage.getItem("distanceFilter");
+    if(distanceFilter) {
+      if(EventsData.events[eventID].distance > parseFloat(distanceFilter)) {
+        matches = false;
+      }
+    }
+
     if(matches) {
+      console.log("Added " + i);
       initialList.push(eventID);
     }
     
@@ -86,7 +107,7 @@ function getMatchingEvents() {
 const styles = StyleSheet.create({
   container: {
   flex: 1,
-  width: '100%',
+  //width: '100%',
   flexDirection: 'column',
   },
 });

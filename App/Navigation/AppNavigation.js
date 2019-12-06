@@ -8,7 +8,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import DiscoverScreen from '../Screens/DiscoverScreen';
 import BuddiesScreen from '../Screens/BuddiesScreen';
 import EventsScreen from '../Screens/EventsScreen';
-import ProfileScreen from '../Screens/MyProfileScreen';
+import MyProfileScreen from '../Screens/MyProfileScreen';
 import PeopleProfileScreen from '../Screens/PeopleProfileScreen';
 import FilterScreen from '../Screens/FilterScreen';
 import MessagingScreen from '../Screens/MessagingScreen';
@@ -70,15 +70,22 @@ const BuddiesStack = createStackNavigator({
     },
   },
   {
+    mode: 'modal',
+    headerBackTitleVisible: false,
     headerMode: 'float',
     initialRouteName: 'Events'
   })
   const ProfileStack = createStackNavigator({
-    Profile: {screen: ProfileScreen},
+    Profile: {screen: MyProfileScreen,
+      navigationOptions: () => ({
+        headerTintColor: Colors.orange,
+      }),
+    },
   },
   {
     headerMode: 'float',
-    initialRouteName: 'Profile'
+    initialRouteName: 'Profile',
+    mode: 'modal',
   })
 
 DiscoverStack.navigationOptions = ({ navigation }) => {

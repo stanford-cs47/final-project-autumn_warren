@@ -34,12 +34,14 @@ export default class BuddiesScreen extends React.Component {
       }
       render() {
         return (
-          <SafeAreaView style={styles.container}>
-            <View style = {styles.search}>
+         // <SafeAreaView style={styles.container}>
+            <View style = {styles.container}>
+              <View style = {styles.search}>
                 <SearchBar loadResults = {this.loadResults}/>
-                </View>
+        </View>
             <MyBuddiesList onProfileRequested = {this.onProfileRequested}/>
-          </SafeAreaView >
+            </View>
+         // </SafeAreaView >
         );
       }
      }
@@ -47,9 +49,11 @@ export default class BuddiesScreen extends React.Component {
      const styles = StyleSheet.create({
        container: {
          flex: 1,
+         width: '100%'
          //marginTop: 30,
        },
        search: {
+         //flex: 1,
          padding: 20,
         alignItems: 'center'
        },

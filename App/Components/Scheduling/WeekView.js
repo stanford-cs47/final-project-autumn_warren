@@ -24,7 +24,7 @@ export default class ScheduleInterface extends React.Component {
         return (
             <View style = {{flex:1, alignItems: 'flex-end'}}>
                 <View style = {{width: 140, alignItems: 'center', marginBottom: 5}}>
-            <Text style = {{fontSize: 20, color: '#4a4a4a'}}>{(this.props.start.month() + 1)}/{this.props.start.date() + index}</Text>
+            <Text style = {{fontSize: 20, fontFamily: 'Helvetica', color: '#4a4a4a'}}>{(this.props.start.month() + 1)}/{this.props.start.date() + index}</Text>
             </View>
         <FlatList
             data={day.data}

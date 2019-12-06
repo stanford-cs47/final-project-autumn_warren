@@ -10,13 +10,14 @@ import { Metrics, Colors, Images } from '../../Themes';
 import SwitchToggle from 'react-native-switch-toggle';
 import profile from '../../Data/MyProfile';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import localstorage from 'localstorage-polyfill';
 
 export default class TimeBubbles extends React.Component {
     state = {
-        selected: false,
+        selected: (localStorage.getItem(this.props.badgeText) && localStorage.getItem(this.props.badgeText) == "true")
     }
     changeColor() {
+        localStorage.setItem(this.props.badgeText, !this.state.selected);
         this.setState({selected: !this.state.selected}); 
     }
     render () {

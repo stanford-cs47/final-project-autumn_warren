@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, SafeAreaView, View, SectionList, Text} from 'react-native';
+import { StyleSheet, SafeAreaView, View, SectionList, Text, Dimensions} from 'react-native';
 import DropdownMenu from 'react-native-dropdown-menu';
 import ProfileData from '../../Data/MyProfile';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -13,12 +13,13 @@ import SearchBar from '../SearchBar';
 
 // import Slider from '@react-native-community/slider';
 // import LocationPicker from './LocationPicker';
-
+const { width, height } = Dimensions.get('window')
 
 export default class EventsFilterList extends React.Component  {
     state = {
         personalityChecked: false,
         experienceChecked: false,   
+        distance: localStorage.getItem("distanceFilter") || "15.0"
     };
 
     render() {
@@ -28,15 +29,17 @@ export default class EventsFilterList extends React.Component  {
                     <Text style = {styles.header}>
                         Location </Text>
                         <Slider
-                            style={{width: 400, height: 40}}
-                            minimumValue={0}
-                            maximumValue={100}
+                            style={{width: width * .9, height: 40}}
+                            minimumValue={0.1}
+                            maximumValue={20}
                             minimumTrackTintColor={Colors.orange}
                             maximumTrackTintColor="000000"
+                            value={this.state.distance}
+                            onValueChange={(value) => {this.sliderValueChange(value)} }
                         />
                         <View style = {styles.filter}>
                             <Text style = {styles.info}>
-                            Only show events within this distance</Text>
+                            Only show events within {parseFloat(this.state.distance).toFixed(1)} miles</Text>
                         </View>    
                 </View>
                 <View style = {styles.filter}>
@@ -64,7 +67,7 @@ export default class EventsFilterList extends React.Component  {
                         <Text style = {styles.info}>
                          Only show events for the selected activities</Text>
                             <ToggleItem 
-                            item = {""}/>
+                            item = "onlyShowActivities"/>
                     </View>
                 </View>
                 <View style = {styles.filter}>
@@ -73,19 +76,27 @@ export default class EventsFilterList extends React.Component  {
                         <Text style = {styles.info}>
                             Only show events my buddies have joined   </Text>
                             <ToggleItem 
-                            item = {""}/>
+                            item = "onlyShowBuddies"/>
                     </View>
                     
                 </View>
             </ScrollView>
       );
     }
+
+    sliderValueChange(value) {
+        this.setState({distance: value});
+        localStorage.setItem("distanceFilter", value);
+    }
 }
+
+
 
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        //paddingHorizontal: 20,
     },
     filter: {
         flex: 1,

@@ -11,6 +11,14 @@ import test from '../Data/Test.js';
 
 export default class EventsScreen extends React.Component {
 
+  componentDidMount() {
+    this.subs = [
+      this.props.navigation.addListener("willFocus", () => {
+        this.forceUpdate();
+      }),
+    ];
+  }
+
   static navigationOptions = ({ navigation }) => {
    const params = navigation.state.params || {};
     return {

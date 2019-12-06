@@ -1,92 +1,92 @@
 
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  Linking,
-  TouchableWithoutFeedback,
   Image,
   Dimensions,
   AsyncStorage,
-  SafeAreaView,
-  Alert, 
+  ScrollView,
   TouchableOpacity
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
-import { Metrics, Colors, Images } from '../../Themes';
+import { Metrics, Colors, Images } from '../Themes';
+import ScheduleMatchBadge from './DiscoverPage/ScheduleMatchBadge';
+import ExperienceMatchBadge from './DiscoverPage/ExperienceMatchBadge';
+import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import {} from 'native-base';
 import { Row, Button} from 'native-base';
-import EventPeopleList from './EventPeopleList';
-import EventsDataList from '../../Data/EventsDataList';
-import ProfileData from '../../Data/MyProfile';
+import { isThisISOWeek } from 'date-fns';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
   state = {
     visible: false,
+    requestSent: false,
+    pending: false,
+    unmatch: false,
   }
-  popUp = () => {
+  match = () => {
     this.setState({visible: true}) 
   }
   requestSentFunction = () => {
-    var newState = "yes";
-    var joined = localStorage.getItem(this.props.content.eventId);
-    if(joined) {
-      if(joined == "yes") {
-        newState = "no";
-      }
-    }
-    localStorage.setItem(this.props.content.eventId, newState);
     this.setState({visible: false}) 
-    setTimeout(() => (
-      this.setState({requestSent: !this.state.requestSent}) 
-    ), 200);
+    if (!this.state.unmatch) {
+      this.setState({pending: true})
+      setTimeout(() => (
+        this.setState({requestSent: !this.state.requestSent}), 
+        this.setState({unmatch: !this.state.unmatch}),
+        this.setState({pending: false}),
+        localStorage.buddies = localStorage.buddies + "," + this.props.content.username
+      ), 100);
+    } else {
+      setTimeout(() => (
+        this.setState({requestSent: !this.state.requestSent}),
+        this.setState({unmatch: !this.state.unmatch})
+      ), 200);
+        // TODO: need to implemnt removal of item from local storage here
+    }
   }
   getButtonText = () => {
-    var joined = localStorage.getItem(this.props.content.eventId);
-    if(joined) {
-      if(joined == "yes") {
-        return "Leave";
-      }
+    if (this.state.pending) {
+      return "Pending";
     }
-    return "JOIN";
+    return this.state.requestSent ? "Unmatch": "MATCH";
   }
   getPopUpText() {
-    return this.state.requestSent ? "Leave Event?": "Join Event?";
+    return this.state.requestSent ? "Unmatch with buddy?": "Match with buddy?";
   }
   render() {
     return ( 
         <View style = {styles.container}>
-                <Image style = {styles.image} source = {Images[this.props.content.eventImage]}/> 
-
+                  <ScrollView>
+                <Image style = {styles.image} source = {Images[this.props.content.profilePic]}/> 
                 <View style = {styles.heading}>
-                    <Text style = {styles.eventTime}>{this.props.content.time}</Text>
                     <Text style = {styles.buddyName}>{this.props.content.name}</Text>
+                    <Text style = {styles.age}>{this.props.content.age}</Text>
                 </View>
                 <View style = {styles.subheading}>
                     <Text style = {styles.location}>{this.props.content.location}</Text>
                 </View>
-                {/*<View>
-                <Button
-                    title = 'JOIN WORKOUT'
-                    // titleStyle = {styles.buttonText}
-                    raised = {true}
-                    // buttonStyle = {styles.applyButton}
-                    // onPress = {() => this.setState({visible: true})}
-                />  
-                </View>*/}
-                    
+                <Text style = {styles.bio} >{this.props.content.bio}</Text>      
+                <View style = {styles.schedule}>
+                  <ScheduleMatchBadge badgeText ={this.props.content.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
+                  </View>
+                  <View style = {styles.schedule}>
+                  <ExperienceMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ExperienceMatchBadge>
+                </View>
                 <View style = {styles.body}>
-                  <Text style = {styles.softHeader} >Details</Text>
-                  <Text style = {styles.bio} >{this.props.content.details}</Text>
-                  <Text style = {styles.softHeader} >People</Text>
-                  <EventPeopleList attendiesImages = {getEventAttendees(this.props.content.eventId)}/>
+                  <Text style = {styles.softHeader} >Bio</Text>
+                  <Text style = {styles.bio} >{this.props.content.longBio}</Text>
+                  <Text style = {styles.softHeader} >Activities</Text>
+                  <ActivityList activities = {this.props.content.activities}/>
                 </View> 
+                </ScrollView>
                 <TouchableOpacity style = {styles.button}
-                  onPress = {()=> this.popUp()}>
-                <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
+                  onPress = {()=> this.match()}>
+                  <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
                 </TouchableOpacity>
                 <Modal
                   visible={this.state.visible}
@@ -107,61 +107,36 @@ export default class Profile extends React.Component {
                       <Text style = {styles.popup}>{this.getPopUpText()}</Text>
                   </ModalContent>
                 </Modal>
-            </View>
+          </View>
     );
   };
 }
-
-function getEventAttendees(id) {
-  console.log("function call");
-  var attendees = [];
-  for(var i = 0; i < EventsDataList.events[id].eventAttendies.length; i++) {
-    attendees.push(EventsDataList.events[id].eventAttendies[i]);
-  }
-  var amIAttending = localStorage.getItem(id);
-  if(amIAttending) {
-    if(amIAttending == "yes") {
-      console.log("insertion");
-      attendees.push(ProfileData.profile.profilePic);
-    }
-  }
-  console.log("Event Attendies:");
-  console.log(attendees);
-  return attendees;
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    marginBottom: 25,
+    //marginBottom: 25,
     width: width,
     alignItems: 'flex-start',
     flexDirection: 'column',
   },
-  applyButton: {
-    backgroundColor: Colors.orange,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center',
-    fontWeight: 'bold',
-  }, 
   heading: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     marginLeft: 20,
     marginTop: 30,
   },
     buddyName: {
-    fontWeight: '600',
-    fontSize: 36,
+    flex: 2,
+    fontWeight: 'bold',
+    fontSize: 30,
     color: '#5b5b5b',
   },
-  eventTime: {
-    fontWeight: '800',
-    fontSize: 18,
-    color: Colors.orange,
+  age: {
+      flex: 1,
+    fontWeight: 'bold',
+    color: '#5b5b5b',
+    fontSize: 30,
+    alignSelf: 'flex-end',
   },
     subheading: {
     flexDirection: 'row',
@@ -172,7 +147,7 @@ const styles = StyleSheet.create({
   },
   location: {
     fontWeight: '300',
-    fontSize: 18,
+    fontSize: 16,
     color: '#5b5b5b',
     marginLeft: 20,
   },
@@ -181,28 +156,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#5b5b5b',
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 15,
   },
   softHeader: {
     fontWeight: '500',
     fontSize: 25,
     color: '#5b5b5b',
     paddingHorizontal: 20,
-    marginTop: 25,
-    //paddingVertical: 5,
+    paddingTop: 10,
+    paddingBottom: 5,
   },
   bio: {
     fontWeight: '400',
     fontSize: 16,
     color: '#5b5b5b',
     paddingHorizontal: 20,
-    paddingVertical: 10,
-    lineHeight: 25
+    paddingBottom: 20,
+    lineHeight: 25,
   },
   image: {
-    width: '100%',
-    height: 210,
-    // aspectRatio: 1,
+    width: 200,
+    height: 200,
+    aspectRatio: 1,
     // resizeMode: 'contain',
     borderRadius: 10,
     alignSelf: 'center',
@@ -211,6 +186,7 @@ const styles = StyleSheet.create({
   schedule: {
     flex: 1,
     marginLeft: 20,
+    paddingVertical: 5,
     marginTop: 5,
   },
   button: {
@@ -229,6 +205,12 @@ const styles = StyleSheet.create({
     elevation: 7,
     justifyContent: 'center'
   },
+  buttonText: {
+    fontSize: 15,
+    color: 'white',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  }, 
   popup: {
     fontSize: 20,
   },

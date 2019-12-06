@@ -4,8 +4,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Linking,
-  TouchableWithoutFeedback,
   Image,
   Dimensions,
   AsyncStorage,
@@ -16,69 +14,30 @@ import {
 } from 'react-native';
 import { Tooltip} from 'react-native-elements';
 import { Metrics, Colors, Images } from '../Themes';
-import ScheduleMatchBadge from '../Components/DiscoverPage/ScheduleMatchBadge';
-import ExperienceMatchBadge from '../Components/DiscoverPage/ExperienceMatchBadge';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import ExperienceMatchBadge from './DiscoverPage/ExperienceMatchBadge';
 import ActivityList from './Profiles/ActivityList';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
-import {} from 'native-base';
-import { Row, Button} from 'native-base';
-import { isThisISOWeek } from 'date-fns';
 
 const { width, height } = Dimensions.get('window')
 export default class Profile extends React.Component {
-  state = {
-    visible: false,
-    requestSent: false,
-    pending: false,
-    unmatch: false,
-  }
-  match = () => {
-    this.setState({visible: true}) 
-  }
-  requestSentFunction = () => {
-    this.setState({visible: false}) 
-    if (!this.state.unmatch) {
-      this.setState({pending: true})
-      setTimeout(() => (
-        this.setState({requestSent: !this.state.requestSent}), 
-        this.setState({unmatch: !this.state.unmatch}),
-        this.setState({pending: false}),
-        localStorage.buddies = localStorage.buddies + "," + this.props.content.username
-      ), 3000);
-    } else {
-      setTimeout(() => (
-        this.setState({requestSent: !this.state.requestSent}),
-        this.setState({unmatch: !this.state.unmatch})
-      ), 200);
-        // TODO: need to implemnt removal of item from local storage here
-    }
-  }
-  getButtonText = () => {
-    if (this.state.pending) {
-      return "Pending";
-    }
-    return this.state.requestSent ? "Unmatch": "MATCH";
-  }
-  getPopUpText() {
-    return this.state.requestSent ? "Unmatch with buddy?": "Match with buddy?";
-  }
   render() {
-    console.log("activities" + this.props.content.activities)
     return ( 
         <View style = {styles.container}>
                   <ScrollView>
                 <Image style = {styles.image} source = {Images[this.props.content.profilePic]}/> 
-                <View style = {styles.heading}>
+                <View style = {{flex: 1, justifyContent: 'center', paddingHorizontal: 20, marginTop: 30, alignItems: 'flex-start', flexDirection:'row'}}>
+                    <View style = {{flex: 4}}>
                     <Text style = {styles.buddyName}>{this.props.content.name}</Text>
+                    </View>
+                    <View style = {{flex: 1, alignItems: 'flex-end'}}>
                     <Text style = {styles.age}>{this.props.content.age}</Text>
+                    </View>
                 </View>
                 <View style = {styles.subheading}>
                     <Text style = {styles.location}>{this.props.content.location}</Text>
                 </View>
                 <Text style = {styles.bio} >{this.props.content.bio}</Text>      
-                <View style = {styles.schedule}>
-                  <ScheduleMatchBadge badgeText ={this.props.content.schedule} type={"Schedule Match"}></ScheduleMatchBadge> 
-                  </View>
                   <View style = {styles.schedule}>
                   <ExperienceMatchBadge badgeText ={this.props.content.experience} type={"Experience"}></ExperienceMatchBadge>
                 </View>
@@ -89,30 +48,7 @@ export default class Profile extends React.Component {
                   <ActivityList activities = {this.props.content.activities}/>
                 </View> 
                 </ScrollView>
-                <TouchableOpacity style = {styles.button}
-                  onPress = {()=> this.match()}>
-                  <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
-                </TouchableOpacity>
-                <Modal
-                  visible={this.state.visible}
-                  height = {.15}
-                  footer ={
-                    <ModalFooter>
-                      <ModalButton
-                        text="Cancel"
-                        textStyle={styles.popUpButton}
-                        onPress={() => {this.setState({visible: false})} } />
-                      <ModalButton
-                        text="OK"
-                        textStyle={styles.popUpButton}
-                        onPress={() => {this.requestSentFunction()} } />
-                    </ModalFooter>
-                  }>
-                  <ModalContent style = {styles.content}>
-                      <Text style = {styles.popup}>{this.getPopUpText()}</Text>
-                  </ModalContent>
-                </Modal>
-          </View>
+                </View>
     );
   };
 }
@@ -120,28 +56,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    marginBottom: 25,
+    //marginBottom: 25,
     width: width,
     alignItems: 'flex-start',
     flexDirection: 'column',
   },
-  heading: {
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginTop: 30,
-  },
     buddyName: {
-    flex: 2,
     fontWeight: 'bold',
     fontSize: 30,
     color: '#5b5b5b',
   },
   age: {
-      flex: 1,
     fontWeight: 'bold',
     color: '#5b5b5b',
     fontSize: 30,
-    alignSelf: 'flex-end',
   },
     subheading: {
     flexDirection: 'row',
@@ -192,7 +120,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 20,
     paddingVertical: 5,
-    marginTop: 5,
   },
   button: {
     width: 70,
@@ -211,21 +138,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 15,
+    fontSize: 18,
     color: 'white',
     alignSelf: 'center',
     fontWeight: 'bold',
   }, 
-  popup: {
-    fontSize: 20,
-  },
-  popUpButton: {
-    color: Colors.orange
-  },
-  content: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 15,
-    marginHorizontal: 20,
-  }
 });

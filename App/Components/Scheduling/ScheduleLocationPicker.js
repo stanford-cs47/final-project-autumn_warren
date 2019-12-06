@@ -11,11 +11,11 @@ import 'localstorage-polyfill';
 
 export default class LocationPicker extends React.Component {
     state = {
-        selected: (localStorage.getItem("ScheduleLocation") || "Any"),
+        selected: (localStorage.getItem("ScheduleLocation" + this.props.buddy) || "Any"),
         text: 'Select a location',
     };
     onSelection(value) {
-        localStorage.setItem("ScheduleLocation", value);
+        localStorage.setItem("ScheduleLocation" + this.props.buddy, value);
         console.log("Hello!!!" + value);
         this.setState({
             selected: value

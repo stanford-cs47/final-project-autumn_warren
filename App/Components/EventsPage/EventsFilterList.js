@@ -66,8 +66,8 @@ export default class EventsFilterList extends React.Component  {
                     <View style = {styles.timeRow}>
                         <Text style = {styles.info}>
                          Only show events for the selected activities</Text>
-                            <ToggleItem 
-                            item = "onlyShowActivities"/>
+                            {/* <ToggleItem 
+                            item = "onlyShowActivities"/> */}
                     </View>
                 </View>
                 <View style = {styles.filter}>
@@ -96,7 +96,7 @@ export default class EventsFilterList extends React.Component  {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //paddingHorizontal: 20,
+        // paddingHorizontal: 20,
     },
     filter: {
         flex: 1,
@@ -105,10 +105,10 @@ const styles = StyleSheet.create({
     },
     search: {
         padding: 20,
-       alignItems: 'center'
+        alignItems: 'center'
     },
     timeRow: {
-        flex: 1,
+        // flex: 1,
         flexDirection: 'row',
         marginBottom: 10,
     },

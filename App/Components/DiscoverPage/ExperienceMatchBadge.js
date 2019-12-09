@@ -33,8 +33,6 @@ const styles = StyleSheet.create({
         width:100,
         borderRadius: 5,
         backgroundColor: '#86bf96',
-       // borderColor: '#abd1b6',
-       // borderWidth: 1,
         justifyContent: 'center'
     },
     notMatch: {
@@ -42,8 +40,6 @@ const styles = StyleSheet.create({
         width:100,
         borderRadius: 5,
         backgroundColor: '#7a7a7a',
-       // borderColor: '#abd1b6',
-       // borderWidth: 1,
         justifyContent: 'center'
     },
     text: {

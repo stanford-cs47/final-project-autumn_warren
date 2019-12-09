@@ -24,14 +24,10 @@ export default function DiscoverList (props)  {
     />
 );
     return (
-      //<View style={styles.container}>
-
     <FlatList
               data={getBuddies()}
               renderItem = { ({ item }) => renderPerson(PeopleData.people[item])}
-              keyExtractor={item => item}
-           />
-     // </View>
+              keyExtractor={item => item}/>
     );
   }
 

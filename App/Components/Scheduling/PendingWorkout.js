@@ -56,43 +56,41 @@ export default class PendingWorkout extends React.Component {
       render() {
     return (
         <View>
-    <View style = {styles.activityIndicator}>
-        {!this.state.accepted? <ActivityIndicator
-        size = {"large"}
-        color = {Colors.red}/> :
-        <View style = {{alignItems:'center'}}>
-    <TouchableOpacity 
-    onPress= {this.addToCalendar}>
-    <MaterialCommunityIcons 
-        name = {this.state.icon}
-        size = {40}
-        color = {this.state.color}/>
-        </TouchableOpacity>
-        </View>}
-        <Text style = {styles.text}>{!this.state.accepted? "Response Pending": "Workout Confirmed"}</Text>
-    </View>
-     <Modal
-     width = {width * .6}
-     visible={this.state.visible}
-     footer = {
-         <ModalFooter>
-           <ModalButton
-               text= 'Cancel'
-               textStyle={{color: Colors.heading, fontSize: 16}}
-               onPress = {()=>this.cancel()}
-             />
-             <ModalButton
-               text= 'Add'
-               textStyle={{color: '#ff9524', fontSize: 18}}
-               onPress = {()=> this.confirm()}
-             />
-         </ModalFooter>
-     }>
-         <ModalContent style = {{justifyContent:'center', alignItems: 'center'}}>
-             <Text style = {{fontSize: 20}}>Add to Calendar?</Text>
-         </ModalContent>
-         </Modal>
-         </View>
+            <View style = {styles.activityIndicator}>
+                {!this.state.accepted? <ActivityIndicator
+                size = {"large"}
+                color = {Colors.red}/> :
+            <View style = {{alignItems:'center'}}>
+                <TouchableOpacity 
+                onPress= {this.addToCalendar}>
+                <MaterialCommunityIcons 
+                    name = {this.state.icon}
+                    size = {40}
+                    color = {this.state.color}/>
+                </TouchableOpacity>
+            </View>}
+            <Text style = {styles.text}>{!this.state.accepted? "Response Pending": "Workout Confirmed"}</Text>
+            </View>
+            <Modal
+                width = {width * .6}
+                visible={this.state.visible}
+                footer = {
+                    <ModalFooter>
+                    <ModalButton
+                        text= 'Cancel'
+                        textStyle={{color: Colors.heading, fontSize: 16}}
+                        onPress = {()=>this.cancel()}/>
+                    <ModalButton
+                        text= 'Add'
+                        textStyle={{color: '#ff9524', fontSize: 18}}
+                        onPress = {()=> this.confirm()}/>
+                    </ModalFooter>
+                }>
+                <ModalContent style = {{justifyContent:'center', alignItems: 'center'}}>
+                    <Text style = {{fontSize: 20}}>Add to Calendar?</Text>
+                </ModalContent>
+            </Modal>
+        </View>
     )
 }
 }

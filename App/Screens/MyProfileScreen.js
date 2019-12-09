@@ -43,7 +43,6 @@ export default class MyProfileScreen extends React.Component {
   requestSentFunction = () => {
     this.setState({visible: false}) 
     this.setState({requestSent: true}) 
-    //localStorage.buddies = localStorage.buddies + "," + profile;
     this.props.navigation.setParams({getButtonText: "Pending" });
   }
   componentDidMount() {
@@ -56,14 +55,9 @@ export default class MyProfileScreen extends React.Component {
     this.loadUserContent(username);
   }
 
-  /*findBuddy(username) {
-    return PeopleData.people[username];
-  } */
   loadUserContent = async (username) => {
     this.setState({loading: true});
     await this.sleep(500); 
-    //const result = this.findBuddy(username);
-    //console.log(result);
     this.setState({content: profile.profile});
     this.setState({loading: false});
   }
@@ -104,17 +98,17 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    }, 
-    content: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 15,
-      marginHorizontal: 20,
-    },
-    popup: {
-      fontSize: 20,
-    },
-    button: {
-      color: Colors.orange
-    }
+  }, 
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    marginHorizontal: 20,
+  },
+  popup: {
+    fontSize: 20,
+  },
+  button: {
+    color: Colors.orange
+  }
 });

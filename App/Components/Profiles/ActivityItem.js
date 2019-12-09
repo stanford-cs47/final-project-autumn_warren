@@ -42,9 +42,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         borderRadius: 10,
-       // backgroundColor: Colors.orange,
-        //borderColor: '#abd1b6',
-        //borderWidth: 1,
         backgroundColor: '#7a7a7a',
         justifyContent: 'center'
     },
@@ -52,9 +49,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         borderRadius: 10,
-       // backgroundColor: Colors.orange,
-        //borderColor: '#abd1b6',
-        //borderWidth: 1,
         backgroundColor: '#86bf96',
         justifyContent: 'center'
     },

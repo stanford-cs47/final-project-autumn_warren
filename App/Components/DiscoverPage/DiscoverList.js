@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types' //consider using this!
 import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-native';
 import ListItem from './ListItem'
-import { useState } from 'react';
 import PeopleData from '../../Data/PeopleList';
 import ProfileData from '../../Data/MyProfile';
 import 'localstorage-polyfill';
@@ -11,7 +10,6 @@ import 'localstorage-polyfill';
 export default function DiscoverList (props)  {
 
   onProfilePressed = (username) => {
-    console.log("profile requested is:"+ username)
     props.onProfileRequested(username);
   }
   renderPerson = (person) => (
@@ -39,18 +37,16 @@ export default function DiscoverList (props)  {
   }
 
 function getMatchingUsers() {
-  console.log("PAGE LOAD, BEGIN EVALUATION");
   var initialList = [];
   for(var i = 0; i < PeopleData.users.length; i++) {
     var username = PeopleData.users[i];
-    console.log("Reviewing:  " + username);
     var matches = true;
     var location = localStorage.getItem("Location");
     if(username == "bobc") {
       matches = false;
+      continue;
     }
     if(localStorage.buddies.includes(username)) {
-      console.log("Already buddies with " + username + ", filtering");
       matches = false;
     }
     if(location != null && location != "Any") {

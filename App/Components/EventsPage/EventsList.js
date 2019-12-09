@@ -7,121 +7,118 @@ import EventsData from '../../Data/EventsDataList';
 import PeopleData from '../../Data/PeopleList';
 import ProfileData from '../../Data/MyProfile';
 import { Metrics, Colors, Images } from '../../Themes';
-import { Entypo, FontAwesome, FontAwesome5, MaterialIcons,MaterialCommunityIcons } from '@expo/vector-icons';
+import { Entypo, FontAwesome, FontAwesome5, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import 'localstorage-polyfill';
 
 
-export default function EventsList (props)  {
+export default function EventsList(props) {
 
   onEventPressed = (eventId) => {
-    console.log("Event requested:"+ eventId)
     props.onEventRequested(eventId);
   }
   renderEvent = (event) => (
-  <EventsListItem
-      name = {event.name}
-      location = {event.location}
-      time = {event.time}
-      eventId = {event.eventId}
-      eventImage = {event.eventImage}
+    <EventsListItem
+      name={event.name}
+      location={event.location}
+      time={event.time}
+      eventId={event.eventId}
+      eventImage={event.eventImage}
       onEventPressed={onEventPressed}
     />
-);
-    return (
-      <View style={styles.container}>
-    <View style = {{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
-        <Text style = {styles.Events}>Find Events</Text>
+  );
+  return (
+    <View style={styles.container}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+        <Text style={styles.Events}>Find Events</Text>
       </View>
-    <FlatList
-              data={getMatchingEvents()}
-              renderItem = { ({ item }) => renderEvent(EventsData.events[item])}
-              keyExtractor={item => item}
-              numColumns={2}
-           />
-      </View>
-    );
-  }
+      <FlatList
+        data={getMatchingEvents()}
+        renderItem={({ item }) => renderEvent(EventsData.events[item])}
+        keyExtractor={item => item}
+        numColumns={2}
+      />
+    </View>
+  );
+}
 
 function getMatchingEvents() {
   console.log("PAGE LOAD, BEGIN EVALUATION");
   var initialList = [];
 
   var acceptableDayCodes = [];
-  if(localStorage.getItem("TODAY") && localStorage.getItem("TODAY") == "true") {
+  if (localStorage.getItem("TODAY") && localStorage.getItem("TODAY") == "true") {
     acceptableDayCodes.push(0);
   }
-  if(localStorage.getItem("TOMORROW") && localStorage.getItem("TOMORROW") == "true") {
+  if (localStorage.getItem("TOMORROW") && localStorage.getItem("TOMORROW") == "true") {
     acceptableDayCodes.push(1);
   }
-  if(localStorage.getItem("THIS WEEKEND") && localStorage.getItem("THIS WEEKEND") == "true") {
+  if (localStorage.getItem("THIS WEEKEND") && localStorage.getItem("THIS WEEKEND") == "true") {
     acceptableDayCodes.push(1);
     acceptableDayCodes.push(2);
   }
-  if(localStorage.getItem("THIS WEEK") && localStorage.getItem("THIS WEEK") == "true") {
-    for(var i = 0; i < 7; i++) {
+  if (localStorage.getItem("THIS WEEK") && localStorage.getItem("THIS WEEK") == "true") {
+    for (var i = 0; i < 7; i++) {
       acceptableDayCodes.push(i);
     }
   }
-  if(localStorage.getItem("NEXT WEEK") && localStorage.getItem("NEXT WEEK") == "true") {
+  if (localStorage.getItem("NEXT WEEK") && localStorage.getItem("NEXT WEEK") == "true") {
     acceptableDayCodes.push(-1);
   }
 
-  for(var i = 0; i < EventsData.eventIds.length; i++) {
+  for (var i = 0; i < EventsData.eventIds.length; i++) {
     var eventID = EventsData.eventIds[i];
     console.log("Reviewing:  " + eventID);
     var matches = true;
 
-    if(localStorage.myEvents) {
+    if (localStorage.myEvents) {
       var events = JSON.parse(localStorage.myEvents);
-      if(events.includes(eventID)) {
+      if (events.includes(eventID)) {
         matches = false;
       }
     }
 
-    if(acceptableDayCodes.length > 0) {
-      if(!acceptableDayCodes.includes(EventsData.events[eventID].dayDistance)) {
+    if (acceptableDayCodes.length > 0) {
+      if (!acceptableDayCodes.includes(EventsData.events[eventID].dayDistance)) {
         console.log("Didn't match.");
         matches = false;
       }
     }
 
-   
-    if(localStorage.getItem("onlyShowBuddies") && localStorage.getItem("onlyShowBuddies") == "true") {
-      var buddies = localStorage.buddies.split(',');  
+
+    if (localStorage.getItem("onlyShowBuddies") && localStorage.getItem("onlyShowBuddies") == "true") {
+      var buddies = localStorage.buddies.split(',');
       var hasBuddy = false;
-      for(var j = 0; j < buddies.length; j++) {
-        if(EventsData.events[eventID].eventAttendies.includes(PeopleData.people[buddies[j]].profilePic)) {
+      for (var j = 0; j < buddies.length; j++) {
+        if (EventsData.events[eventID].eventAttendies.includes(PeopleData.people[buddies[j]].profilePic)) {
           hasBuddy = true;
         }
       }
-      if(!hasBuddy) {
+      if (!hasBuddy) {
         matches = false;
       }
     }
 
     var distanceFilter = localStorage.getItem("distanceFilter");
-    if(distanceFilter) {
-      if(EventsData.events[eventID].distance > parseFloat(distanceFilter)) {
+    if (distanceFilter) {
+      if (EventsData.events[eventID].distance > parseFloat(distanceFilter)) {
         matches = false;
       }
     }
 
-    if(matches) {
+    if (matches) {
       console.log("Added " + i);
       initialList.push(eventID);
     }
-    
+
   }
   return initialList;
 }
 
 const styles = StyleSheet.create({
   container: {
-  flex: 1,
-  marginTop: 10,
-  //width: '100%',
-  flexDirection: 'column',
+    flex: 1,
+    marginTop: 10,
   },
   Events: {
     fontSize: 22,
@@ -129,22 +126,5 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     color: Colors.heading,
     fontWeight: 'bold'
-
-  },
-  button: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    backgroundColor: Colors.orange,
-    borderColor: '#ffb361',
-    position: 'absolute',
-    shadowColor: 'gray',
-    bottom: 10,
-    right: 10,
-    shadowOffset: {width: 1, height: 3},
-    shadowOpacity: .4,
-    shadowRadius: 3.32,
-    elevation: 4,
-    justifyContent: 'center'
   },
 });

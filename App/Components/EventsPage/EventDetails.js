@@ -82,39 +82,28 @@ export default class Profile extends React.Component {
     return ( 
         <View style = {styles.container}>
                 <ScrollView>
-                <Image style = {styles.image} source = {Images[this.props.content.eventImage]}/> 
-
-                <View style = {styles.heading}>
-                    <Text style = {styles.eventTime}>{this.props.content.time}</Text>
-                    <Text style = {styles.buddyName}>{this.props.content.name}</Text>
-                </View>
-                <View style = {styles.subheading}>
-                    <Text style = {styles.location}>{this.props.content.location}</Text>
-                </View>
-                {/*<View>
-                <Button
-                    title = 'JOIN WORKOUT'
-                    // titleStyle = {styles.buttonText}
-                    raised = {true}
-                    // buttonStyle = {styles.applyButton}
-                    // onPress = {() => this.setState({visible: true})}
-                />  
-                </View>*/}
-                    
-                <View style = {styles.body}>
-                  <Text style = {styles.softHeader} >Details</Text>
-                  <Text style = {styles.bio} >{this.props.content.details}</Text>
-                  <Text style = {styles.softHeader} >People</Text>
-                  <EventPeopleList attendies = {getEventAttendees(this.props.content.eventId)}/>
-                </View> 
+                    <Image style = {styles.image} source = {Images[this.props.content.eventImage]}/> 
+                    <View style = {styles.heading}>
+                        <Text style = {styles.eventTime}>{this.props.content.time}</Text>
+                        <Text style = {styles.buddyName}>{this.props.content.name}</Text>
+                    </View>
+                    <View style = {styles.subheading}>
+                        <Text style = {styles.location}>{this.props.content.location}</Text>
+                    </View>
+                    <View style = {styles.body}>
+                        <Text style = {styles.softHeader} >Details</Text>
+                        <Text style = {styles.bio} >{this.props.content.details}</Text>
+                        <Text style = {styles.softHeader} >People</Text>
+                        <EventPeopleList attendies = {getEventAttendees(this.props.content.eventId)}/>
+                    </View> 
                 </ScrollView>
                 <TouchableOpacity style = {styles.button}
-                  onPress = {()=> this.popUp()}>
-                <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
+                    onPress = {()=> this.popUp()}>
+                    <Text style = {styles.buttonText}>{this.getButtonText()}</Text>      
                 </TouchableOpacity>
                 <Modal
                   visible={this.state.visible}
-                  height = {.15}
+                  width = {.5}
                   footer ={
                     <ModalFooter>
                       <ModalButton
@@ -123,21 +112,21 @@ export default class Profile extends React.Component {
                         onPress={() => {this.setState({visible: false})} } />
                       <ModalButton
                         text="OK"
+                        onPress={() => {this.requestSentFunction()} }
                         textStyle={styles.popUpButton}
-                        onPress={() => {this.requestSentFunction()} } />
+                         />
                     </ModalFooter>
                   }>
                   <ModalContent style = {styles.content}>
                       <Text style = {styles.popup}>{this.getPopUpText()}</Text>
                   </ModalContent>
                 </Modal>
-                </View>
+        </View>
     );
   };
 }
 
 function getEventAttendees(id) {
-  console.log("function call");
   var attendees = [];
   for(var i = 0; i < EventsDataList.events[id].eventAttendies.length; i++) {
     attendees.push(EventsDataList.events[id].eventAttendies[i]);
@@ -145,16 +134,12 @@ function getEventAttendees(id) {
   var amIAttending = localStorage.getItem(id);
   if(amIAttending) {
     if(amIAttending == "yes") {
-      console.log("insertion");
       attendees.push(ProfileData.profile.profilePic);
     }
   }
-  console.log("Event Attendies:");
-  console.log(attendees);
   return attendees;
 }
 function getNames(id) {
-  console.log("function call");
   var names = [];
   for(var i = 0; i < EventsDataList.events[id].eventAttendies.length; i++) {
     names.push(EventsDataList.events[id].eventNames[i]);
@@ -162,12 +147,9 @@ function getNames(id) {
   var amIAttending = localStorage.getItem(id);
   if(amIAttending) {
     if(amIAttending == "yes") {
-      console.log("insertion");
       names.push("Me");
     }
   }
-  // console.log("Event Attendies:");
-  // console.log(attendees);
   return names;
 }
 
@@ -230,7 +212,6 @@ const styles = StyleSheet.create({
     color: '#5b5b5b',
     paddingHorizontal: 20,
     marginTop: 25,
-    //paddingVertical: 5,
   },
   bio: {
     fontWeight: '400',
@@ -243,8 +224,6 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 210,
-    // aspectRatio: 1,
-    // resizeMode: 'contain',
     borderRadius: 10,
     alignSelf: 'center',
     marginTop: 20,

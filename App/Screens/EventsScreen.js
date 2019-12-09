@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: Colors.orange,
     fontWeight:'bold',
-    //fontFamily: "Gill Sans"
   },
   filter: {
     height: 25,
@@ -70,22 +69,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     marginRight: 15,
-  },
-  button: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    backgroundColor: Colors.orange,
-    borderColor: '#ffb361',
-    position: 'absolute',
-    shadowColor: 'gray',
-    bottom: 20,
-    right: 20,
-    shadowOffset: {width: 1, height: 3},
-    shadowOpacity: .4,
-    shadowRadius: 3.32,
-    //elevation: 4,
-    justifyContent: 'center'
   },
   filterButton: {
     height: 25,

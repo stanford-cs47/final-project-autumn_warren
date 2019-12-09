@@ -36,8 +36,6 @@ const styles = StyleSheet.create({
     container: {
     flex: 1,
     flexDirection: 'row',
-    // marginLeft: 5,
-    // marginRight: 5,
     justifyContent: "center",
     alignItems: "center"
     },
@@ -46,9 +44,6 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         backgroundColor: Colors.orange,
-
-       // borderColor: '#abd1b6',
-       // borderWidth: 1,
         justifyContent: 'center'
     },
     notSelected: {
@@ -56,8 +51,6 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         backgroundColor: 'gray',
-       // borderColor: '#abd1b6',
-       // borderWidth: 1,
         justifyContent: 'center'
     },
     text: {

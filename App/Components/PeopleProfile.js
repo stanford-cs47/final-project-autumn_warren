@@ -90,11 +90,11 @@ export default class Profile extends React.Component {
                 <TouchableOpacity style = {styles.button}
                   onPress = {()=> this.match()}>
                   {!this.state.requestSent?<Text style = {styles.buttonText}>{this.getButtonText()}</Text>:
-                                   <MaterialCommunityIcons 
-                                       name = "check"
-                                       size = {50}
-                                       color = 'white'
-                                       style = {{alignSelf: 'center'}}/>}
+                      <MaterialCommunityIcons 
+                            name = "check"
+                            size = {50}
+                            color = 'white'
+                            style = {{alignSelf: 'center'}}/>}
                 </TouchableOpacity>
                 <Modal
                   visible={this.state.visible}

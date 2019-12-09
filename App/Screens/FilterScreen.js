@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Alert} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Alert } from 'react-native';
 import Modal, { ModalFooter, ModalButton, ModalContent } from 'react-native-modals';
 import { material } from 'react-native-typography';
 import FilterList from '../Components/FilterPage/FilterList'
@@ -18,22 +18,22 @@ export default class FilterScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-   headerTitle: (
-        <SafeAreaView style={{justifyContent: 'center', alignContent: 'center'}}>
+      headerTitle: (
+        <SafeAreaView style={{ justifyContent: 'center', alignContent: 'center' }}>
           <Text style={styles.header}> Filter</Text>
         </SafeAreaView>
       )
     };
   };
-  confirmFilters () {
-    this.setState({visible: false});
+  confirmFilters() {
+    this.setState({ visible: false });
     this.props.navigation.navigate('Discover');
   }
   render() {
     return (
       <View style={styles.container}>
-        <FilterList filter = {this.filter}/>
-        
+        <FilterList filter={this.filter} />
+
       </View >
     );
   }
@@ -60,18 +60,17 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    }, 
-    content: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 15,
-      marginHorizontal: 20,
-    },
-    popup: {
-      fontSize: 20,
-    },
-    button: {
-      color: Colors.orange
-    }
+  },
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    marginHorizontal: 20,
+  },
+  popup: {
+    fontSize: 20,
+  },
+  button: {
+    color: Colors.orange
+  }
 });
-  

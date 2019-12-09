@@ -19,9 +19,9 @@ export default class BuddyItem extends React.Component {
         this.setState({ search });
       };
     profilePressed = () => {
-        console.log(this.props.username)
+        //console.log(this.props.username)
         if (this.props.onPressed) {
-          console.log("Username:"+ this.props.username);
+          //console.log("Username:"+ this.props.username);
           this.props.onPressed(this.props.username);
         }
       }

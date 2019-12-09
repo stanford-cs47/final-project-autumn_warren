@@ -16,25 +16,12 @@ import PeopleList from '../../Data/PeopleList';
 export default class EventPeopleListItem extends React.Component {
     state = {
         attendies: EventData
-        // activities: profile.profile.activities,
     }
-    // componentWillMount() {
-    //     // for(i = 0; i < this.props.attendies.length; i++) {
-
-    //     // }
-    //     // for(i = 0; i < this.state.activities.length; i ++) {
-    //     //     if(this.state.activities[i] === this.props.activity) {
-    //     //         this.setState({matches: true});
-    //     //     }
-    //     //     console.log(this.state.matches)
-    //     // }
-    // }
     render () {
         console.log("Hello Kaughlin: ", PeopleList.people[this.props.person].name);
         return (
             <View style = {styles.container}>
                 <View stle = {this.person}>
-                {/* // style = {this.state.matches? styles.match : styles.notMatch } > */}
                     <Image style = {styles.peopleImage} source = {Images[this.props.person]}/> 
                     <Text style = {styles.text}>{PeopleList.people[this.props.person].name}</Text>
                 </View>
@@ -54,18 +41,12 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        // aspectRatio: 1,
-        // resizeMode: 'contain',
-        // alignSelf: 'center',
         marginTop: 20,
     },
     notMatch: {
         flex: 1,
         padding: 10,
         borderRadius: 10,
-       // backgroundColor: Colors.orange,
-        //borderColor: '#abd1b6',
-        //borderWidth: 1,
         backgroundColor: '#7a7a7a',
         justifyContent: 'center'
     },
@@ -73,9 +54,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         borderRadius: 10,
-       // backgroundColor: Colors.orange,
-        //borderColor: '#abd1b6',
-        //borderWidth: 1,
         backgroundColor: '#86bf96',
         justifyContent: 'center'
     },

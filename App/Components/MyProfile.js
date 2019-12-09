@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
   render() {
     return ( 
         <View style = {styles.container}>
-                  <ScrollView>
+            <ScrollView>
                 <Image style = {styles.image} source = {Images[this.props.content.profilePic]}/> 
                 <View style = {{flex: 1, justifyContent: 'center', paddingHorizontal: 20, marginTop: 30, alignItems: 'flex-start', flexDirection:'row'}}>
                     <View style = {{flex: 4}}>
@@ -47,8 +47,8 @@ export default class Profile extends React.Component {
                   <Text style = {styles.softHeader} >Activities</Text>
                   <ActivityList activities = {this.props.content.activities}/>
                 </View> 
-                </ScrollView>
-                </View>
+            </ScrollView>
+        </View>
     );
   };
 }

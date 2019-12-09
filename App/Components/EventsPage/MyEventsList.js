@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     color: Colors.heading,
     fontWeight: 'bold',
-    marginTop: 5,
+    marginTop: 15,
 
   }
 });

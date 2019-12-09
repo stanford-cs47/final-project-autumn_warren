@@ -21,7 +21,7 @@ export default class ActivityItem extends React.Component {
         overlap: false
     }
     changeColor() {
-        console.log(this.state.chosen)
+        //console.log(this.state.chosen)
         if (!this.state.chosen) {
             this.props.setTime(this.props.time, this.props.date, true, this.props.day);
           } else {

@@ -10,9 +10,6 @@ import EventPeopleListItem from './EventPeopleListItem';
 export default function EventPeopleList (props)  {
 
     renderActivity = (item, item2) => (
-         console.log("person Image: ", item),
-         console.log("person name: ", item2),
-
     <EventPeopleListItem
         person = {item}
       />

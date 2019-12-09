@@ -21,26 +21,23 @@ onChangeText = searchText => {
   getBuddies = () => {
     Keyboard.dismiss();
     Alert.alert("Coming Soon!", "Feature not implemented in this app prototype.");
-    // var results =  this.props.loadResults(this.state.searchText)
-    // this.setState({buddy: results});
-    //this.setState({searchText: ''})
   };
   render() {
     return (
       <View style = {styles.searchBar}>
       <TextInput style = {styles.bar}
-        placeholder = 'Search'
-        onChangeText={searchText => this.onChangeText(searchText)}
-        onSubmitEditing = {() => this.getBuddies()}
-        value = {this.state.searchText}/>
+          placeholder = 'Search'
+          onChangeText={searchText => this.onChangeText(searchText)}
+          onSubmitEditing = {() => this.getBuddies()}
+          value = {this.state.searchText}/>
         <TouchableOpacity style = {styles.button}>
         <FontAwesome
-          name =  "search" 
-          backgroundColor= 'whitesmoke' 
-          color= {Colors.orange}
-          size = {20}
-          onPress = {() => this.getBuddies()}
-          />
+            name =  "search" 
+            backgroundColor= 'whitesmoke' 
+            color= {Colors.orange}
+            size = {20}
+            onPress = {() => this.getBuddies()}
+            />
       </TouchableOpacity>
       </View>
     );

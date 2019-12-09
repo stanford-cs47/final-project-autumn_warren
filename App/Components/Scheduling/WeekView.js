@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import BoxItem from './BoxItem';
 import { Divider } from 'react-native-elements';
-import { FloatingAction } from "react-native-floating-action";
 var {height, width} = Dimensions.get('window');
 
 export default class ScheduleInterface extends React.Component {
@@ -45,24 +44,19 @@ export default class ScheduleInterface extends React.Component {
         )
     }
       setTime=(time, date, chosen, index) =>{
-  // var selected = undefined;
           if(chosen) {
                 this.state.times.push(time)
-                //console.log(this.state.date)
                 this.state.date.push(date)
                 this.state.daysList.push(index)
                 var selected = {times: this.state.times, date: this.state.date, days: this.state.daysList}
                 this.props.onDateRequested(selected)  
-                console.log("selected: " + selected) 
           } else {
                 const result = this.state.times.filter(item => item !== time)
                 const dates = this.state.daysList.filter(item => item !== index)
-                console.log("dates: " + dates)
                 var selected = {times: result, date: this.state.date, days: dates}
                 this.setState({times: result, date: this.state.date, daysList: dates})
                 this.props.onDateRequested(selected)  
           }
-          //console.log(this.state) 
       }
       FlatListItemSeparator=() =>{
           return (
@@ -84,11 +78,11 @@ export default class ScheduleInterface extends React.Component {
     );
      }
 }
-    const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
     },
     header: {
         fontSize: 15,
     }
-    });
+});

@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createAppContainer } from 'react-navigation'
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack'
 import React from 'react';
 import {Colors} from '../Themes'
@@ -15,7 +16,6 @@ import MessagingScreen from '../Screens/MessagingScreen';
 import SchedulingScreen from '../Screens/SchedulingScreen';
 import SingleEventScreen from '../Screens/SingleEventScreen';
 import EventFilterScreen from '../Screens/EventFilterScreen';
-import * as Font from 'expo-font';
 
 const DiscoverStack = createStackNavigator({
   Discover: {screen: DiscoverScreen},
@@ -92,9 +92,11 @@ DiscoverStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Discover',
     tabBarIcon: ({ tintColor }) => (
+      <View style = {{alignItems: 'center'}}>
       <FontAwesome5 name="eye"
         size={35}
         color={tintColor} />
+        </View>
     ),
   };
 };

@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
 import { StyleSheet, SafeAreaView, View, SectionList, Text, Dimensions} from 'react-native';
-import DropdownMenu from 'react-native-dropdown-menu';
-import ProfileData from '../../Data/MyProfile';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Colors, Images } from '../../Themes';
-import ToggleList from '../FilterPage/ToggleList';
 import ToggleItem from '../FilterPage/ToggleItem';
 import { Slider } from 'react-native';
-import { Button } from 'native-base';
-import TimeBubbles from '../EventsPage/timeBubbles';
+import TimeBubbles from './TimeBubbles';
 import SearchBar from '../SearchBar';
-
-// import Slider from '@react-native-community/slider';
-// import LocationPicker from './LocationPicker';
 const { width, height } = Dimensions.get('window')
 
 export default class EventsFilterList extends React.Component  {
@@ -66,8 +59,6 @@ export default class EventsFilterList extends React.Component  {
                     <View style = {styles.timeRow}>
                         <Text style = {styles.info}>
                          Only show events for the selected activities</Text>
-                            {/* <ToggleItem 
-                            item = "onlyShowActivities"/> */}
                     </View>
                 </View>
                 <View style = {styles.filter}>
@@ -96,7 +87,6 @@ export default class EventsFilterList extends React.Component  {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // paddingHorizontal: 20,
     },
     filter: {
         flex: 1,
@@ -108,7 +98,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     timeRow: {
-        // flex: 1,
         flexDirection: 'row',
         marginBottom: 10,
     },

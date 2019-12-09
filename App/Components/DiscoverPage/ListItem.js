@@ -21,7 +21,6 @@ const { width, height } = Dimensions.get('window')
 export default class ListItem extends React.Component {
   profilePressed = () => {
     if (this.props.onProfilePressed) {
-      console.log("Username:"+ this.props.username);
       this.props.onProfilePressed(this.props.username);
     }
   }
@@ -74,11 +73,10 @@ const styles = StyleSheet.create({
   person: {
     borderColor: 'whitesmoke',
     borderWidth: 1.5,
-    //backgroundColor: '#f6b26b',
     backgroundColor: 'white',
     borderRadius: 10,
-    width: '100%',
-    height: height * .17,
+    //width: '100%',
+    //height: height * .17,
     paddingHorizontal: 15,
     paddingVertical: 10,
     flexDirection: 'row',
@@ -88,7 +86,6 @@ const styles = StyleSheet.create({
     width: 110,
     height: 110,
     aspectRatio: 1,
-    //resizeMode: 'contain',
     borderRadius: 10,
     alignSelf: 'center',
   },
@@ -98,12 +95,10 @@ const styles = StyleSheet.create({
     padding: 5,
   },
     personName: {
-      //flex:1,
     fontWeight: '600',
     fontSize: 20,
     color: '#5b5b5b',
     marginLeft: 20,
-    //fontFamily: "Gill Sans"
   },
     subheading: {
     flex: 1,
@@ -114,25 +109,21 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     fontSize: 16,
     color: '#5b5b5b',
-    //fontFamily: "Gill Sans"
   },
   age: {
     fontWeight: '300',
     color: '#5b5b5b',
     fontSize: 16,
-    //fontFamily: "Gill Sans"
   },
   bioView: {
     flex: 3,
     justifyContent: 'center'
   },
   bio: {
-    //fontWeight: '400',
     fontSize: 16,
     color: '#5b5b5b',
     marginLeft: 20,
     marginBottom: 8,
-   // fontFamily: "Gill Sans"
   },
   schedule: {
     flex: 1,
